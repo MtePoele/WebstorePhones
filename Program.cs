@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FivePhonesConsole
+namespace WebstorePhones
 {
     class Program
     {
+        private static List<Phone> phones = MakeList();
+
         static void Main(string[] args)
         {
             MainMenu();
@@ -56,8 +58,6 @@ namespace FivePhonesConsole
 
         private static void MainMenu()
         {
-            List<Phone> phonesList = MakeList();
-
             Console.WriteLine(
                 "Kies een telefoonmerk:\n" +
                 "0. Huawei\n" +
@@ -69,17 +69,41 @@ namespace FivePhonesConsole
 
             Console.Write("Uw keuze: ");
 
-            int userChoice = int.Parse(Console.ReadKey().KeyChar.ToString());
+            int userChoice = -1;
 
+            try
+            {
+                userChoice = int.Parse(Console.ReadKey().KeyChar.ToString());
+            }
+            catch (Exception)
+            {
+                Console.Clear();
+                Console.WriteLine("Ongeldige invoer. Kies een nummer 0-4.\n");
+            }
+
+            if (userChoice > -1 && userChoice < phones.Count)
+            {
+                ShowResults(userChoice);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Ongeldige invoer. Kies een nummer 0-4.\n");
+            }
+
+            MainMenu();
+        }
+
+        private static void ShowResults(int userChoice)
+        {
             Console.Clear();
 
-            Console.WriteLine($"{phonesList[userChoice].Brand} {phonesList[userChoice].Type}, Price: {phonesList[userChoice].Price}");
-            Console.WriteLine(phonesList[userChoice].Description);
+            Console.WriteLine($"{phones[userChoice].Brand} {phones[userChoice].Type}, Price: {phones[userChoice].Price}");
+            Console.WriteLine(phones[userChoice].Description);
             Console.WriteLine();
             Console.WriteLine("Druk op een willekeurige toets om terug te gaan naar het hoofdmenu.");
             Console.ReadKey();
             Console.Clear();
-            MainMenu();
         }
     }
 }

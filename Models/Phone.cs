@@ -1,4 +1,4 @@
-﻿namespace FivePhonesConsole
+﻿namespace WebstorePhones
 {
     public class Phone
     {
