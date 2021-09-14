@@ -1,0 +1,15 @@
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\bin\Debug\net5.0\WebstorePhones.Business.deps.json
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\bin\Debug\net5.0\WebstorePhones.Business.dll
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\bin\Debug\net5.0\ref\WebstorePhones.Business.dll
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\bin\Debug\net5.0\WebstorePhones.Business.pdb
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\bin\Debug\net5.0\WebstorePhones.Domain.dll
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\bin\Debug\net5.0\WebstorePhones.Domain.pdb
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\obj\Debug\net5.0\WebstorePhones.Business.csproj.AssemblyReference.cache
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\obj\Debug\net5.0\WebstorePhones.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\obj\Debug\net5.0\WebstorePhones.Business.AssemblyInfoInputs.cache
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\obj\Debug\net5.0\WebstorePhones.Business.AssemblyInfo.cs
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\obj\Debug\net5.0\WebstorePhones.Business.csproj.CoreCompileInputs.cache
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\obj\Debug\net5.0\WebstorePhones.Business.csproj.CopyComplete
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\obj\Debug\net5.0\WebstorePhones.Business.dll
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\obj\Debug\net5.0\ref\WebstorePhones.Business.dll
+C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Business\obj\Debug\net5.0\WebstorePhones.Business.pdb

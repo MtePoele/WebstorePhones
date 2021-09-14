@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="WebstorePhones.Business\**" />
+    <Compile Remove="WebstorePhones.Domain\**" />
+    <EmbeddedResource Remove="WebstorePhones.Business\**" />
+    <EmbeddedResource Remove="WebstorePhones.Domain\**" />
+    <None Remove="WebstorePhones.Business\**" />
+    <None Remove="WebstorePhones.Domain\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="WebstorePhones.Business\WebstorePhones.Business.csproj" />
+  </ItemGroup>
+
+</Project>
