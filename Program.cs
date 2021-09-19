@@ -7,7 +7,7 @@ namespace WebstorePhones
 {
     class Program
     {
-        private static readonly List<Phone> phones = PhoneService.MakeList();
+        private static readonly List<Phone> phones = ProductService.GetAllPhones();
 
         static void Main(string[] args)
         {
@@ -16,16 +16,11 @@ namespace WebstorePhones
 
         private static void MainMenu()
         {
-            Console.WriteLine(
-                "Kies een telefoonmerk:\n" +
-                "0. Huawei\n" +
-                "1. Samsung\n" +
-                "2. Apple\n" +
-                "3. Google\n" +
-                "4. Xiaomi");
-            Console.WriteLine();
-
-            Console.Write("Uw keuze: ");
+            for (int i = 0; i < phones.Count; i++)
+            {
+                Console.WriteLine($"{i}. {phones[i].Brand} {phones[i].Type}");
+            }
+            Console.Write("\nUw keuze: ");
 
             int userChoice = -1;
 
@@ -41,7 +36,11 @@ namespace WebstorePhones
 
             if (userChoice > -1 && userChoice < phones.Count)
             {
-                ShowResults(userChoice);
+                Console.Clear();
+                Phone phone = ProductService.GetPhone(userChoice);
+                Console.WriteLine($"Brand: {phone.Brand} \tType: {phone.Type} \tPrice: {phone.PriceAfterTax} \tBefore tax: {phone.PriceBeforeTax}");
+                Console.WriteLine($"Description: {phone.Description}\n");
+                //ShowResults(userChoice);
             }
             else
             {
@@ -50,18 +49,6 @@ namespace WebstorePhones
             }
 
             MainMenu();
-        }
-
-        private static void ShowResults(int userChoice)
-        {
-            Console.Clear();
-
-            Console.WriteLine($"{phones[userChoice].Brand} {phones[userChoice].Type}, Price: {phones[userChoice].PriceAfterTax}");
-            Console.WriteLine(phones[userChoice].Description);
-            Console.WriteLine();
-            Console.WriteLine("Druk op een willekeurige toets om terug te gaan naar het hoofdmenu.");
-            Console.ReadKey();
-            Console.Clear();
         }
     }
 }

@@ -9,3 +9,4 @@ C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.
 C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\WebstorePhones.Domain.dll
 C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\ref\WebstorePhones.Domain.dll
 C:\Users\rsmar\source\repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\WebstorePhones.Domain.pdb
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\WebstorePhones.Domain.csproj.AssemblyReference.cache
