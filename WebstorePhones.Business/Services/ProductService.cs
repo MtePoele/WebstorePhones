@@ -16,7 +16,8 @@ namespace WebstorePhones.Business.Services
                 Brand = "Huawei",
                 Type = "P30",
                 Description = "6.47\" FHD + (2340x1080) OLED, Kirin 980 Octa - Core(2x Cortex - A76, 2.6GHz + 2x Cortex - A76 1.92GHz + 4x Cortex - A55 1.8GHz), 8GB RAM, 128GB ROM, 40 + 20 + 8 + TOF / 32MP, Dual SIM, 4200mAh, Android 9.0 + EMUI 9.1",
-                PriceAfterTax = 697
+                PriceAfterTax = 697,
+                Stock = 5
             },
             new Phone()
             {
@@ -24,7 +25,8 @@ namespace WebstorePhones.Business.Services
                 Brand = "Samsung",
                 Type = "Galaxy A52",
                 Description = "64 megapixel camera, 4k videokwaliteit, 6.5 inch AMOLED scherm, 128 GB opslaggeheugen(Uitbreidbaar met Micro - sd), Water - en stofbestendig(IP67)",
-                PriceAfterTax = 399
+                PriceAfterTax = 399,
+                Stock = 13
             },
             new Phone()
             {
@@ -32,7 +34,8 @@ namespace WebstorePhones.Business.Services
                 Brand = "Apple",
                 Type = "IPhone 11",
                 Description = "Met de dubbele camera schiet je in elke situatie een perfecte foto of video. De krachtige A13 - chipset zorgt voor razendsnelle prestaties. Met Face ID hoef je enkel en alleen naar je toestel te kijken om te ontgrendelen. Het toestel heeft een lange accuduur dankzij een energiezuinige processor",
-                PriceAfterTax = 619
+                PriceAfterTax = 619,
+                Stock = 27
             },
             new Phone()
             {
@@ -40,7 +43,8 @@ namespace WebstorePhones.Business.Services
                 Brand = "Google",
                 Type = "Pixel 4a",
                 Description = "12.2 megapixel camera, 4k videokwaliteit, 5.81 inch OLED scherm, 128 GB opslaggeheugen, 3140 mAh accucapaciteit",
-                PriceAfterTax = 411
+                PriceAfterTax = 411,
+                Stock = 44
             },
             new Phone()
             {
@@ -48,7 +52,8 @@ namespace WebstorePhones.Business.Services
                 Brand = "Xiaomi",
                 Type = "Redmi Note 10 Pro",
                 Description = "108 megapixel camera, 4k videokwaliteit, 6.67 inch AMOLED scherm, 128 GB opslaggeheugen(Uitbreidbaar met Micro - sd). Water - en stofbestendig(IP53)",
-                PriceAfterTax = 298
+                PriceAfterTax = 298,
+                Stock = 1
             }
         };
         private readonly static double Tax = 0.21;

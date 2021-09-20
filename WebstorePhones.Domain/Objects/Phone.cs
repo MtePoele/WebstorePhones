@@ -8,5 +8,6 @@
         public string Description { get; set; }
         public double PriceAfterTax { get; set; }
         public double PriceBeforeTax { get; set; }
+        public int Stock { get; set; }
     }
 }
