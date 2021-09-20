@@ -1,0 +1,12 @@
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\bin\Debug\net5.0\WebstorePhones.Domain.deps.json
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\bin\Debug\net5.0\WebstorePhones.Domain.dll
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\bin\Debug\net5.0\ref\WebstorePhones.Domain.dll
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\bin\Debug\net5.0\WebstorePhones.Domain.pdb
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\WebstorePhones.Domain.csproj.AssemblyReference.cache
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\WebstorePhones.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\WebstorePhones.Domain.AssemblyInfoInputs.cache
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\WebstorePhones.Domain.AssemblyInfo.cs
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\WebstorePhones.Domain.csproj.CoreCompileInputs.cache
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\WebstorePhones.Domain.dll
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\ref\WebstorePhones.Domain.dll
+C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Domain\obj\Debug\net5.0\WebstorePhones.Domain.pdb
