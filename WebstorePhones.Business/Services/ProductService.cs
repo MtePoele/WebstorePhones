@@ -85,5 +85,13 @@ namespace WebstorePhones.Business.Services
         {
             return phones.FirstOrDefault(x => id == x.Id);
         }
+
+        public static List<Phone> Search(string query)
+        {
+            List<Phone> foundPhones = new();
+            //TODO Somehow use LINQ to add search results to foundPhones.
+
+            return foundPhones;
+        }
     }
 }

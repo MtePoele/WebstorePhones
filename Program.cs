@@ -25,6 +25,9 @@ namespace WebstorePhones
             {
                 Console.WriteLine($"{i}. {phones[i].Brand} {phones[i].Type}");
             }
+            Console.WriteLine($"{i}. Search for a phrase.");
+
+            i++;
             Console.WriteLine($"{i}. Afsluiten");
             
             Console.Write("\nUw keuze: ");
@@ -48,6 +51,15 @@ namespace WebstorePhones
                 Console.WriteLine($"Description: {phone.Description}\n");
             }
             else if (userChoice == phones.Count)
+            {
+                Console.WriteLine($"\n\nWrite text to search for.");
+                List<Phone> searchResults = ProductService.Search(Console.ReadLine());
+                foreach (var phone in searchResults)
+                {
+                    Console.WriteLine($"{phone.Brand}");
+                }
+            }
+            else if (userChoice == i)
             {
                 Environment.Exit(0);
             }
