@@ -26,3 +26,9 @@
 /WebstorePhones.Domain/obj/Debug/net5.0/WebstorePhones.Domain.pdb
 /WebstorePhones.Domain/obj/project.nuget.cache
 /WebstorePhones.Business/obj/project.nuget.cache
+/WebstorePhones.Business/obj/Release/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+/WebstorePhones.Business/obj/Release/net5.0/WebstorePhones.Business.AssemblyInfo.cs
+/WebstorePhones.Business/obj/Release/net5.0/WebstorePhones.Business.AssemblyInfoInputs.cache
+/WebstorePhones.Business/obj/Release/net5.0/WebstorePhones.Business.assets.cache
+/WebstorePhones.Business/obj/Release/net5.0/WebstorePhones.Business.GeneratedMSBuildEditorConfig.editorconfig
+/WebstorePhones.Domain/obj/Release/net5.0

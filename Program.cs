@@ -7,15 +7,19 @@ namespace WebstorePhones
 {
     class Program
     {
-        private static readonly List<Phone> phones = ProductService.GetAllPhones();
-
         static void Main(string[] args)
         {
-            MainMenu();
+            while (true)
+            {
+                MainMenu();
+            }
         }
 
         private static void MainMenu()
         {
+            List<Phone> phones = ProductService.GetAllPhones();
+            ProductService.SortList(phones);
+
             int i;
             for (i = 0; i < phones.Count; i++)
             {
@@ -42,7 +46,6 @@ namespace WebstorePhones
                 Phone phone = ProductService.GetPhone(userChoice);
                 Console.WriteLine($"Brand: {phone.Brand} \tType: {phone.Type} \tPrice: {phone.PriceAfterTax} \tBefore tax: {phone.PriceBeforeTax} \tStock left: {phone.Stock}");
                 Console.WriteLine($"Description: {phone.Description}\n");
-                //ShowResults(userChoice);
             }
             else if (userChoice == phones.Count)
             {
@@ -53,8 +56,6 @@ namespace WebstorePhones
                 Console.Clear();
                 Console.WriteLine("Ongeldige invoer. Kies een nummer 0-4.\n");
             }
-
-            MainMenu();
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using WebstorePhones.Domain.Objects;
 using WebstorePhones.Business.Interfaces;
+using System.Linq;
 
 namespace WebstorePhones.Business.Services
 {
@@ -51,6 +51,7 @@ namespace WebstorePhones.Business.Services
                 Stock = 1
             }
         };
+
         private readonly static double Tax = 0.21;
 
         private static double CalculateBeforeTax(double priceAfterTax)
@@ -58,7 +59,7 @@ namespace WebstorePhones.Business.Services
             return Math.Round(priceAfterTax / (1 + Tax), 2);
         }
 
-        private static List<Phone> SortList(List<Phone> phones)
+        public static List<Phone> SortList(List<Phone> phones)
         {
             phones.Sort((x, y) => string.Compare(x.Brand, y.Brand));
             int phoneId = 0;
@@ -72,25 +73,17 @@ namespace WebstorePhones.Business.Services
 
         public static List<Phone> GetAllPhones()
         {
-
             foreach (var phone in phones)
             {
                 phone.PriceBeforeTax = CalculateBeforeTax(phone.PriceAfterTax);
             }
-            SortList(phones);
 
             return phones;
         }
 
         public static Phone GetPhone(int id)
         {
-            return phones.Find(x => id == x.Id);
-        }
-
-        private double CalculatePriceBeforeTax(double price)
-        {
-            price /= 1.21;
-            return price;
+            return phones.FirstOrDefault(x => id == x.Id);
         }
     }
 }
