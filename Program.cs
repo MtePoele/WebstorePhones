@@ -48,20 +48,39 @@ namespace WebstorePhones
                 Console.Clear();
 
                 Phone phone = PhoneService.GetPhone(userChoice);
-
-                Console.WriteLine($"Brand: {phone.Brand} \tType: {phone.Type} \tPrice: {phone.PriceAfterTax} \tBefore tax: {phone.PriceBeforeTax} \tStock left: {phone.Stock}");
-                Console.WriteLine($"Description: {phone.Description}\n");
+                PrintResults(phone);
             }
             else if (userChoice == phones.Count)
             {
-                Console.WriteLine($"\n\nWrite text to search for.");
+                Console.Clear();
+                Console.WriteLine($"Geef woord(en) op om naar te zoeken.");
 
-                List<Phone> searchResults = PhoneService.Search(Console.ReadLine());
-                
-                foreach (var phone in searchResults)
+                string searchInput = Console.ReadLine();
+                if (searchInput.Length > 0)
                 {
-                    Console.WriteLine($"{phone.Brand}");
+                    List<Phone> searchResults = PhoneService.Search(searchInput);
+                    Console.WriteLine();
+
+                    if (searchResults.Count == 0)
+                    {
+                        Console.WriteLine("Uw zoekopdracht heeft niets opgeleverd.");
+                    }
+                    else
+                    {
+                        foreach (var phone in searchResults)
+                        {
+                            PrintResults(phone);
+                        }
+                    }
                 }
+                else
+                {
+                    Console.WriteLine("Ongeldige invoer. Voer tenminste 1 teken in.");
+                }
+
+                Console.WriteLine("Druk op een toets om terug te gaan.");
+                Console.ReadKey();
+                Console.Clear();
             }
             else if (userChoice == i)
             {
@@ -72,6 +91,12 @@ namespace WebstorePhones
                 Console.Clear();
                 Console.WriteLine("Ongeldige invoer. Kies een nummer 0-4.\n");
             }
+        }
+
+        private static void PrintResults(Phone phone)
+        {
+            Console.WriteLine($"Merk: {phone.Brand} \tType: {phone.Type} \tPrijs: {phone.PriceAfterTax} \tExcl. BTW: {phone.PriceBeforeTax} \tVoorraad: {phone.Stock}");
+            Console.WriteLine($"Beschrijving: {phone.Description}\n");
         }
     }
 }

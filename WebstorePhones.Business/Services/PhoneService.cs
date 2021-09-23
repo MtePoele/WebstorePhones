@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace WebstorePhones.Business.Services
 {
-    public class PhoneService : IPhoneService 
+    public class PhoneService : IPhoneService
     {
         private readonly static List<Phone> phones = new()
         {
@@ -88,10 +88,13 @@ namespace WebstorePhones.Business.Services
 
         public static List<Phone> Search(string query)
         {
-            List<Phone> foundPhones = new();
-            //TODO Somehow use LINQ to add search results to foundPhones.
-
-            return foundPhones;
+            return phones
+                .Where(x =>
+                x.Brand.ToLower().Contains(query.ToLower()) ||
+                x.Type.ToLower().Contains(query.ToLower()) ||
+                x.Description.ToLower().Contains(query.ToLower())
+                )
+                .ToList();
         }
     }
 }
