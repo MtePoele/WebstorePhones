@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace WebstorePhones.Business.Services
 {
-    public class ProductService : IProductService 
+    public class PhoneService : IPhoneService 
     {
         private readonly static List<Phone> phones = new()
         {

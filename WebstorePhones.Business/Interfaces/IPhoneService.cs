@@ -7,7 +7,7 @@ using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.Business.Interfaces
 {
-    public interface IProductService
+    public interface IPhoneService
     {
 
     }

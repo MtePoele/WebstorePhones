@@ -17,15 +17,15 @@ namespace WebstorePhones
 
         private static void MainMenu()
         {
-            List<Phone> phones = ProductService.GetAllPhones();
-            ProductService.SortList(phones);
+            List<Phone> phones = PhoneService.GetAllPhones();
+            PhoneService.SortList(phones);
 
             int i;
             for (i = 0; i < phones.Count; i++)
             {
                 Console.WriteLine($"{i}. {phones[i].Brand} {phones[i].Type}");
             }
-            Console.WriteLine($"{i}. Search for a phrase.");
+            Console.WriteLine($"{i}. Zoeken");
 
             i++;
             Console.WriteLine($"{i}. Afsluiten");
@@ -41,19 +41,23 @@ namespace WebstorePhones
             catch (Exception)
             {
                 Console.Clear();
-                Console.WriteLine("Ongeldige invoer. Kies een nummer 0-4.\n");
+                Console.WriteLine($"Ongeldige invoer. Kies een nummer 0-{phones.Count}.\n");
             }
             if (userChoice > -1 && userChoice < phones.Count)
             {
                 Console.Clear();
-                Phone phone = ProductService.GetPhone(userChoice);
+
+                Phone phone = PhoneService.GetPhone(userChoice);
+
                 Console.WriteLine($"Brand: {phone.Brand} \tType: {phone.Type} \tPrice: {phone.PriceAfterTax} \tBefore tax: {phone.PriceBeforeTax} \tStock left: {phone.Stock}");
                 Console.WriteLine($"Description: {phone.Description}\n");
             }
             else if (userChoice == phones.Count)
             {
                 Console.WriteLine($"\n\nWrite text to search for.");
-                List<Phone> searchResults = ProductService.Search(Console.ReadLine());
+
+                List<Phone> searchResults = PhoneService.Search(Console.ReadLine());
+                
                 foreach (var phone in searchResults)
                 {
                     Console.WriteLine($"{phone.Brand}");
