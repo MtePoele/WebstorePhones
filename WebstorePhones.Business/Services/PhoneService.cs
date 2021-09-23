@@ -88,11 +88,12 @@ namespace WebstorePhones.Business.Services
 
         public static List<Phone> Search(string query)
         {
+            query = query.ToLower();
             return phones
                 .Where(x =>
-                x.Brand.ToLower().Contains(query.ToLower()) ||
-                x.Type.ToLower().Contains(query.ToLower()) ||
-                x.Description.ToLower().Contains(query.ToLower())
+                x.Brand.ToLower().Contains(query) ||
+                x.Type.ToLower().Contains(query) ||
+                x.Description.ToLower().Contains(query)
                 )
                 .ToList();
         }
