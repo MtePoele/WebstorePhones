@@ -60,21 +60,15 @@ namespace WebstorePhones.Business.Services
         public PhoneService()
         {
             taxService = new TaxService();
-
-            foreach (var phone in phones)
-            {
-                phone.PriceWithoutTax = taxService.CalculateWithoutTax(phone.PriceWithTax);
-            }
+        }
+        public Phone Get(int id)
+        {
+            return phones.Single(x => id == x.Id);
         }
 
         public IEnumerable<Phone> Get()
         {
             return phones.OrderBy(x => x.Brand);
-        }
-
-        public Phone Get(int id)
-        {
-            return phones.Single(x => id == x.Id);
         }
 
         public IEnumerable<Phone> Search(string query)
