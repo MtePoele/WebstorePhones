@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Objects;
 
@@ -7,8 +8,13 @@ namespace WebstorePhones
 {
     class Program
     {
+        static Dictionary<int, Phone> phonesDictionary = new();
+        private static PhoneService phoneService = new();
+
         static void Main(string[] args)
         {
+            GetAllPhones();
+
             while (true)
             {
                 MainMenu();
@@ -17,22 +23,16 @@ namespace WebstorePhones
 
         private static void MainMenu()
         {
-            List<Phone> phones = PhoneService.GetAllPhones();
-            PhoneService.SortList(phones);
-
-            int i;
-            for (i = 0; i < phones.Count; i++)
+            foreach (var phone in phonesDictionary)
             {
-                Console.WriteLine($"{i}. {phones[i].Brand} {phones[i].Type}");
+                Console.WriteLine($"{phone.Key}. {phone.Value.Brand} \t{phone.Value.Type}");
             }
-            Console.WriteLine($"{i}. Zoeken");
+            Console.WriteLine($"{phonesDictionary.Count + 1}. Zoeken");
+            Console.WriteLine($"{phonesDictionary.Count + 2}. Afsluiten");
 
-            i++;
-            Console.WriteLine($"{i}. Afsluiten");
-            
             Console.Write("\nUw keuze: ");
 
-            int userChoice = -1;
+            int userChoice = 0;
 
             try
             {
@@ -41,16 +41,17 @@ namespace WebstorePhones
             catch (Exception)
             {
                 Console.Clear();
-                Console.WriteLine($"Ongeldige invoer. Kies een nummer 0-{phones.Count}.\n");
+                Console.WriteLine($"Ongeldige invoer. Kies een nummer 0-{phonesDictionary.Count}.\n");
             }
-            if (userChoice > -1 && userChoice < phones.Count)
+
+            if (userChoice > 0 && userChoice <= phonesDictionary.Count)
             {
                 Console.Clear();
 
-                Phone phone = PhoneService.GetPhone(userChoice);
+                Phone phone = phonesDictionary[userChoice];
                 PrintResults(phone);
             }
-            else if (userChoice == phones.Count)
+            else if (userChoice == phonesDictionary.Count + 1)
             {
                 Console.Clear();
                 Console.WriteLine($"Geef woord(en) op om naar te zoeken.");
@@ -58,7 +59,7 @@ namespace WebstorePhones
                 string searchInput = Console.ReadLine();
                 if (searchInput.Length > 0)
                 {
-                    List<Phone> searchResults = PhoneService.Search(searchInput);
+                    List<Phone> searchResults = phoneService.Search(searchInput).ToList();
                     Console.WriteLine();
 
                     if (searchResults.Count == 0)
@@ -67,6 +68,7 @@ namespace WebstorePhones
                     }
                     else
                     {
+                        Console.Clear();
                         foreach (var phone in searchResults)
                         {
                             PrintResults(phone);
@@ -82,20 +84,30 @@ namespace WebstorePhones
                 Console.ReadKey();
                 Console.Clear();
             }
-            else if (userChoice == i)
+            else if (userChoice == phonesDictionary.Count + 2)
             {
                 Environment.Exit(0);
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine("Ongeldige invoer. Kies een nummer 0-4.\n");
+                Console.WriteLine($"Ongeldige invoer. Kies een nummer 1-{phonesDictionary.Count}.\n");
+            }
+        }
+
+        private static void GetAllPhones()
+        {
+            List<Phone> phonesList = phoneService.Get().ToList();
+
+            for (int i = 0; i < phonesList.Count; i++)
+            {
+                phonesDictionary.Add(i + 1, phonesList[i]);
             }
         }
 
         private static void PrintResults(Phone phone)
         {
-            Console.WriteLine($"Merk: {phone.Brand} \tType: {phone.Type} \tPrijs: {phone.PriceAfterTax} \tExcl. BTW: {phone.PriceBeforeTax} \tVoorraad: {phone.Stock}");
+            Console.WriteLine($"Merk: {phone.Brand} \tType: {phone.Type} \tPrijs: {phone.PriceWithTax} \tExcl. BTW: {phone.PriceWithoutTax} \tVoorraad: {phone.Stock}");
             Console.WriteLine($"Beschrijving: {phone.Description}\n");
         }
     }

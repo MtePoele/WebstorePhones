@@ -1,101 +1,89 @@
-﻿using System;
-using System.Collections.Generic;
-using WebstorePhones.Domain.Objects;
-using WebstorePhones.Business.Interfaces;
+﻿using System.Collections.Generic;
 using System.Linq;
+using WebstorePhones.Domain.Interfaces;
+using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.Business.Services
 {
     public class PhoneService : IPhoneService
     {
-        private readonly static List<Phone> phones = new()
+        private List<Phone> phones = new()
         {
             new Phone()
             {
+                Id = 1,
                 Brand = "Huawei",
                 Type = "P30",
                 Description = "6.47\" FHD + (2340x1080) OLED, Kirin 980 Octa - Core(2x Cortex - A76, 2.6GHz + 2x Cortex - A76 1.92GHz + 4x Cortex - A55 1.8GHz), 8GB RAM, 128GB ROM, 40 + 20 + 8 + TOF / 32MP, Dual SIM, 4200mAh, Android 9.0 + EMUI 9.1",
-                PriceAfterTax = 697,
+                PriceWithTax = 697,
                 Stock = 5
             },
             new Phone()
             {
+                Id = 2,
                 Brand = "Samsung",
                 Type = "Galaxy A52",
                 Description = "64 megapixel camera, 4k videokwaliteit, 6.5 inch AMOLED scherm, 128 GB opslaggeheugen(Uitbreidbaar met Micro - sd), Water - en stofbestendig(IP67)",
-                PriceAfterTax = 399,
+                PriceWithTax = 399,
                 Stock = 13
             },
             new Phone()
             {
+                Id = 3,
                 Brand = "Apple",
                 Type = "IPhone 11",
                 Description = "Met de dubbele camera schiet je in elke situatie een perfecte foto of video. De krachtige A13 - chipset zorgt voor razendsnelle prestaties. Met Face ID hoef je enkel en alleen naar je toestel te kijken om te ontgrendelen. Het toestel heeft een lange accuduur dankzij een energiezuinige processor",
-                PriceAfterTax = 619,
+                PriceWithTax = 619,
                 Stock = 27
             },
             new Phone()
             {
+                Id = 4,
                 Brand = "Google",
                 Type = "Pixel 4a",
                 Description = "12.2 megapixel camera, 4k videokwaliteit, 5.81 inch OLED scherm, 128 GB opslaggeheugen, 3140 mAh accucapaciteit",
-                PriceAfterTax = 411,
+                PriceWithTax = 411,
                 Stock = 44
             },
             new Phone()
             {
+                Id = 5,
                 Brand = "Xiaomi",
                 Type = "Redmi Note 10 Pro",
                 Description = "108 megapixel camera, 4k videokwaliteit, 6.67 inch AMOLED scherm, 128 GB opslaggeheugen(Uitbreidbaar met Micro - sd). Water - en stofbestendig(IP53)",
-                PriceAfterTax = 298,
+                PriceWithTax = 298,
                 Stock = 1
             }
         };
+        private readonly TaxService taxService;
 
-        private readonly static double Tax = 0.21;
-
-        private static double CalculateBeforeTax(double priceAfterTax)
+        public PhoneService()
         {
-            return Math.Round(priceAfterTax / (1 + Tax), 2);
-        }
+            taxService = new TaxService();
 
-        public static List<Phone> SortList(List<Phone> phones)
-        {
-            phones.Sort((x, y) => string.Compare(x.Brand, y.Brand));
-            int phoneId = 0;
             foreach (var phone in phones)
             {
-                phone.Id = phoneId;
-                phoneId++;
+                phone.PriceWithoutTax = taxService.CalculateWithoutTax(phone.PriceWithTax);
             }
-            return phones;
         }
 
-        public static List<Phone> GetAllPhones()
+        public IEnumerable<Phone> Get()
         {
-            foreach (var phone in phones)
-            {
-                phone.PriceBeforeTax = CalculateBeforeTax(phone.PriceAfterTax);
-            }
-
-            return phones;
+            return phones.OrderBy(x => x.Brand);
         }
 
-        public static Phone GetPhone(int id)
+        public Phone Get(int id)
         {
-            return phones.FirstOrDefault(x => id == x.Id);
+            return phones.Single(x => id == x.Id);
         }
 
-        public static List<Phone> Search(string query)
+        public IEnumerable<Phone> Search(string query)
         {
             query = query.ToLower();
-            return phones
-                .Where(x =>
+            return phones.Where(x =>
                 x.Brand.ToLower().Contains(query) ||
                 x.Type.ToLower().Contains(query) ||
-                x.Description.ToLower().Contains(query)
-                )
-                .ToList();
+                x.Description.ToLower().Contains(query));
         }
     }
 }
