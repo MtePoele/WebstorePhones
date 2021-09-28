@@ -3,7 +3,7 @@ using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business.Services
 {
-    class TaxService : ITaxService
+    public class TaxService : ITaxService
     {
         private readonly double Tax = 0.21;
         public double CalculateWithoutTax(double priceWithTax)

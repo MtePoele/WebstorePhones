@@ -56,10 +56,6 @@ namespace WebstorePhones.Business.Services
             }
         };
 
-        public PhoneService()
-        {
-            taxService = new TaxService();
-        }
         public Phone Get(int id)
         {
             return phones.Single(x => id == x.Id);
