@@ -55,7 +55,6 @@ namespace WebstorePhones.Business.Services
                 Stock = 1
             }
         };
-        private readonly TaxService taxService;
 
         public PhoneService()
         {
