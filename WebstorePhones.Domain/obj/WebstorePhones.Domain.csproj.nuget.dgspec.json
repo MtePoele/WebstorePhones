@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rsmar\\Source\\Repos\\WebstorePhones\\WebstorePhones.Domain\\WebstorePhones.Domain.csproj": {}
+    "C:\\Users\\rsmar\\source\\repos\\WebstorePhones\\WebstorePhones.Domain\\WebstorePhones.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rsmar\\Source\\Repos\\WebstorePhones\\WebstorePhones.Domain\\WebstorePhones.Domain.csproj": {
+    "C:\\Users\\rsmar\\source\\repos\\WebstorePhones\\WebstorePhones.Domain\\WebstorePhones.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rsmar\\Source\\Repos\\WebstorePhones\\WebstorePhones.Domain\\WebstorePhones.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\rsmar\\source\\repos\\WebstorePhones\\WebstorePhones.Domain\\WebstorePhones.Domain.csproj",
         "projectName": "WebstorePhones.Domain",
-        "projectPath": "C:\\Users\\rsmar\\Source\\Repos\\WebstorePhones\\WebstorePhones.Domain\\WebstorePhones.Domain.csproj",
+        "projectPath": "C:\\Users\\rsmar\\source\\repos\\WebstorePhones\\WebstorePhones.Domain\\WebstorePhones.Domain.csproj",
         "packagesPath": "C:\\Users\\rsmar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rsmar\\Source\\Repos\\WebstorePhones\\WebstorePhones.Domain\\obj\\",
+        "outputPath": "C:\\Users\\rsmar\\source\\repos\\WebstorePhones\\WebstorePhones.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -43,6 +43,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
