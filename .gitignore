@@ -61,3 +61,7 @@
 /WebstorePhones.ConsoleApp/obj/Debug/net5.0
 /WebstorePhones.Business/obj/Debug/net5.0/WebstorePhones.Business.genruntimeconfig.cache
 /WebstorePhones.Business/obj/Debug/net5.0/WebstorePhones.Business.csproj.FileListAbsolute.txt
+/WebstorePhones.Business/obj/Debug/net5.0
+/WebstorePhones.Business/obj
+/WebstorePhones.ConsoleApp/obj/Release/net5.0
+/WebstorePhones.Domain/obj
