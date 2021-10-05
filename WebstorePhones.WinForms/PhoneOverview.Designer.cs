@@ -30,7 +30,7 @@ namespace WebstorePhones.WinForms
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxPhoneOverview = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,14 +52,15 @@ namespace WebstorePhones.WinForms
             this.textBox1.Size = new System.Drawing.Size(303, 27);
             this.textBox1.TabIndex = 0;
             // 
-            // listBox1
+            // listBoxPhoneOverview
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(12, 45);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(303, 364);
-            this.listBox1.TabIndex = 1;
+            this.listBoxPhoneOverview.FormattingEnabled = true;
+            this.listBoxPhoneOverview.ItemHeight = 20;
+            this.listBoxPhoneOverview.Location = new System.Drawing.Point(12, 45);
+            this.listBoxPhoneOverview.Name = "listBoxPhoneOverview";
+            this.listBoxPhoneOverview.Size = new System.Drawing.Size(303, 364);
+            this.listBoxPhoneOverview.TabIndex = 1;
+            this.listBoxPhoneOverview.SelectedIndexChanged += new System.EventHandler(this.listBoxPhoneOverview_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -109,7 +110,7 @@ namespace WebstorePhones.WinForms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(548, 15);
+            this.label3.Location = new System.Drawing.Point(613, 15);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 20);
             this.label3.TabIndex = 7;
@@ -118,7 +119,7 @@ namespace WebstorePhones.WinForms
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(548, 48);
+            this.label4.Location = new System.Drawing.Point(613, 48);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 20);
             this.label4.TabIndex = 8;
@@ -128,7 +129,7 @@ namespace WebstorePhones.WinForms
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblPrice.Location = new System.Drawing.Point(627, 13);
+            this.lblPrice.Location = new System.Drawing.Point(692, 13);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(2, 22);
             this.lblPrice.TabIndex = 9;
@@ -137,7 +138,7 @@ namespace WebstorePhones.WinForms
             // 
             this.lblStock.AutoSize = true;
             this.lblStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblStock.Location = new System.Drawing.Point(627, 48);
+            this.lblStock.Location = new System.Drawing.Point(692, 48);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(2, 22);
             this.lblStock.TabIndex = 10;
@@ -176,7 +177,7 @@ namespace WebstorePhones.WinForms
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxPhoneOverview);
             this.Controls.Add(this.textBox1);
             this.Name = "PhoneOverview";
             this.Text = "Phoneshop";
@@ -189,7 +190,7 @@ namespace WebstorePhones.WinForms
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxPhoneOverview;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
