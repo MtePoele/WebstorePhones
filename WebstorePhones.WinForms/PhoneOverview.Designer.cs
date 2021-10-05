@@ -183,7 +183,6 @@ namespace WebstorePhones.WinForms
             this.Controls.Add(this.TxtboxSearch);
             this.Name = "PhoneOverview";
             this.Text = "Phoneshop";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

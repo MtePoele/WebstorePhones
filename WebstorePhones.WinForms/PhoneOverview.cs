@@ -9,46 +9,42 @@ namespace WebstorePhones.WinForms
 {
     public partial class PhoneOverview : Form
     {
-        private PhoneService phoneService = new();
-        private List<Phone> phones;
+        private PhoneService phoneSerivce = new();
+        private List<Phone> listPhones;
+        BindingSource bindingSource = new();
 
         public PhoneOverview()
         {
             InitializeComponent();
 
-            phones = phoneService.Get().ToList();
+            GetPhones();
 
-            UpdateListBoxPhoneOverview();
+
+            UpdateListBox();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void GetPhones()
         {
-
+            listPhones = phoneSerivce.Get().ToList();
         }
 
-        private void UpdateLabels(int id)
+        private void UpdateListBox()
         {
-            lblBrand.Text = phones[id].Brand;
-            lblType.Text = phones[id].Type;
-            lblPrice.Text = phones[id].PriceWithTax.ToString();
-            lblStock.Text = phones[id].Stock.ToString();
-            lblDescription.Text = phones[id].Description;
+            bindingSource.DataSource = listPhones;
+
+            ListBoxPhoneOverview.DataSource = bindingSource;
+            ListBoxPhoneOverview.DisplayMember = nameof(Phone.FullName);
+
+            bindingSource.ResetBindings(false);
         }
 
-        private void UpdateListBoxPhoneOverview()
+        private void UpdateLabels(Phone phone)
         {
-            foreach (var phone in phones)
-            {
-                ListBoxPhoneOverview.Items.Add($"{phone.Brand} - {phone.Type}");
-            }
-
-            ListBoxPhoneOverview.SetSelected(0, true);
-            UpdateLabels(ListBoxPhoneOverview.SelectedIndex);
-        }
-
-        private void ListBoxPhoneOverview_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateLabels(ListBoxPhoneOverview.SelectedIndex);
+            lblBrand.Text = phone.Brand;
+            lblType.Text = phone.Type;
+            lblPrice.Text = phone.PriceWithTax.ToString();
+            lblStock.Text = phone.Stock.ToString();
+            lblDescription.Text = phone.Description;
         }
 
         private void ButtonExit_Click(object sender, EventArgs e)
@@ -56,19 +52,22 @@ namespace WebstorePhones.WinForms
             this.Close();
         }
 
+        private void ListBoxPhoneOverview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateLabels((Phone)ListBoxPhoneOverview.SelectedItem);
+        }
+
         private void TxtboxSearch_TextChanged(object sender, EventArgs e)
         {
-            ListBoxPhoneOverview.Items.Clear();
-
-            phones = phoneService.Search(TxtboxSearch.Text).ToList();
-
-            if (TxtboxSearch.Text.Length > 3)
-                UpdateListBoxPhoneOverview();
             if (string.IsNullOrEmpty(TxtboxSearch.Text))
-            {
-                phones = phoneService.Get().ToList();
-                UpdateListBoxPhoneOverview();
-            }
+                GetPhones();
+            if (TxtboxSearch.Text.Length > 3)
+                listPhones = phoneSerivce.Search(TxtboxSearch.Text).ToList();
+
+            if (listPhones.Count > 0)
+                UpdateListBox();
+            // TODO If search field updates, it needs to redraw listbox and refill labels
+            // TODO Empty listbox if no valid items were found, also empty labels.
         }
     }
 }
