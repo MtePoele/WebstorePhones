@@ -17,24 +17,13 @@ namespace WebstorePhones.WinForms
             InitializeComponent();
 
             phones = phoneService.Get().ToList();
-            
-            foreach (var phone in phones)
-            {
-                listBoxPhoneOverview.Items.Add($"{phone.Brand} - {phone.Type}");
-            }
-            listBoxPhoneOverview.SetSelected(0, true);
-            
-            UpdateLabels(listBoxPhoneOverview.SelectedIndex);
+
+            UpdateListBoxPhoneOverview();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-        }
 
-        private void listBoxPhoneOverview_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateLabels(listBoxPhoneOverview.SelectedIndex);
         }
 
         private void UpdateLabels(int id)
@@ -44,6 +33,42 @@ namespace WebstorePhones.WinForms
             lblPrice.Text = phones[id].PriceWithTax.ToString();
             lblStock.Text = phones[id].Stock.ToString();
             lblDescription.Text = phones[id].Description;
+        }
+
+        private void UpdateListBoxPhoneOverview()
+        {
+            foreach (var phone in phones)
+            {
+                ListBoxPhoneOverview.Items.Add($"{phone.Brand} - {phone.Type}");
+            }
+
+            ListBoxPhoneOverview.SetSelected(0, true);
+            UpdateLabels(ListBoxPhoneOverview.SelectedIndex);
+        }
+
+        private void ListBoxPhoneOverview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateLabels(ListBoxPhoneOverview.SelectedIndex);
+        }
+
+        private void ButtonExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void TxtboxSearch_TextChanged(object sender, EventArgs e)
+        {
+            ListBoxPhoneOverview.Items.Clear();
+
+            phones = phoneService.Search(TxtboxSearch.Text).ToList();
+
+            if (TxtboxSearch.Text.Length > 3)
+                UpdateListBoxPhoneOverview();
+            if (string.IsNullOrEmpty(TxtboxSearch.Text))
+            {
+                phones = phoneService.Get().ToList();
+                UpdateListBoxPhoneOverview();
+            }
         }
     }
 }

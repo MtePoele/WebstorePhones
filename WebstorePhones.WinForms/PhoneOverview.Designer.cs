@@ -29,9 +29,9 @@ namespace WebstorePhones.WinForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBoxPhoneOverview = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.TxtboxSearch = new System.Windows.Forms.TextBox();
+            this.ListBoxPhoneOverview = new System.Windows.Forms.ListBox();
+            this.ButtonExit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblBrand = new System.Windows.Forms.Label();
@@ -44,32 +44,34 @@ namespace WebstorePhones.WinForms
             this.lblDescription = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // TxtboxSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "Search";
-            this.textBox1.Size = new System.Drawing.Size(303, 27);
-            this.textBox1.TabIndex = 0;
+            this.TxtboxSearch.Location = new System.Drawing.Point(12, 12);
+            this.TxtboxSearch.Name = "TxtboxSearch";
+            this.TxtboxSearch.PlaceholderText = "Search";
+            this.TxtboxSearch.Size = new System.Drawing.Size(303, 27);
+            this.TxtboxSearch.TabIndex = 0;
+            this.TxtboxSearch.TextChanged += new System.EventHandler(this.TxtboxSearch_TextChanged);
             // 
-            // listBoxPhoneOverview
+            // ListBoxPhoneOverview
             // 
-            this.listBoxPhoneOverview.FormattingEnabled = true;
-            this.listBoxPhoneOverview.ItemHeight = 20;
-            this.listBoxPhoneOverview.Location = new System.Drawing.Point(12, 45);
-            this.listBoxPhoneOverview.Name = "listBoxPhoneOverview";
-            this.listBoxPhoneOverview.Size = new System.Drawing.Size(303, 364);
-            this.listBoxPhoneOverview.TabIndex = 1;
-            this.listBoxPhoneOverview.SelectedIndexChanged += new System.EventHandler(this.listBoxPhoneOverview_SelectedIndexChanged);
+            this.ListBoxPhoneOverview.FormattingEnabled = true;
+            this.ListBoxPhoneOverview.ItemHeight = 20;
+            this.ListBoxPhoneOverview.Location = new System.Drawing.Point(12, 45);
+            this.ListBoxPhoneOverview.Name = "ListBoxPhoneOverview";
+            this.ListBoxPhoneOverview.Size = new System.Drawing.Size(303, 364);
+            this.ListBoxPhoneOverview.TabIndex = 1;
+            this.ListBoxPhoneOverview.SelectedIndexChanged += new System.EventHandler(this.ListBoxPhoneOverview_SelectedIndexChanged);
             // 
-            // button1
+            // ButtonExit
             // 
-            this.button1.Location = new System.Drawing.Point(1020, 412);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Exit";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonExit.Location = new System.Drawing.Point(1020, 412);
+            this.ButtonExit.Name = "ButtonExit";
+            this.ButtonExit.Size = new System.Drawing.Size(94, 29);
+            this.ButtonExit.TabIndex = 2;
+            this.ButtonExit.Text = "Exit";
+            this.ButtonExit.UseVisualStyleBackColor = true;
+            this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
             // label1
             // 
@@ -176,9 +178,9 @@ namespace WebstorePhones.WinForms
             this.Controls.Add(this.lblBrand);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBoxPhoneOverview);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ButtonExit);
+            this.Controls.Add(this.ListBoxPhoneOverview);
+            this.Controls.Add(this.TxtboxSearch);
             this.Name = "PhoneOverview";
             this.Text = "Phoneshop";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -189,9 +191,9 @@ namespace WebstorePhones.WinForms
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox listBoxPhoneOverview;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox TxtboxSearch;
+        private System.Windows.Forms.ListBox ListBoxPhoneOverview;
+        private System.Windows.Forms.Button ButtonExit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblBrand;
