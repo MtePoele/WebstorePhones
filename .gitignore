@@ -65,3 +65,5 @@
 /WebstorePhones.Business/obj
 /WebstorePhones.ConsoleApp/obj/Release/net5.0
 /WebstorePhones.Domain/obj
+/WebstorePhones.WinForms/obj
+/WebstorePhones.WinForms/bin/Debug/net5.0-windows
