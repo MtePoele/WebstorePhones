@@ -9,7 +9,7 @@ namespace WebstorePhones.WinForms
 {
     public partial class PhoneOverview : Form
     {
-        private PhoneService phoneSerivce = new();
+        private PhoneService phoneService = new();
         private List<Phone> listPhones;
         BindingSource bindingSource = new();
 
@@ -19,13 +19,12 @@ namespace WebstorePhones.WinForms
 
             GetPhones();
 
-
             UpdateListBox();
         }
 
         private void GetPhones()
         {
-            listPhones = phoneSerivce.Get().ToList();
+            listPhones = phoneService.Get().ToList();
         }
 
         private void UpdateListBox()
@@ -34,6 +33,16 @@ namespace WebstorePhones.WinForms
 
             ListBoxPhoneOverview.DataSource = bindingSource;
             ListBoxPhoneOverview.DisplayMember = nameof(Phone.FullName);
+
+            if (listPhones.Count > 0)
+            {
+                UpdateLabels(listPhones[ListBoxPhoneOverview.SelectedIndex]);
+            }
+
+            if (listPhones.Count == 0)
+            {
+                EmptyListBox();
+            }
 
             bindingSource.ResetBindings(false);
         }
@@ -54,20 +63,31 @@ namespace WebstorePhones.WinForms
 
         private void ListBoxPhoneOverview_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateLabels((Phone)ListBoxPhoneOverview.SelectedItem);
+            if (listPhones.Count > 0)
+                UpdateLabels((Phone)ListBoxPhoneOverview.SelectedItem);
         }
 
         private void TxtboxSearch_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(TxtboxSearch.Text))
                 GetPhones();
-            if (TxtboxSearch.Text.Length > 3)
-                listPhones = phoneSerivce.Search(TxtboxSearch.Text).ToList();
 
-            if (listPhones.Count > 0)
-                UpdateListBox();
-            // TODO If search field updates, it needs to redraw listbox and refill labels
-            // TODO Empty listbox if no valid items were found, also empty labels.
+            if (TxtboxSearch.Text.Length > 3)
+                listPhones = phoneService.Search(TxtboxSearch.Text).ToList();
+
+            UpdateListBox();
+        }
+
+        private void EmptyListBox()
+        {
+            if (listPhones.Count == 0)
+            {
+                lblBrand.Text = string.Empty;
+                lblType.Text = string.Empty;
+                lblPrice.Text = string.Empty;
+                lblStock.Text = string.Empty;
+                lblDescription.Text = string.Empty;
+            }
         }
     }
 }
