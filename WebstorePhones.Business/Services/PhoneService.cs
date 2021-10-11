@@ -72,7 +72,8 @@ namespace WebstorePhones.Business.Services
             return phones.Where(x =>
                 x.Brand.ToLower().Contains(query) ||
                 x.Type.ToLower().Contains(query) ||
-                x.Description.ToLower().Contains(query));
+                x.Description.ToLower().Contains(query))
+                .OrderBy(x => x.Brand);
         }
     }
 }
