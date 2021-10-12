@@ -84,14 +84,35 @@ namespace WebstorePhones.Business.Services
 
         public IEnumerable<Phone> Search(string query)
         {
-            return new List<Phone>();
+            // Todo This doesn't work yet. It doesn't recognize a Phone, or something?
 
-            //query = query.ToLower();
-            //return phones.Where(x =>
-            //    x.Brand.ToLower().Contains(query) ||
-            //    x.Type.ToLower().Contains(query) ||
-            //    x.Description.ToLower().Contains(query))
-            //    .OrderBy(x => x.Brand);
+            List<Phone> phones = new();
+
+            string queryString = 
+                $"SELECT Brand, Type, Description " +
+                $"FROM phoneshop.dbo.phones " +
+                $"WHERE Brand LIKE '%{query}%' OR Type LIKE '%{query}%' OR Description LIKE '%{query}%'";
+
+            using (SqlConnection connection = new(connectionString))
+            {
+                SqlCommand command = new(queryString, connection);
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Phone phone = ReadPhone(reader);
+                        phones.Add(phone);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+            return phones.OrderBy(x => x.Brand);
         }
     }
 }
