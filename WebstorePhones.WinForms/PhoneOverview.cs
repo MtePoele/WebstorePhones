@@ -9,9 +9,9 @@ namespace WebstorePhones.WinForms
 {
     public partial class PhoneOverview : Form
     {
-        private PhoneService phoneService = new();
+        private readonly PhoneService phoneService = new();
         private List<Phone> listPhones;
-        BindingSource bindingSource = new();
+        readonly BindingSource bindingSource = new();
 
         public PhoneOverview()
         {

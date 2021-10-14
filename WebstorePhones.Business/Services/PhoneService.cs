@@ -14,9 +14,7 @@ namespace WebstorePhones.Business.Services
 
         public Phone Get(int id)
         {
-            return new Phone();
-
-            Phone phone = new Phone();
+            Phone phone = new();
 
             string queryString = $"SELECT * FROM phoneshop.dbo.phones WHERE ID = {id}";
 
@@ -69,27 +67,12 @@ namespace WebstorePhones.Business.Services
             return phones.OrderBy(x => x.Brand);
         }
 
-        private Phone ReadPhone(SqlDataReader reader)
-        {
-            return new()
-            {
-                Id = reader.GetInt64(0),
-                Brand = reader.GetString(1),
-                Type = reader.GetString(2),
-                Description = reader.GetString(3),
-                PriceWithTax = reader.GetDecimal(4),
-                Stock = reader.GetInt32(5)
-            };
-        }
-
         public IEnumerable<Phone> Search(string query)
         {
-            // Todo This doesn't work yet. It doesn't recognize a Phone, or something?
-
             List<Phone> phones = new();
 
             string queryString = 
-                $"SELECT Brand, Type, Description " +
+                $"SELECT *" +
                 $"FROM phoneshop.dbo.phones " +
                 $"WHERE Brand LIKE '%{query}%' OR Type LIKE '%{query}%' OR Description LIKE '%{query}%'";
 
@@ -113,6 +96,19 @@ namespace WebstorePhones.Business.Services
                 }
             }
             return phones.OrderBy(x => x.Brand);
+        }
+
+        private Phone ReadPhone(SqlDataReader reader)
+        {
+            return new Phone()
+            {
+                Id = reader.GetInt64(0),
+                Brand = reader.GetString(1),
+                Type = reader.GetString(2),
+                Description = reader.GetString(3),
+                PriceWithTax = reader.GetDecimal(4),
+                Stock = reader.GetInt32(5)
+            };
         }
     }
 }
