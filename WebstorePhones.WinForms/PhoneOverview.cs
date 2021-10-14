@@ -56,15 +56,16 @@ namespace WebstorePhones.WinForms
             lblDescription.Text = phone.Description;
         }
 
-        private void ButtonExit_Click(object sender, EventArgs e)
+        private void EmptyListBox()
         {
-            this.Close();
-        }
-
-        private void ListBoxPhoneOverview_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listPhones.Count > 0)
-                UpdateLabels((Phone)ListBoxPhoneOverview.SelectedItem);
+            if (listPhones.Count == 0)
+            {
+                lblBrand.Text = string.Empty;
+                lblType.Text = string.Empty;
+                lblPrice.Text = string.Empty;
+                lblStock.Text = string.Empty;
+                lblDescription.Text = string.Empty;
+            }
         }
 
         private void TxtboxSearch_TextChanged(object sender, EventArgs e)
@@ -78,16 +79,15 @@ namespace WebstorePhones.WinForms
             UpdateListBox();
         }
 
-        private void EmptyListBox()
+        private void ListBoxPhoneOverview_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listPhones.Count == 0)
-            {
-                lblBrand.Text = string.Empty;
-                lblType.Text = string.Empty;
-                lblPrice.Text = string.Empty;
-                lblStock.Text = string.Empty;
-                lblDescription.Text = string.Empty;
-            }
+            if (listPhones.Count > 0)
+                UpdateLabels((Phone)ListBoxPhoneOverview.SelectedItem);
+        }
+
+        private void ButtonExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebstorePhones.Business.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebstorePhones.ConsoleApp", "WebstorePhones.ConsoleApp\WebstorePhones.ConsoleApp.csproj", "{D64049CC-9E53-4236-A670-FBECFFD67768}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebstorePhones.WinForms", "WebstorePhones.WinForms\WebstorePhones.WinForms.csproj", "{9A4F86D9-DAAB-44B4-B151-53D31514099F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebstorePhones.WinForms", "WebstorePhones.WinForms\WebstorePhones.WinForms.csproj", "{9A4F86D9-DAAB-44B4-B151-53D31514099F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Winform", "4. Winform", "{B68E2F5B-A375-45EA-95CF-1F30D6CAE7E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,7 @@ Global
 		{8B33EAC9-F1DD-4E9F-B18A-CB755D6FCBB4} = {7477F310-7030-4738-AC9D-9891738063C6}
 		{53F8E7E2-FD75-41FC-8D09-D5D83E15CC34} = {2383229D-1E17-4B82-A46A-7F99CE42C002}
 		{D64049CC-9E53-4236-A670-FBECFFD67768} = {AC07567C-A6B5-4980-8997-B962D8D872E3}
+		{9A4F86D9-DAAB-44B4-B151-53D31514099F} = {B68E2F5B-A375-45EA-95CF-1F30D6CAE7E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B6B6727-9B97-4CD4-95EF-41CACC09D7F6}
