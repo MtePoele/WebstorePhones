@@ -4,6 +4,20 @@ namespace WebstorePhones.Domain.Objects
 {
     public class Phone
     {
+        public Phone()
+        {
+
+        }
+
+        public Phone(Phone phone)
+        {
+            Id = phone.Id;
+            Brand = phone.Brand;
+            Type = phone.Type;
+            Description = phone.Description;
+            PriceWithTax = phone.PriceWithTax;
+            Stock = phone.Stock;
+        }
         public long Id { get; set; }
         public string Brand { get; set; }
         public string Type { get; set; }

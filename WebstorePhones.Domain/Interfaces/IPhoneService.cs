@@ -24,5 +24,12 @@ namespace WebstorePhones.Domain.Interfaces
         /// <param name="query"></param>
         /// <returns></returns>
         IEnumerable<Phone> Search(string query);
+
+        /// <summary>
+        /// Reads all phones in XML file. Returns a List<Phone> with all phones and their respective values.
+        /// </summary>
+        /// <param name="xmlPath"></param>
+        /// <returns></returns>
+        List<Phone> ReadFromXmlFile(string xmlPath);
     }
 }
