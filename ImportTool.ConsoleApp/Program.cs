@@ -30,7 +30,7 @@ namespace ImportTool.ConsoleApp
                     Console.Clear();
                     XmlService xmlService = new();
                     phones = xmlService.ReadFromXmlFile(filepath);
-                    int phonesAdded = xmlService.AddMissingPhones(phones);
+                    int phonesAdded = phoneService.AddMissingPhones(phones);
                     Console.WriteLine($"Er zijn { phonesAdded} nieuwe telefoons toegevoegd.");
                     break;
                 default:
