@@ -7,7 +7,7 @@ namespace ImportTool.ConsoleApp
 {
     class Program
     {
-        private static PhoneService phoneService = new();
+        private static readonly PhoneService phoneService = new();
         private const string xmlFilepath = @"C:\Users\rsmar\source\repos\WebstorePhones\PhoneList001.xml";
         private static List<Phone> phones = new();
 
@@ -29,8 +29,9 @@ namespace ImportTool.ConsoleApp
             {
                 case "1":
                     Console.Clear();
-                    phones = phoneService.ReadFromXmlFile(xmlFilepath);
-                    int phonesAdded = phoneService.AddMissingPhones(phones);
+                    XmlService xmlService = new();
+                    phones = xmlService.ReadFromXmlFile(xmlFilepath);
+                    int phonesAdded = xmlService.AddMissingPhones(phones);
                     Console.WriteLine($"Er zijn { phonesAdded} nieuwe telefoons toegevoegd.");
                     break;
                 default:

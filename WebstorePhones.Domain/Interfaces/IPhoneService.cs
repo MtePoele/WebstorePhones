@@ -30,6 +30,5 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="xmlPath"></param>
         /// <returns></returns>
-        List<Phone> ReadFromXmlFile(string xmlPath);
     }
 }
