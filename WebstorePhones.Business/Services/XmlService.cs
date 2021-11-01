@@ -8,7 +8,7 @@ namespace WebstorePhones.Business.Services
 {
     public class XmlService
     {
-        readonly string connectionString = Constants.ConnectionString;
+        private readonly string _connectionString = Constants.ConnectionString;
 
         public List<Phone> ReadFromXmlFile(string xmlPath)
         {
@@ -83,7 +83,7 @@ namespace WebstorePhones.Business.Services
                 $"FROM phoneshop.dbo.phones " +
                 $"WHERE Brand LIKE '{phoneToLookFor.Brand}' AND Type LIKE '{phoneToLookFor.Type}'";
 
-            using (SqlConnection connection = new(connectionString))
+            using (SqlConnection connection = new(_connectionString))
             {
                 SqlCommand command = new(queryString, connection);
                 try
@@ -112,7 +112,7 @@ namespace WebstorePhones.Business.Services
 
         private void AddPhoneToDatabase(Phone phone)
         {
-            // TODO Add phone to database somehow
+
         }
     }
 }

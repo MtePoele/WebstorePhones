@@ -8,18 +8,17 @@ namespace ImportTool.ConsoleApp
     class Program
     {
         private static readonly PhoneService phoneService = new();
-        private const string xmlFilepath = @"C:\Users\rsmar\source\repos\WebstorePhones\PhoneList001.xml";
         private static List<Phone> phones = new();
 
         static void Main(string[] args)
         {
             while (true)
             {
-                MainMenu();
+                MainMenu(args[0]);
             }
         }
 
-        private static void MainMenu()
+        private static void MainMenu(string filepath)
         {
             Console.WriteLine("Kies met een nummer welk bestand moet worden ingevoerd in de database.");
             Console.WriteLine("1. PhoneList001.xml");
@@ -30,7 +29,7 @@ namespace ImportTool.ConsoleApp
                 case "1":
                     Console.Clear();
                     XmlService xmlService = new();
-                    phones = xmlService.ReadFromXmlFile(xmlFilepath);
+                    phones = xmlService.ReadFromXmlFile(filepath);
                     int phonesAdded = xmlService.AddMissingPhones(phones);
                     Console.WriteLine($"Er zijn { phonesAdded} nieuwe telefoons toegevoegd.");
                     break;

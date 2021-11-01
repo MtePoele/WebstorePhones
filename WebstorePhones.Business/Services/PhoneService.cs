@@ -10,7 +10,7 @@ namespace WebstorePhones.Business.Services
 {
     public class PhoneService : IPhoneService
     {
-        readonly string connectionString = Constants.ConnectionString;
+        private readonly string _connectionString = Constants.ConnectionString;
 
         public Phone Get(int id)
         {
@@ -18,7 +18,7 @@ namespace WebstorePhones.Business.Services
 
             string queryString = $"SELECT * FROM phoneshop.dbo.phones WHERE ID = {id}";
 
-            using (SqlConnection connection = new(connectionString))
+            using (SqlConnection connection = new(_connectionString))
             {
                 SqlCommand command = new(queryString, connection);
                 try
@@ -45,7 +45,7 @@ namespace WebstorePhones.Business.Services
 
             string queryString = "SELECT * FROM phoneshop.dbo.phones";
 
-            using (SqlConnection connection = new(connectionString))
+            using (SqlConnection connection = new(_connectionString))
             {
                 SqlCommand command = new(queryString, connection);
                 try
@@ -76,7 +76,7 @@ namespace WebstorePhones.Business.Services
                 $"FROM phoneshop.dbo.phones " +
                 $"WHERE Brand LIKE '%{query}%' OR Type LIKE '%{query}%' OR Description LIKE '%{query}%'";
 
-            using (SqlConnection connection = new(connectionString))
+            using (SqlConnection connection = new(_connectionString))
             {
                 SqlCommand command = new(queryString, connection);
                 try

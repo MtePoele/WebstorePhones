@@ -67,3 +67,9 @@
 /WebstorePhones.Domain/obj
 /WebstorePhones.WinForms/obj
 /WebstorePhones.WinForms/bin/Debug/net5.0-windows
+/ImportTool.ConsoleApp/bin/Debug/net5.0
+/ImportTool.ConsoleApp/obj/Debug/net5.0/ref/ImportTool.ConsoleApp.dll
+/ImportTool.ConsoleApp/obj/Debug/net5.0/ImportTool.ConsoleApp.pdb
+/ImportTool.ConsoleApp/obj/Debug/net5.0/ImportTool.ConsoleApp.genruntimeconfig.cache
+/ImportTool.ConsoleApp/obj/Debug/net5.0/ImportTool.ConsoleApp.dll
+/ImportTool.ConsoleApp/obj/Debug/net5.0/ImportTool.ConsoleApp.csproj.CopyComplete

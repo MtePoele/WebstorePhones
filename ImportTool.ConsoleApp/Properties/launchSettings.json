@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ImportTool.ConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\rsmar\\source\\repos\\WebstorePhones\\PhoneList001.xml\""
+    }
+  }
+}
