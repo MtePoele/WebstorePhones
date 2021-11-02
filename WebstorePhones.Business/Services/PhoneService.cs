@@ -78,11 +78,10 @@ namespace WebstorePhones.Business.Services
             List<Phone> phones = new();
 
             string queryString =
-                "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
-                "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
-                //TODO Add some sort of join?
-                // "LEFT JOIN p ON p.BrandId = b.Id" +
-                $"WHERE b.Brand LIKE '%{query}%' OR p.Type LIKE '%{query}%' OR p.Description LIKE '%{query}%'";
+                "SELECT phones.Id, brands.Brand, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
+                "FROM phoneshop.dbo.phones " +
+                "INNER JOIN brands ON phones.BrandId = brands.Id " +
+                $"WHERE brands.Brand LIKE '%{query}%' OR phones.Type LIKE '%{query}%' OR phones.Description LIKE '%{query}%'";
 
                 //$"SELECT *" +
                 //$"FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
