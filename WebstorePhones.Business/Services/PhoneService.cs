@@ -16,7 +16,10 @@ namespace WebstorePhones.Business.Services
         {
             Phone phone = new();
 
-            string queryString = $"SELECT * FROM phoneshop.dbo.phones WHERE ID = {id}";
+            string queryString =
+                "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
+                "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
+                "WHERE p.BrandId = {id}";
 
             using (SqlConnection connection = new(_connectionString))
             {
@@ -43,7 +46,10 @@ namespace WebstorePhones.Business.Services
         {
             List<Phone> phones = new();
 
-            string queryString = "SELECT * FROM phoneshop.dbo.phones";
+            string queryString = 
+                "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
+                "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
+                "WHERE p.BrandId = b.Id";
 
             using (SqlConnection connection = new(_connectionString))
             {
@@ -72,9 +78,15 @@ namespace WebstorePhones.Business.Services
             List<Phone> phones = new();
 
             string queryString =
-                $"SELECT *" +
-                $"FROM phoneshop.dbo.phones " +
-                $"WHERE Brand LIKE '%{query}%' OR Type LIKE '%{query}%' OR Description LIKE '%{query}%'";
+                "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
+                "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
+                //TODO Add some sort of join?
+                // "LEFT JOIN p ON p.BrandId = b.Id" +
+                $"WHERE b.Brand LIKE '%{query}%' OR p.Type LIKE '%{query}%' OR p.Description LIKE '%{query}%'";
+
+                //$"SELECT *" +
+                //$"FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
+                //$"WHERE Brand LIKE '%{query}%' OR Type LIKE '%{query}%' OR Description LIKE '%{query}%'";
 
             using (SqlConnection connection = new(_connectionString))
             {
@@ -123,7 +135,6 @@ namespace WebstorePhones.Business.Services
                     phonesAdded++;
                 }
             }
-
             return phonesAdded;
         }
 
@@ -133,8 +144,12 @@ namespace WebstorePhones.Business.Services
 
             string queryString =
                 $"SELECT *" +
-                $"FROM phoneshop.dbo.phones " +
-                $"WHERE Brand LIKE '{phoneToLookFor.Brand}' AND Type LIKE '{phoneToLookFor.Type}'";
+                $"FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
+                $"WHERE b.Brand LIKE '{phoneToLookFor.Brand}' AND p.Type LIKE '{phoneToLookFor.Type}'";
+
+            //    $"SELECT *" +
+            //    $"FROM phoneshop.dbo.phones " +
+            //    $"WHERE Brand LIKE '{phoneToLookFor.Brand}' AND Type LIKE '{phoneToLookFor.Type}'";
 
             using (SqlConnection connection = new(_connectionString))
             {
@@ -165,8 +180,7 @@ namespace WebstorePhones.Business.Services
 
         private void AddPhoneToDatabase(Phone phone)
         {
-            // Todo Actually add phone to database.
-            // TODO Add method that takes a List<Phone> and foreach calls AddPhoneToDatabase.
+            
         }
     }
 }
