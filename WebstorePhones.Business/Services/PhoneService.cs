@@ -46,7 +46,7 @@ namespace WebstorePhones.Business.Services
         {
             List<Phone> phones = new();
 
-            string queryString = 
+            string queryString =
                 "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
                 "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
                 "WHERE p.BrandId = b.Id";
@@ -83,10 +83,6 @@ namespace WebstorePhones.Business.Services
                 "INNER JOIN brands ON phones.BrandId = brands.Id " +
                 $"WHERE brands.Brand LIKE '%{query}%' OR phones.Type LIKE '%{query}%' OR phones.Description LIKE '%{query}%'";
 
-                //$"SELECT *" +
-                //$"FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
-                //$"WHERE Brand LIKE '%{query}%' OR Type LIKE '%{query}%' OR Description LIKE '%{query}%'";
-
             using (SqlConnection connection = new(_connectionString))
             {
                 SqlCommand command = new(queryString, connection);
@@ -109,19 +105,6 @@ namespace WebstorePhones.Business.Services
             return phones.OrderBy(x => x.Brand);
         }
 
-        public Phone ReadPhone(SqlDataReader reader)
-        {
-            return new Phone()
-            {
-                Id = reader.GetInt64(0),
-                Brand = reader.GetString(1),
-                Type = reader.GetString(2),
-                Description = reader.GetString(3),
-                PriceWithTax = reader.GetDecimal(4),
-                Stock = reader.GetInt32(5)
-            };
-        }
-
         public int AddMissingPhones(List<Phone> phones)
         {
             int phonesAdded = 0;
@@ -137,18 +120,27 @@ namespace WebstorePhones.Business.Services
             return phonesAdded;
         }
 
+        private Phone ReadPhone(SqlDataReader reader)
+        {
+            return new Phone()
+            {
+                Id = reader.GetInt64(0),
+                Brand = reader.GetString(1),
+                Type = reader.GetString(2),
+                Description = reader.GetString(3),
+                PriceWithTax = reader.GetDecimal(4),
+                Stock = reader.GetInt32(5)
+            };
+        }
+
         private bool PhoneNotInDatabase(Phone phoneToLookFor)
         {
             List<Phone> phones = new();
 
             string queryString =
-                $"SELECT *" +
+                $"SELECT * " +
                 $"FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
                 $"WHERE b.Brand LIKE '{phoneToLookFor.Brand}' AND p.Type LIKE '{phoneToLookFor.Type}'";
-
-            //    $"SELECT *" +
-            //    $"FROM phoneshop.dbo.phones " +
-            //    $"WHERE Brand LIKE '{phoneToLookFor.Brand}' AND Type LIKE '{phoneToLookFor.Type}'";
 
             using (SqlConnection connection = new(_connectionString))
             {
@@ -159,8 +151,7 @@ namespace WebstorePhones.Business.Services
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        PhoneService phoneService = new();
-                        Phone p = phoneService.ReadPhone(reader);
+                        Phone p = ReadPhone(reader);
                         phones.Add(p);
                     }
                     reader.Close();
@@ -177,9 +168,18 @@ namespace WebstorePhones.Business.Services
                 return false;
         }
 
+        private long DoesBrandExistInDatabase(Phone phone)
+        {
+            long id = 0;
+
+            // TODO return ID of brand if it is in database, otherwise add brand first and then return its ID.
+
+            return id;
+        }
+
         private void AddPhoneToDatabase(Phone phone)
         {
-            
+            // TODO call DoesBrandExistInDatabase(Phone phone), then add phone to db with returned brandid.
         }
     }
 }
