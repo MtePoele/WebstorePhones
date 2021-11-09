@@ -8,8 +8,6 @@ namespace WebstorePhones.Business.Services
 {
     public class XmlService
     {
-        private readonly string _connectionString = Constants.ConnectionString;
-
         public List<Phone> ReadFromXmlFile(string xmlPath)
         {
             List<Phone> phones = new();
@@ -35,7 +33,7 @@ namespace WebstorePhones.Business.Services
                             case "Price":
                                 if (reader.Read())
                                 {
-                                    decimal.TryParse(reader.Value, out decimal price);
+                                    decimal price = Convert.ToDecimal(reader.Value);
                                     phone.PriceWithTax = price;
                                 }
                                 break;
@@ -46,7 +44,7 @@ namespace WebstorePhones.Business.Services
                             case "Stock":
                                 if (reader.Read())
                                 {
-                                    int.TryParse(reader.Value, out int stock);
+                                    int stock = Convert.ToInt32(reader.Value);
                                     phone.Stock = stock;
                                     phones.Add(new Phone(phone));
                                 }
@@ -57,9 +55,5 @@ namespace WebstorePhones.Business.Services
             }
             return phones;
         }
-
-        
-
-        
     }
 }
