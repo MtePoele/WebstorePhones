@@ -10,7 +10,7 @@ namespace WebstorePhones.WinForms
     public partial class PhoneOverview : Form
     {
         private readonly PhoneService phoneService = new();
-        private List<Phone> listPhones;
+        private List<Phone> phones;
         readonly BindingSource bindingSource = new();
 
         public PhoneOverview()
@@ -24,24 +24,25 @@ namespace WebstorePhones.WinForms
 
         private void GetPhones()
         {
-            listPhones = phoneService.Get().ToList();
+            phones = phoneService.Get().ToList();
         }
 
         private void UpdateListBox()
         {
-            bindingSource.DataSource = listPhones;
+            bindingSource.DataSource = phones;
 
             ListBoxPhoneOverview.DataSource = bindingSource;
             ListBoxPhoneOverview.DisplayMember = nameof(Phone.FullName);
 
-            if (listPhones.Count > 0)
+            if (phones.Count > 0)
             {
-                UpdateLabels(listPhones[ListBoxPhoneOverview.SelectedIndex]);
+                UpdateLabels(phones[ListBoxPhoneOverview.SelectedIndex]);
             }
 
-            if (listPhones.Count == 0)
+            if (phones.Count == 0)
             {
                 EmptyListBox();
+                ButtonDelete.Enabled = false;
             }
 
             bindingSource.ResetBindings(false);
@@ -58,14 +59,11 @@ namespace WebstorePhones.WinForms
 
         private void EmptyListBox()
         {
-            if (listPhones.Count == 0)
-            {
-                lblBrand.Text = string.Empty;
-                lblType.Text = string.Empty;
-                lblPrice.Text = string.Empty;
-                lblStock.Text = string.Empty;
-                lblDescription.Text = string.Empty;
-            }
+            lblBrand.Text = string.Empty;
+            lblType.Text = string.Empty;
+            lblPrice.Text = string.Empty;
+            lblStock.Text = string.Empty;
+            lblDescription.Text = string.Empty;
         }
 
         private void TxtboxSearch_TextChanged(object sender, EventArgs e)
@@ -74,20 +72,37 @@ namespace WebstorePhones.WinForms
                 GetPhones();
 
             if (TxtboxSearch.Text.Length > 3)
-                listPhones = phoneService.Search(TxtboxSearch.Text).ToList();
+                phones = phoneService.Search(TxtboxSearch.Text).ToList();
 
             UpdateListBox();
         }
 
         private void ListBoxPhoneOverview_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listPhones.Count > 0)
+            if (phones.Count > 0)
+            {
                 UpdateLabels((Phone)ListBoxPhoneOverview.SelectedItem);
+                ButtonDelete.Enabled = true;
+            }
         }
 
         private void ButtonExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult confirmResult = MessageBox.Show(
+                "Confirmation dialog",
+                "Do you really want to delete this phone?",
+                MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                phoneService.Delete(phones[ListBoxPhoneOverview.SelectedIndex].Id);
+                GetPhones();
+                UpdateListBox();
+            }
         }
     }
 }

@@ -42,6 +42,8 @@ namespace WebstorePhones.WinForms
             this.lblStock = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
+            this.ButtonAdd = new System.Windows.Forms.Button();
+            this.ButtonDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TxtboxSearch
@@ -163,11 +165,35 @@ namespace WebstorePhones.WinForms
             this.lblDescription.TabIndex = 12;
             this.lblDescription.Text = "lblDescription";
             // 
+            // ButtonAdd
+            // 
+            this.ButtonAdd.Location = new System.Drawing.Point(12, 416);
+            this.ButtonAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonAdd.Name = "ButtonAdd";
+            this.ButtonAdd.Size = new System.Drawing.Size(25, 25);
+            this.ButtonAdd.TabIndex = 13;
+            this.ButtonAdd.Text = "+";
+            this.ButtonAdd.UseVisualStyleBackColor = true;
+            // 
+            // ButtonDelete
+            // 
+            this.ButtonDelete.Enabled = false;
+            this.ButtonDelete.Location = new System.Drawing.Point(43, 416);
+            this.ButtonDelete.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonDelete.Name = "ButtonDelete";
+            this.ButtonDelete.Size = new System.Drawing.Size(25, 25);
+            this.ButtonDelete.TabIndex = 13;
+            this.ButtonDelete.Text = "-";
+            this.ButtonDelete.UseVisualStyleBackColor = true;
+            this.ButtonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
+            // 
             // PhoneOverview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1126, 450);
+            this.Controls.Add(this.ButtonDelete);
+            this.Controls.Add(this.ButtonAdd);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblStock);
@@ -203,6 +229,8 @@ namespace WebstorePhones.WinForms
         private System.Windows.Forms.Label lblStock;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.Button ButtonAdd;
+        private System.Windows.Forms.Button ButtonDelete;
     }
 }
 

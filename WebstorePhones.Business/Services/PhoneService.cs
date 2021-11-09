@@ -70,6 +70,11 @@ namespace WebstorePhones.Business.Services
             return phonesAdded;
         }
 
+        public void Delete(long id)
+        {
+            // TODO Implement delete by Id with ADO.
+        }
+
         private Phone ReadPhone(SqlDataReader reader)
         {
             return new Phone()
