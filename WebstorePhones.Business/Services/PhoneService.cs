@@ -18,7 +18,7 @@ namespace WebstorePhones.Business.Services
             "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
             "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
             "WHERE p.BrandId = {id}";
-            GetFromDataBase(queryString, (SqlDataReader reader) =>
+            GetFromDatabase(queryString, (SqlDataReader reader) =>
             {
                 phone = ReadPhone(reader);
             });
@@ -32,7 +32,7 @@ namespace WebstorePhones.Business.Services
             "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
             "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
             "WHERE p.BrandId = b.Id";
-            GetFromDataBase(queryString, (SqlDataReader reader) =>
+            GetFromDatabase(queryString, (SqlDataReader reader) =>
             {
                 Phone phone = ReadPhone(reader);
                 phones.Add(phone);
@@ -48,7 +48,7 @@ namespace WebstorePhones.Business.Services
             "FROM phoneshop.dbo.phones " +
             "INNER JOIN brands ON phones.BrandId = brands.Id " +
             $"WHERE brands.Brand LIKE '%{query}%' OR phones.Type LIKE '%{query}%' OR phones.Description LIKE '%{query}%'";
-            GetFromDataBase(queryString, (SqlDataReader reader) =>
+            GetFromDatabase(queryString, (SqlDataReader reader) =>
             {
                 Phone phone = ReadPhone(reader);
                 phones.Add(phone);
@@ -85,31 +85,57 @@ namespace WebstorePhones.Business.Services
 
         private bool PhoneNotInDatabase(Phone phoneToLookFor)
         {
-            List<Phone> phones = new(); string queryString =
-            $"SELECT * " +
-            $"FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
-            $"WHERE b.Brand LIKE '{phoneToLookFor.Brand}' AND p.Type LIKE '{phoneToLookFor.Type}'";
-            GetFromDataBase(queryString, (SqlDataReader reader) =>
+            List<Phone> phones = new();
+
+            string queryString =
+            "SELECT phones.Id, brands.Brand, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
+            "FROM phoneshop.dbo.phones " +
+            "INNER JOIN brands ON phones.BrandId = brands.Id " +
+            $"WHERE brands.Brand LIKE '{phoneToLookFor.Brand}' AND phones.Type LIKE '{phoneToLookFor.Type}'";
+            GetFromDatabase(queryString, (SqlDataReader reader) =>
             {
-                Phone p = ReadPhone(reader);
-                phones.Add(p);
-            }); if (phones.Count == 0)
+                Phone phone = ReadPhone(reader);
+                phones.Add(phone);
+            });
+
+            if (phones.Count == 0)
                 return true;
             else
                 return false;
         }
 
-        private long DoesBrandExistInDatabase(Phone phone)
-        {
-            return 0; // TODO return ID of brand if it is in database, otherwise add brand first and then return its ID. return id;
-        }
-
         private void AddPhoneToDatabase(Phone phone)
         {
-            // TODO call DoesBrandExistInDatabase(Phone phone), then add phone to db with returned brandid.
+            using SqlConnection connection = new(_connectionString);
+            string nonQueryString =
+                $"IF NOT EXISTS (SELECT Brand FROM phoneshop.dbo.brands WHERE Brand = @Brand)" +
+                $"BEGIN INSERT INTO phoneshop.dbo.brands (Brand) VALUES (@Brand) END " +
+                $"INSERT INTO phoneshop.dbo.phones (BrandId, Type, Description, PriceWithTax, Stock) " +
+                $"VALUES ((SELECT Id FROM phoneshop.dbo.brands WHERE Brand = @Brand), @Type, @Description, @PriceWithTax, @Stock)";
+
+            SqlCommand command = new(nonQueryString, connection);
+            command.Parameters.Add("@Brand", SqlDbType.VarChar).Value = phone.Brand;
+            command.Parameters.Add("@Type", SqlDbType.VarChar).Value = phone.Type;
+            command.Parameters.Add("@Description", SqlDbType.VarChar).Value = phone.Description;
+            command.Parameters.Add("@PriceWithTax", SqlDbType.Decimal).Value = phone.PriceWithTax;
+            command.Parameters.Add("@Stock", SqlDbType.BigInt).Value = phone.Stock;
+
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
-        private void GetFromDataBase(string queryString, Action<SqlDataReader> DoStuff)
+        private void GetFromDatabase(string queryString, Action<SqlDataReader> DoStuff)
         {
             using SqlConnection connection = new(_connectionString);
             SqlCommand command = new(queryString, connection);

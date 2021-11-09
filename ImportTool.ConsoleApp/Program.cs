@@ -15,7 +15,7 @@ namespace ImportTool.ConsoleApp
             XmlService xmlService = new();
             phones = xmlService.ReadFromXmlFile(args[0]);
             int phonesAdded = phoneService.AddMissingPhones(phones);
-            Console.WriteLine($"Er zijn {phonesAdded} nieuwe telefoons toegevoegd.");
+            Console.WriteLine($"{phonesAdded} new phones have been added.");
             Console.ReadLine();
         }
     }
