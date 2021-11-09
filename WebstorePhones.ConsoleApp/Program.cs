@@ -27,8 +27,8 @@ namespace WebstorePhones
             {
                 Console.WriteLine($"{phone.Key}. {phone.Value.Brand} \t{phone.Value.Type}");
             }
-            Console.WriteLine($"{phonesDictionary.Count + 1}. Zoeken");
-            Console.WriteLine($"{phonesDictionary.Count + 2}. Afsluiten");
+            Console.WriteLine($"{phonesDictionary.Count + 1}. Search");
+            Console.WriteLine($"{phonesDictionary.Count + 2}. Exit");
 
             Console.Write("\nUw keuze: ");
 
@@ -41,7 +41,7 @@ namespace WebstorePhones
             catch (Exception)
             {
                 Console.Clear();
-                Console.WriteLine($"Ongeldige invoer. Kies een nummer 0-{phonesDictionary.Count}.\n");
+                Console.WriteLine($"Invalid input. Chose a number between 0 and {phonesDictionary.Count}.\n");
             }
 
             if (userChoice > 0 && userChoice <= phonesDictionary.Count)
@@ -54,7 +54,7 @@ namespace WebstorePhones
             else if (userChoice == phonesDictionary.Count + 1)
             {
                 Console.Clear();
-                Console.WriteLine($"Geef woord(en) op om naar te zoeken.");
+                Console.WriteLine($"Enter text to search for.");
 
                 string searchInput = Console.ReadLine();
                 if (searchInput.Length > 0)
@@ -64,7 +64,7 @@ namespace WebstorePhones
 
                     if (searchResults.Count == 0)
                     {
-                        Console.WriteLine("Uw zoekopdracht heeft niets opgeleverd.");
+                        Console.WriteLine("No matches found.");
                     }
                     else
                     {
@@ -77,10 +77,10 @@ namespace WebstorePhones
                 }
                 else
                 {
-                    Console.WriteLine("Ongeldige invoer. Voer tenminste 1 teken in.");
+                    Console.WriteLine("Invalid input. Enter at least one character.");
                 }
 
-                Console.WriteLine("Druk op een toets om terug te gaan.");
+                Console.WriteLine("Press any key to return to main menu.");
                 Console.ReadKey();
                 Console.Clear();
             }
@@ -91,7 +91,7 @@ namespace WebstorePhones
             else
             {
                 Console.Clear();
-                Console.WriteLine($"Ongeldige invoer. Kies een nummer 1-{phonesDictionary.Count}.\n");
+                Console.WriteLine($"Invalid input. Chose a number between 1 and {phonesDictionary.Count}.\n");
             }
         }
 
@@ -107,8 +107,8 @@ namespace WebstorePhones
 
         private static void PrintResults(Phone phone)
         {
-            Console.WriteLine($"Merk: {phone.Brand} \tType: {phone.Type} \tPrijs: {phone.PriceWithTax} \tExcl. BTW: {phone.PriceWithoutTax} \tVoorraad: {phone.Stock}");
-            Console.WriteLine($"Beschrijving: {phone.Description}\n");
+            Console.WriteLine($"Brand: {phone.Brand} \tType: {phone.Type} \tPrice: {phone.PriceWithTax} \tWithout VAT: {phone.PriceWithoutTax} \tStock: {phone.Stock}");
+            Console.WriteLine($"Description: {phone.Description}\n");
         }
     }
 }
