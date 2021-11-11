@@ -91,6 +91,12 @@ namespace WebstorePhones.WinForms
             this.Close();
         }
 
+        private void ButtonAdd_Click(object sender, EventArgs e)
+        {
+            Form form = new AddPhone.AddPhone();
+            form.ShowDialog();
+        }
+
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
             DialogResult confirmResult = MessageBox.Show(

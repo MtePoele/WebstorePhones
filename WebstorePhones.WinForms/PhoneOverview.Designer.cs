@@ -174,6 +174,7 @@ namespace WebstorePhones.WinForms
             this.ButtonAdd.TabIndex = 13;
             this.ButtonAdd.Text = "+";
             this.ButtonAdd.UseVisualStyleBackColor = true;
+            this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // ButtonDelete
             // 

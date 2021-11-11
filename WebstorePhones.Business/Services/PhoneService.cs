@@ -72,7 +72,15 @@ namespace WebstorePhones.Business.Services
 
         public void Delete(long id)
         {
-            // TODO Implement delete by Id with ADO.
+            using SqlConnection connection = new(_connectionString);
+            string nonQueryString =
+                $"DELETE FROM phoneshop.dbo.phones " +
+                $"WHERE phones.Id = @Id ";
+
+            SqlCommand command = new(nonQueryString, connection);
+            command.Parameters.Add("@Id", SqlDbType.BigInt).Value = id;
+
+            ExecuteNonQuery(connection, command);
         }
 
         private Phone ReadPhone(SqlDataReader reader)
@@ -125,19 +133,7 @@ namespace WebstorePhones.Business.Services
             command.Parameters.Add("@PriceWithTax", SqlDbType.Decimal).Value = phone.PriceWithTax;
             command.Parameters.Add("@Stock", SqlDbType.BigInt).Value = phone.Stock;
 
-            try
-            {
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            finally
-            {
-                connection.Close();
-            }
+            ExecuteNonQuery(connection, command);
         }
 
         private void GetFromDatabase(string queryString, Action<SqlDataReader> DoStuff)
@@ -157,6 +153,23 @@ namespace WebstorePhones.Business.Services
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+            }
+        }
+
+        private static void ExecuteNonQuery(SqlConnection connection, SqlCommand command)
+        {
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                connection.Close();
             }
         }
     }

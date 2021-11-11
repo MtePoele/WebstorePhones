@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AddPhone\AddPhone.csproj" />
     <ProjectReference Include="..\WebstorePhones.Business\WebstorePhones.Business.csproj" />
     <ProjectReference Include="..\WebstorePhones.Domain\WebstorePhones.Domain.csproj" />
   </ItemGroup>
