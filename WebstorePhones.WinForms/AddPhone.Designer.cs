@@ -1,7 +1,7 @@
 ﻿
 namespace AddPhone
 {
-    partial class AddPhone
+    partial class AddPhoneForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -155,7 +155,7 @@ namespace AddPhone
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // AddPhone
+            // AddPhoneForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -175,8 +175,8 @@ namespace AddPhone
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "AddPhone";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Name = "AddPhoneForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add phone";
             this.ResumeLayout(false);
             this.PerformLayout();

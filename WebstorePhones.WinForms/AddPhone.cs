@@ -6,10 +6,10 @@ using WebstorePhones.Domain.Objects;
 
 namespace AddPhone
 {
-    public partial class AddPhone : Form
+    public partial class AddPhoneForm : Form
     {
 
-        public AddPhone()
+        public AddPhoneForm()
         {
             InitializeComponent();
         }
@@ -66,7 +66,7 @@ namespace AddPhone
             }
             else
             {
-                AddPhone(GetFieldValues);
+                // TODO Add to database with textbox values.
             }
         }
 
