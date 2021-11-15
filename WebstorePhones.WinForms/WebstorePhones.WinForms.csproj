@@ -12,4 +12,10 @@
     <ProjectReference Include="..\WebstorePhones.Domain\WebstorePhones.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="AddPhone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
