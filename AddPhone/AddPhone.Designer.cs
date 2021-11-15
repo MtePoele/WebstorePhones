@@ -95,7 +95,6 @@ namespace AddPhone
             this.TxtBrand.Name = "TxtBrand";
             this.TxtBrand.Size = new System.Drawing.Size(492, 27);
             this.TxtBrand.TabIndex = 1;
-            this.TxtBrand.Validating += new System.ComponentModel.CancelEventHandler(this.TxtBrand_Validating);
             // 
             // TxtType
             // 
@@ -103,7 +102,6 @@ namespace AddPhone
             this.TxtType.Name = "TxtType";
             this.TxtType.Size = new System.Drawing.Size(492, 27);
             this.TxtType.TabIndex = 2;
-            this.TxtType.Validating += new System.ComponentModel.CancelEventHandler(this.TxtType_Validating);
             // 
             // TxtDescription
             // 
@@ -111,7 +109,6 @@ namespace AddPhone
             this.TxtDescription.Name = "TxtDescription";
             this.TxtDescription.Size = new System.Drawing.Size(492, 27);
             this.TxtDescription.TabIndex = 3;
-            this.TxtDescription.Validating += new System.ComponentModel.CancelEventHandler(this.TxtDescription_Validating);
             // 
             // TxtPrice
             // 
@@ -119,7 +116,6 @@ namespace AddPhone
             this.TxtPrice.Name = "TxtPrice";
             this.TxtPrice.Size = new System.Drawing.Size(134, 27);
             this.TxtPrice.TabIndex = 4;
-            this.TxtPrice.Validating += new System.ComponentModel.CancelEventHandler(this.TxtPrice_Validating);
             // 
             // label6
             // 
@@ -136,7 +132,6 @@ namespace AddPhone
             this.TxtStock.Name = "TxtStock";
             this.TxtStock.Size = new System.Drawing.Size(154, 27);
             this.TxtStock.TabIndex = 5;
-            this.TxtStock.Validating += new System.ComponentModel.CancelEventHandler(this.TxtStock_Validating);
             // 
             // BtnApply
             // 
@@ -147,9 +142,11 @@ namespace AddPhone
             this.BtnApply.Text = "Apply";
             this.BtnApply.UseVisualStyleBackColor = true;
             this.BtnApply.Click += new System.EventHandler(this.BtnApply_Click);
+            this.BtnApply.Validating += new System.ComponentModel.CancelEventHandler(this.BtnApply_Validating);
             // 
             // BtnCancel
             // 
+            this.BtnCancel.CausesValidation = false;
             this.BtnCancel.Location = new System.Drawing.Point(115, 395);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(94, 29);
@@ -162,6 +159,7 @@ namespace AddPhone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(516, 436);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnApply);
@@ -178,7 +176,7 @@ namespace AddPhone
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AddPhone";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add phone";
             this.ResumeLayout(false);
             this.PerformLayout();

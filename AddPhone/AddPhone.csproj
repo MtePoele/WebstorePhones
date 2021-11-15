@@ -6,4 +6,8 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebstorePhones.Domain\WebstorePhones.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
