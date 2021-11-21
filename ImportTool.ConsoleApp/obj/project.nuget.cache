@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3RYkqS+GXNUNA9lydpiLyKhvKCdhpZKkPluVfBgMwfAlAD3eSbX4WWNFmo7PhnRIdXtlYzDsLS4CEEdGO0iqWA==",
+  "dgSpecHash": "E0ABvSXjVInc0E0UaR5gXZVHqvm2hmnADayJVkcISAN5U3p2m01m55EhauO0Q3xoR2/ULB3xjR3z4j+V2PQwNw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rsmar\\source\\repos\\WebstorePhones\\ImportTool.ConsoleApp\\ImportTool.ConsoleApp.csproj",
+  "projectFilePath": "C:\\Users\\rsmar\\Source\\Repos\\WebstorePhones\\ImportTool.ConsoleApp\\ImportTool.ConsoleApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rsmar\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\rsmar\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

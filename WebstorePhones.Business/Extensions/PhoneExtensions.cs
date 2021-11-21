@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.Business.Extensions
@@ -13,5 +9,7 @@ namespace WebstorePhones.Business.Extensions
         {
             return Math.Round(PriceWithVat / (1 + 21), 2);
         }
+
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using WebstorePhones.Business.Services;
-using Xunit;
+﻿using Xunit;
 
 namespace WebstorePhones.Business.Testing
 {
