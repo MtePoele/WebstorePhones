@@ -6,9 +6,9 @@ using Xunit;
 
 namespace WebstorePhones.Business.Testing
 {
-    public class PhoneServiceTests
+    public class PhoneServiceTestsOld
     {
-        PhoneService phoneService = new();
+        Services.PhoneService phoneService = new();
 
         [Fact]
         public void Should_ReturnOnlyHuaweiPhone_WhenIdIsTwo()
