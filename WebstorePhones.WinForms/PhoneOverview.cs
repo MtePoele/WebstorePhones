@@ -94,7 +94,13 @@ namespace WebstorePhones.WinForms
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             Form form = new AddPhone();
-            form.ShowDialog();
+            DialogResult dialogResult = form.ShowDialog();
+
+            if (dialogResult == DialogResult.OK)
+            {
+                GetPhones();
+                UpdateListBox();
+            }
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)

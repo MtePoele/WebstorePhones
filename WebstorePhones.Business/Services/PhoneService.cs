@@ -71,6 +71,25 @@ namespace WebstorePhones.Business.Services
             return phonesAdded;
         }
 
+        public void AddPhoneToDatabase(Phone phone)
+        {
+            using SqlConnection connection = new(_connectionString);
+            string nonQueryString =
+                $"IF NOT EXISTS (SELECT Brand FROM phoneshop.dbo.brands WHERE Brand = @Brand)" +
+                $"BEGIN INSERT INTO phoneshop.dbo.brands (Brand) VALUES (@Brand) END " +
+                $"INSERT INTO phoneshop.dbo.phones (BrandId, Type, Description, PriceWithTax, Stock) " +
+                $"VALUES ((SELECT Id FROM phoneshop.dbo.brands WHERE Brand = @Brand), @Type, @Description, @PriceWithTax, @Stock)";
+
+            SqlCommand command = new(nonQueryString, connection);
+            command.Parameters.Add("@Brand", SqlDbType.VarChar).Value = phone.Brand;
+            command.Parameters.Add("@Type", SqlDbType.VarChar).Value = phone.Type;
+            command.Parameters.Add("@Description", SqlDbType.VarChar).Value = phone.Description;
+            command.Parameters.Add("@PriceWithTax", SqlDbType.Decimal).Value = phone.PriceWithTax;
+            command.Parameters.Add("@Stock", SqlDbType.BigInt).Value = phone.Stock;
+
+            ExecuteNonQuery(connection, command);
+        }
+
         public void Delete(long id)
         {
             using SqlConnection connection = new(_connectionString);
@@ -116,25 +135,6 @@ namespace WebstorePhones.Business.Services
                 return true;
             else
                 return false;
-        }
-
-        private void AddPhoneToDatabase(Phone phone)
-        {
-            using SqlConnection connection = new(_connectionString);
-            string nonQueryString =
-                $"IF NOT EXISTS (SELECT Brand FROM phoneshop.dbo.brands WHERE Brand = @Brand)" +
-                $"BEGIN INSERT INTO phoneshop.dbo.brands (Brand) VALUES (@Brand) END " +
-                $"INSERT INTO phoneshop.dbo.phones (BrandId, Type, Description, PriceWithTax, Stock) " +
-                $"VALUES ((SELECT Id FROM phoneshop.dbo.brands WHERE Brand = @Brand), @Type, @Description, @PriceWithTax, @Stock)";
-
-            SqlCommand command = new(nonQueryString, connection);
-            command.Parameters.Add("@Brand", SqlDbType.VarChar).Value = phone.Brand;
-            command.Parameters.Add("@Type", SqlDbType.VarChar).Value = phone.Type;
-            command.Parameters.Add("@Description", SqlDbType.VarChar).Value = phone.Description;
-            command.Parameters.Add("@PriceWithTax", SqlDbType.Decimal).Value = phone.PriceWithTax;
-            command.Parameters.Add("@Stock", SqlDbType.BigInt).Value = phone.Stock;
-
-            ExecuteNonQuery(connection, command);
         }
 
         private void GetFromDatabase(string queryString, Action<SqlDataReader> DoStuff)

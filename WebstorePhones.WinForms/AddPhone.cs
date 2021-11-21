@@ -2,42 +2,65 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.WinForms
 {
     public partial class AddPhone : Form
     {
+
         public AddPhone()
         {
             InitializeComponent();
+
         }
 
         private string ValidateText(string textboxName, string textboxValue)
         {
             string errorMessage = string.Empty;
 
-            if (textboxValue.Trim() == string.Empty)
+            switch (textboxName)
             {
-                errorMessage = $"{textboxName.Substring(3)} is empty.\n";
-            }
-            if (textboxName == "TxtPrice")
-            {
-                var reg = new Regex("[0-9]*[,][0-9]{2}");
+                case "TxtPrice":
+                    var reg = new Regex("/[0-9]+[,][0-9]{2}/");
 
-                if (!reg.IsMatch(textboxValue))
-                {
-                    // TODO It accepts "55,333333333" as valid number.
-                    errorMessage = $"{textboxName.Substring(3)} needs to be a number.\n";
-                }
+                    if (!reg.IsMatch(textboxValue))
+                    {
+                        if (decimal.TryParse(textboxValue, out _))
+                        {
+                            if (Convert.ToDecimal(textboxValue) != Math.Round(Convert.ToDecimal(textboxValue), 2))
+                            {
+                                errorMessage = $"{textboxName.Substring(3)} needs to have two or fewer decimals.\n";
+                            }
+                        }
+                        else
+                        {
+                            errorMessage = $"{textboxName.Substring(3)} needs to be a number.\n";
+                        }
+
+                    }
+                    break;
+                case "TxtStock":
+                    if (!int.TryParse(textboxValue, out _))
+                    {
+                        errorMessage = $"{textboxName.Substring(3)} needs to be a number.\n";
+                    }
+                    break;
+                default:
+                    if (textboxValue.Trim() == string.Empty)
+                    {
+                        errorMessage = $"{textboxName.Substring(3)} is empty.\n";
+                    }
+                    break;
             }
 
             return errorMessage;
         }
 
-        private Phone GetFieldValues()
+        private void AddPhoneToDatabase()
         {
-            return new Phone()
+            Phone phone = new()
             {
                 Brand = TxtBrand.Text,
                 Type = TxtBrand.Text,
@@ -45,6 +68,9 @@ namespace WebstorePhones.WinForms
                 PriceWithTax = Convert.ToDecimal(TxtPrice.Text),
                 Stock = Convert.ToInt32(TxtStock.Text)
             };
+
+            PhoneService phoneService = new();
+            phoneService.AddPhoneToDatabase(phone);
         }
 
         private void BtnApply_Click(object sender, EventArgs e)
@@ -55,7 +81,7 @@ namespace WebstorePhones.WinForms
             sb.Append(ValidateText(nameof(TxtType), TxtType.Text));
             sb.Append(ValidateText(nameof(TxtDescription), TxtDescription.Text));
             sb.Append(ValidateText(nameof(TxtPrice), TxtPrice.Text));
-            //sb.Append(ValidateText(nameof(TxtStock), TxtStock.Text));
+            sb.Append(ValidateText(nameof(TxtStock), TxtStock.Text));
 
             string errorMessages = sb.ToString();
 
@@ -65,20 +91,14 @@ namespace WebstorePhones.WinForms
             }
             else
             {
-                // TODO Add to database with textbox values.
+                AddPhoneToDatabase();
+                this.DialogResult = DialogResult.OK;
             }
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void BtnApply_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-
-            e.Cancel = true;
         }
     }
 }
