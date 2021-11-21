@@ -93,9 +93,8 @@ namespace WebstorePhones.WinForms
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            // TODO Fix this. It doesn't show the AddPhone form.
-            Form form = new AddPhone.AddPhoneForm();
-            //form.ShowDialog();
+            Form form = new AddPhone();
+            form.ShowDialog();
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)
@@ -111,5 +110,7 @@ namespace WebstorePhones.WinForms
                 UpdateListBox();
             }
         }
+
+
     }
 }

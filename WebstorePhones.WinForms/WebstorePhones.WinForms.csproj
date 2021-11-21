@@ -7,14 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebstorePhones.Business\WebstorePhones.Business.csproj" />
-    <ProjectReference Include="..\WebstorePhones.Domain\WebstorePhones.Domain.csproj" />
+    <Compile Remove="AddPhone2.cs" />
+    <Compile Remove="AddPhone2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="AddPhone.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <EmbeddedResource Remove="AddPhone2.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebstorePhones.Business\WebstorePhones.Business.csproj" />
+    <ProjectReference Include="..\WebstorePhones.Domain\WebstorePhones.Domain.csproj" />
   </ItemGroup>
 
 </Project>

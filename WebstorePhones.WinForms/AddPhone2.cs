@@ -4,11 +4,12 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using WebstorePhones.Domain.Objects;
 
-namespace WebstorePhones.WinForms
+namespace AddPhone2
 {
-    public partial class AddPhone : Form
+    public partial class AddPhoneForm : Form
     {
-        public AddPhone()
+
+        public AddPhoneForm()
         {
             InitializeComponent();
         }
@@ -17,10 +18,10 @@ namespace WebstorePhones.WinForms
         {
             string errorMessage = string.Empty;
 
-            if (textboxValue.Trim() == string.Empty)
-            {
-                errorMessage = $"{textboxName.Substring(3)} is empty.\n";
-            }
+            //if (textboxValue.Trim() == string.Empty)
+            //{
+            //    errorMessage = $"{textboxName.Substring(3)} is empty.\n";
+            //}
             if (textboxName == "TxtPrice")
             {
                 var reg = new Regex("[0-9]*[,][0-9]{2}");
@@ -76,7 +77,7 @@ namespace WebstorePhones.WinForms
 
         private void BtnApply_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            
 
             e.Cancel = true;
         }
