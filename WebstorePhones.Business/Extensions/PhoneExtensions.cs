@@ -5,11 +5,11 @@ namespace WebstorePhones.Business.Extensions
 {
     public static class PhoneExtensions
     {
-        public static decimal ttt(this Phone PriceWithoutVat, decimal PriceWithVat)
+        private const decimal tax = 0.21m;
+
+        public static decimal PriceWithoutVat(this Phone phone)
         {
-            return Math.Round(PriceWithVat / (1 + 21), 2);
+            return Math.Round(phone.PriceWithTax / (1 + tax), 2);
         }
-
-
     }
 }

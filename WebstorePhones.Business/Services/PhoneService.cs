@@ -103,7 +103,7 @@ namespace WebstorePhones.Business.Services
             ExecuteNonQuery(connection, command);
         }
 
-        private Phone ReadPhone(SqlDataReader reader)
+        private static Phone ReadPhone(SqlDataReader reader)
         {
             return new Phone()
             {

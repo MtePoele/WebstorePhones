@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebstorePhones.Business.Extensions;
 using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Objects;
 
@@ -8,8 +9,8 @@ namespace WebstorePhones
 {
     class Program
     {
-        static Dictionary<int, Phone> phonesDictionary = new();
-        private static PhoneService phoneService = new();
+        static readonly Dictionary<int, Phone> phonesDictionary = new();
+        private static readonly PhoneService phoneService = new();
 
         static void Main(string[] args)
         {
@@ -107,7 +108,7 @@ namespace WebstorePhones
 
         private static void PrintResults(Phone phone)
         {
-            Console.WriteLine($"Brand: {phone.Brand} \tType: {phone.Type} \tPrice: {phone.PriceWithTax} \tWithout VAT: {phone.PriceWithoutTax} \tStock: {phone.Stock}");
+            Console.WriteLine($"Brand: {phone.Brand} \tType: {phone.Type} \tPrice: {phone.PriceWithTax} \tWithout VAT: {phone.PriceWithoutVat()} \tStock: {phone.Stock}");
             Console.WriteLine($"Description: {phone.Description}\n");
         }
     }
