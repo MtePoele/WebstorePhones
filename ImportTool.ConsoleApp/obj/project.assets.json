@@ -1400,6 +1400,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "System.Data.SqlClient": "4.8.3",
           "xunit": "2.4.1"
         },
         "compile": {

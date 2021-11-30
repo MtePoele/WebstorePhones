@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using WebstorePhones.Business.Repositories;
 using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.Business.Services
 {
-    public class PhoneService : IPhoneService
+    public class PhoneService : AdoRepository<Phone>, IPhoneService
     {
         private readonly string _connectionString = Constants.ConnectionString;
+        readonly AdoRepository<Phone> adoRepository = new();
 
         public Phone Get(int id)
         {
@@ -33,11 +35,12 @@ namespace WebstorePhones.Business.Services
             "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
             "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
             "WHERE p.BrandId = b.Id";
-            GetFromDatabase(queryString, (SqlDataReader reader) =>
-            {
-                Phone phone = ReadPhone(reader);
-                phones.Add(phone);
-            });
+            phones = GetRecords(queryString).ToList();
+            //GetFromDatabase(queryString, (SqlDataReader reader) =>
+            //{
+            //    Phone phone = ReadPhone(reader);
+            //    phones.Add(phone);
+            //});
             return phones.OrderBy(x => x.Brand);
         }
 
@@ -103,7 +106,7 @@ namespace WebstorePhones.Business.Services
             ExecuteNonQuery(connection, command);
         }
 
-        private static Phone ReadPhone(SqlDataReader reader)
+        public override Phone ReadPhone(SqlDataReader reader)
         {
             return new Phone()
             {
