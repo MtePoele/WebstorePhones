@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.Business.Repositories
 {
@@ -15,17 +13,16 @@ namespace WebstorePhones.Business.Repositories
             _connection = new SqlConnection(Constants.ConnectionString);
         }
 
-        public virtual TEntity ReadPhone(SqlDataReader reader)
+        public virtual TEntity PopulateRecord(SqlDataReader reader)
         {
             return null;
         }
 
-        public IEnumerable<TEntity> GetRecords(string queryString)
+        public virtual TEntity Get(string queryString)
         {
             SqlCommand command = new(queryString, _connection);
+            TEntity record = null;
 
-            var list = new List<TEntity>();
-            //command.Connection = _connection;
             _connection.Open();
             try
             {
@@ -33,7 +30,33 @@ namespace WebstorePhones.Business.Repositories
                 try
                 {
                     while (reader.Read())
-                        list.Add(ReadPhone(reader));
+                        record = PopulateRecord(reader);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            finally
+            {
+                _connection.Close();
+            }
+            return record;
+        }
+
+        public virtual IEnumerable<TEntity> GetRecords(string queryString)
+        {
+            SqlCommand command = new(queryString, _connection);
+
+            var list = new List<TEntity>();
+            _connection.Open();
+            try
+            {
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                        list.Add(PopulateRecord(reader));
                 }
                 finally
                 {
@@ -46,32 +69,20 @@ namespace WebstorePhones.Business.Repositories
             }
             return list;
         }
-        protected TEntity GetRecord(SqlCommand command)
+
+        public virtual void ExecuteNonQuery(SqlCommand command)
         {
-            TEntity record = null;
             command.Connection = _connection;
-            _connection.Open();
+
             try
             {
-                var reader = command.ExecuteReader();
-                try
-                {
-                    while (reader.Read())
-                    {
-                        record = ReadPhone(reader);
-                        break;
-                    }
-                }
-                finally
-                {
-                    reader.Close();
-                }
+                _connection.Open();
+                command.ExecuteNonQuery();
             }
             finally
             {
                 _connection.Close();
             }
-            return record;
         }
     }
 }

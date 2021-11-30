@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,53 +10,32 @@ namespace WebstorePhones.Business.Services
 {
     public class PhoneService : AdoRepository<Phone>, IPhoneService
     {
-        private readonly string _connectionString = Constants.ConnectionString;
-        readonly AdoRepository<Phone> adoRepository = new();
-
         public Phone Get(int id)
         {
-            Phone phone = new();
             string queryString =
             "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
             "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
             "WHERE p.BrandId = {id}";
-            GetFromDatabase(queryString, (SqlDataReader reader) =>
-            {
-                phone = ReadPhone(reader);
-            });
-            return phone;
+            return Get(queryString);
         }
 
         public IEnumerable<Phone> Get()
         {
-            List<Phone> phones = new();
             string queryString =
             "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
             "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
             "WHERE p.BrandId = b.Id";
-            phones = GetRecords(queryString).ToList();
-            //GetFromDatabase(queryString, (SqlDataReader reader) =>
-            //{
-            //    Phone phone = ReadPhone(reader);
-            //    phones.Add(phone);
-            //});
-            return phones.OrderBy(x => x.Brand);
+            return GetRecords(queryString).OrderBy(x => x.Brand);
         }
 
         public IEnumerable<Phone> Search(string query)
         {
-            List<Phone> phones = new();
             string queryString =
             "SELECT phones.Id, brands.Brand, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
             "FROM phoneshop.dbo.phones " +
             "INNER JOIN brands ON phones.BrandId = brands.Id " +
             $"WHERE brands.Brand LIKE '%{query}%' OR phones.Type LIKE '%{query}%' OR phones.Description LIKE '%{query}%'";
-            GetFromDatabase(queryString, (SqlDataReader reader) =>
-            {
-                Phone phone = ReadPhone(reader);
-                phones.Add(phone);
-            });
-            return phones.OrderBy(x => x.Brand);
+            return GetRecords(queryString).OrderBy(x => x.Brand);
         }
 
         public int AddMissingPhones(List<Phone> phones)
@@ -76,37 +54,35 @@ namespace WebstorePhones.Business.Services
 
         public void AddPhoneToDatabase(Phone phone)
         {
-            using SqlConnection connection = new(_connectionString);
             string nonQueryString =
                 $"IF NOT EXISTS (SELECT Brand FROM phoneshop.dbo.brands WHERE Brand = @Brand)" +
                 $"BEGIN INSERT INTO phoneshop.dbo.brands (Brand) VALUES (@Brand) END " +
                 $"INSERT INTO phoneshop.dbo.phones (BrandId, Type, Description, PriceWithTax, Stock) " +
                 $"VALUES ((SELECT Id FROM phoneshop.dbo.brands WHERE Brand = @Brand), @Type, @Description, @PriceWithTax, @Stock)";
 
-            SqlCommand command = new(nonQueryString, connection);
+            SqlCommand command = new(nonQueryString);
             command.Parameters.Add("@Brand", SqlDbType.VarChar).Value = phone.Brand;
             command.Parameters.Add("@Type", SqlDbType.VarChar).Value = phone.Type;
             command.Parameters.Add("@Description", SqlDbType.VarChar).Value = phone.Description;
             command.Parameters.Add("@PriceWithTax", SqlDbType.Decimal).Value = phone.PriceWithTax;
             command.Parameters.Add("@Stock", SqlDbType.BigInt).Value = phone.Stock;
 
-            ExecuteNonQuery(connection, command);
+            ExecuteNonQuery(command);
         }
 
         public void Delete(long id)
         {
-            using SqlConnection connection = new(_connectionString);
             string nonQueryString =
                 $"DELETE FROM phoneshop.dbo.phones " +
                 $"WHERE phones.Id = @Id ";
 
-            SqlCommand command = new(nonQueryString, connection);
+            SqlCommand command = new(nonQueryString);
             command.Parameters.Add("@Id", SqlDbType.BigInt).Value = id;
 
-            ExecuteNonQuery(connection, command);
+            ExecuteNonQuery(command);
         }
 
-        public override Phone ReadPhone(SqlDataReader reader)
+        public override Phone PopulateRecord(SqlDataReader reader)
         {
             return new Phone()
             {
@@ -121,60 +97,18 @@ namespace WebstorePhones.Business.Services
 
         private bool PhoneNotInDatabase(Phone phoneToLookFor)
         {
-            List<Phone> phones = new();
-
             string queryString =
             "SELECT phones.Id, brands.Brand, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
             "FROM phoneshop.dbo.phones " +
             "INNER JOIN brands ON phones.BrandId = brands.Id " +
             $"WHERE brands.Brand LIKE '{phoneToLookFor.Brand}' AND phones.Type LIKE '{phoneToLookFor.Type}'";
-            GetFromDatabase(queryString, (SqlDataReader reader) =>
-            {
-                Phone phone = ReadPhone(reader);
-                phones.Add(phone);
-            });
+
+            List<Phone> phones = GetRecords(queryString).ToList();
 
             if (phones.Count == 0)
                 return true;
             else
                 return false;
-        }
-
-        private void GetFromDatabase(string queryString, Action<SqlDataReader> DoStuff)
-        {
-            using SqlConnection connection = new(_connectionString);
-            SqlCommand command = new(queryString, connection);
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    DoStuff(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
-
-        private static void ExecuteNonQuery(SqlConnection connection, SqlCommand command)
-        {
-            try
-            {
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            finally
-            {
-                connection.Close();
-            }
         }
     }
 }
