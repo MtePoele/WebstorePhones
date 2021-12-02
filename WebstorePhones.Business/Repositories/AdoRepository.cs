@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Diagnostics.CodeAnalysis;
 using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business.Repositories

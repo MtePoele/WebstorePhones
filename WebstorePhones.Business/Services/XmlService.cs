@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.Business.Services
 {
-    public class XmlService
+    public class XmlService : IXmlService
     {
         public List<Phone> ReadFromXmlFile(string xmlPath)
         {
