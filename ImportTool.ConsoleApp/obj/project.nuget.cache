@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Yr9HYB4Zc8IJB5goFhdpxQIhqEMw6tCqzzKo9W11GWvxJw71yTkWRrmJb6O+eV0Fik5zCF+H7PR9zzNjs7CtPw==",
+  "dgSpecHash": "M/ljuDeyBlyNYVTlwhJ9qEwKeJRyaMNSzRCxPuu3ERimVjDFbGIap9xex0Ubx/BzYBH3hy/BKiUPIOZHP5ZDzw==",
   "success": true,
   "projectFilePath": "C:\\Users\\rsmar\\Source\\Repos\\WebstorePhones\\ImportTool.ConsoleApp\\ImportTool.ConsoleApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\rsmar\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\rsmar\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\rsmar\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\rsmar\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\rsmar\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
@@ -62,6 +64,7 @@
     "C:\\Users\\rsmar\\.nuget\\packages\\system.reflection.typeextensions\\4.3.0\\system.reflection.typeextensions.4.3.0.nupkg.sha512",
     "C:\\Users\\rsmar\\.nuget\\packages\\system.resources.resourcemanager\\4.3.0\\system.resources.resourcemanager.4.3.0.nupkg.sha512",
     "C:\\Users\\rsmar\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
+    "C:\\Users\\rsmar\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\rsmar\\.nuget\\packages\\system.runtime.extensions\\4.3.0\\system.runtime.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\rsmar\\.nuget\\packages\\system.runtime.handles\\4.3.0\\system.runtime.handles.4.3.0.nupkg.sha512",
     "C:\\Users\\rsmar\\.nuget\\packages\\system.runtime.interopservices\\4.3.0\\system.runtime.interopservices.4.3.0.nupkg.sha512",

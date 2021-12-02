@@ -6,6 +6,11 @@ namespace WebstorePhones.Domain.Interfaces
 {
     public interface IPhoneService
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Phone Get(int id);
         IEnumerable<Phone> Get();
         IEnumerable<Phone> Search(string query);

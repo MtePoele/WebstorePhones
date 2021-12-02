@@ -29,3 +29,6 @@ C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ref\ImportTool.ConsoleApp.dll
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.pdb
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.genruntimeconfig.cache
+C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
