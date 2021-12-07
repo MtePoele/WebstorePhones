@@ -5,15 +5,15 @@ namespace WebstorePhones.Domain.Interfaces
     public interface IBrandService
     {
         /// <summary>
-        /// Add Brand name to database.
+        /// Checks if the brand exists in the database, and adds it if it doesn't.
         /// </summary>
         /// <param name="phone"></param>
         void AddToDatabase(Phone phone);
         /// <summary>
-        /// Returns a long with the ID of the phone based on its brand.
+        /// Gets the Id of brand based on phone.brand
         /// </summary>
         /// <param name="phone"></param>
-        /// <returns></returns>
+        /// <returns>long</returns>
         long GetBrandId(Phone phone);
     }
 }

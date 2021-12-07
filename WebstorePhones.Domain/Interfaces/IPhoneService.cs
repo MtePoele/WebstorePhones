@@ -10,18 +10,18 @@ namespace WebstorePhones.Domain.Interfaces
         /// Returns a phone based on Id provided.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Phone</returns>
         Phone Get(int id);
         /// <summary>
         /// Returns an IEnumerable<Phone>.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>IEnumerable<Phone></returns>
         IEnumerable<Phone> Get();
         /// <summary>
         /// Returns an IEnumerable<Phone> where Name, Brand or Description contains "query".
         /// </summary>
         /// <param name="query"></param>
-        /// <returns></returns>
+        /// <returns>IEnumerable<Phone></returns>
         IEnumerable<Phone> Search(string query);
         /// <summary>
         /// Checks if phones are missing.
@@ -29,7 +29,7 @@ namespace WebstorePhones.Domain.Interfaces
         /// Returns number of new phones added.
         /// </summary>
         /// <param name="phones"></param>
-        /// <returns></returns>
+        /// <returns>int</returns>
         int AddMissingPhones(List<Phone> phones);
         /// <summary>
         /// Adds a phone to the database.
@@ -45,7 +45,7 @@ namespace WebstorePhones.Domain.Interfaces
         /// Creates a phone object and fills it using SqlDataReader.
         /// </summary>
         /// <param name="reader"></param>
-        /// <returns></returns>
+        /// <returns>Phone</returns>
         Phone PopulateRecord(SqlDataReader reader);
     }
 }
