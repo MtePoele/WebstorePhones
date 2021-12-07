@@ -23,7 +23,6 @@ namespace ImportTool.ConsoleApp
             _xmlService = serviceProvider.GetService<IXmlService>();
             _phoneService = serviceProvider.GetService<IPhoneService>();
 
-            // TODO Null reference exceptions. Not an object.
             List<Phone> phones = _xmlService.ReadFromXmlFile(args[0]);
             int phonesAdded = _phoneService.AddMissingPhones(phones);
             
