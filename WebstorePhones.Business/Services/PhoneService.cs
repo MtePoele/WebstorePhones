@@ -10,32 +10,39 @@ namespace WebstorePhones.Business.Services
 {
     public class PhoneService : AdoRepository<Phone>, IPhoneService
     {
+        private readonly IBrandService _brandService;
+
+        public PhoneService(IBrandService brandService)
+        {
+            this._brandService = brandService;
+        }
+
         public Phone Get(int id)
         {
-            string queryString =
-            "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
-            "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
-            "WHERE p.BrandId = {id}";
-            return Get(queryString);
+            return Get(
+                "SELECT p.Id, b.BrandName, p.Type, p.Description, p.PriceWithTax, p.Stock " +
+                "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
+                "WHERE p.BrandId = {id}"
+                );
         }
 
         public IEnumerable<Phone> Get()
         {
-            string queryString =
-            "SELECT p.Id, b.Brand, p.Type, p.Description, p.PriceWithTax, p.Stock " +
-            "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
-            "WHERE p.BrandId = b.Id";
-            return GetRecords(queryString).OrderBy(x => x.Brand);
+            return GetRecords(
+                "SELECT p.Id, b.BrandName, p.Type, p.Description, p.PriceWithTax, p.Stock " +
+                "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
+                "WHERE p.BrandId = b.Id"
+                ).OrderBy(x => x.Brand);
         }
 
         public IEnumerable<Phone> Search(string query)
         {
-            string queryString =
-            "SELECT phones.Id, brands.Brand, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
-            "FROM phoneshop.dbo.phones " +
-            "INNER JOIN brands ON phones.BrandId = brands.Id " +
-            $"WHERE brands.Brand LIKE '%{query}%' OR phones.Type LIKE '%{query}%' OR phones.Description LIKE '%{query}%'";
-            return GetRecords(queryString).OrderBy(x => x.Brand);
+            return GetRecords(
+                "SELECT phones.Id, brands.BrandName, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
+                "FROM phoneshop.dbo.phones " +
+                "INNER JOIN brands ON phones.BrandId = brands.Id " +
+                $"WHERE brands.Brand LIKE '%{query}%' OR phones.Type LIKE '%{query}%' OR phones.Description LIKE '%{query}%'"
+                ).OrderBy(x => x.Brand);
         }
 
         public int AddMissingPhones(List<Phone> phones)
@@ -45,23 +52,23 @@ namespace WebstorePhones.Business.Services
             {
                 if (PhoneNotInDatabase(phone))
                 {
-                    AddPhoneToDatabase(phone);
+                    AddToDatabase(phone);
                     phonesAdded++;
                 }
             }
             return phonesAdded;
         }
 
-        public void AddPhoneToDatabase(Phone phone)
+        public void AddToDatabase(Phone phone)
         {
-            string nonQueryString =
-                $"IF NOT EXISTS (SELECT Brand FROM phoneshop.dbo.brands WHERE Brand = @Brand)" +
-                $"BEGIN INSERT INTO phoneshop.dbo.brands (Brand) VALUES (@Brand) END " +
-                $"INSERT INTO phoneshop.dbo.phones (BrandId, Type, Description, PriceWithTax, Stock) " +
-                $"VALUES ((SELECT Id FROM phoneshop.dbo.brands WHERE Brand = @Brand), @Type, @Description, @PriceWithTax, @Stock)";
+            _brandService.AddToDatabase(phone);
 
-            SqlCommand command = new(nonQueryString);
-            command.Parameters.Add("@Brand", SqlDbType.VarChar).Value = phone.Brand;
+            SqlCommand command = new(
+                $"INSERT INTO phoneshop.dbo.phones (BrandId, Type, Description, PriceWithTax, Stock) " +
+                $"VALUES ((SELECT Id FROM phoneshop.dbo.brands WHERE BrandName = @Brand), @Type, @Description, @PriceWithTax, @Stock)"
+            );
+
+            //command.Parameters.Add("@Brand", SqlDbType.BigInt).Value = _brandService.GetBrandId(phone);
             command.Parameters.Add("@Type", SqlDbType.VarChar).Value = phone.Type;
             command.Parameters.Add("@Description", SqlDbType.VarChar).Value = phone.Description;
             command.Parameters.Add("@PriceWithTax", SqlDbType.Decimal).Value = phone.PriceWithTax;
@@ -72,11 +79,10 @@ namespace WebstorePhones.Business.Services
 
         public void Delete(long id)
         {
-            string nonQueryString =
+            SqlCommand command = new(
                 $"DELETE FROM phoneshop.dbo.phones " +
-                $"WHERE phones.Id = @Id ";
-
-            SqlCommand command = new(nonQueryString);
+                $"WHERE phones.Id = @Id "
+                );
             command.Parameters.Add("@Id", SqlDbType.BigInt).Value = id;
 
             ExecuteNonQuery(command);
@@ -97,13 +103,12 @@ namespace WebstorePhones.Business.Services
 
         private bool PhoneNotInDatabase(Phone phoneToLookFor)
         {
-            string queryString =
-            "SELECT phones.Id, brands.Brand, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
-            "FROM phoneshop.dbo.phones " +
-            "INNER JOIN brands ON phones.BrandId = brands.Id " +
-            $"WHERE brands.Brand LIKE '{phoneToLookFor.Brand}' AND phones.Type LIKE '{phoneToLookFor.Type}'";
-
-            List<Phone> phones = GetRecords(queryString).ToList();
+            List<Phone> phones = GetRecords(
+                "SELECT phones.Id, brands.BrandName, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
+                "FROM phoneshop.dbo.phones " +
+                "INNER JOIN brands ON phones.BrandId = brands.Id " +
+                $"WHERE brands.BrandName LIKE '{phoneToLookFor.Brand}' AND phones.Type LIKE '{phoneToLookFor.Type}'"
+                ).ToList();
 
             if (phones.Count == 0)
                 return true;

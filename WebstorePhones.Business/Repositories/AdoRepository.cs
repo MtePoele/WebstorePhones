@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using WebstorePhones.Domain.Interfaces;
 
@@ -21,24 +22,25 @@ namespace WebstorePhones.Business.Repositories
         public virtual TEntity Get(string queryString)
         {
             SqlCommand command = new(queryString, _connection);
-            TEntity record = null;
 
-            _connection.Open();
+            TEntity record = null;
+            SqlDataReader reader = null;
             try
             {
-                SqlDataReader reader = command.ExecuteReader();
-                try
-                {
-                    while (reader.Read())
-                        record = PopulateRecord(reader);
-                }
-                finally
-                {
-                    reader.Close();
-                }
+                _connection.Open();
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                    record = PopulateRecord(reader);
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
             finally
             {
+                if (reader != null)
+                    reader.Close();
+
                 _connection.Close();
             }
             return record;
@@ -48,23 +50,24 @@ namespace WebstorePhones.Business.Repositories
         {
             SqlCommand command = new(queryString, _connection);
 
-            var list = new List<TEntity>();
-            _connection.Open();
+            List<TEntity> list = new();
+            SqlDataReader reader = null;
             try
             {
-                SqlDataReader reader = command.ExecuteReader();
-                try
-                {
-                    while (reader.Read())
-                        list.Add(PopulateRecord(reader));
-                }
-                finally
-                {
-                    reader.Close();
-                }
+                _connection.Open();
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                    list.Add(PopulateRecord(reader));
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
             finally
             {
+                if (reader != null)
+                    reader.Close();
+
                 _connection.Close();
             }
             return list;
@@ -78,6 +81,10 @@ namespace WebstorePhones.Business.Repositories
             {
                 _connection.Open();
                 command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
             finally
             {

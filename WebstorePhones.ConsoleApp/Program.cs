@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebstorePhones.Business.Extensions;
 using WebstorePhones.Business.Services;
+using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones
@@ -10,10 +12,16 @@ namespace WebstorePhones
     class Program
     {
         static readonly Dictionary<int, Phone> phonesDictionary = new();
-        private static readonly PhoneService phoneService = new();
+        private static IPhoneService _phoneService;
 
         static void Main(string[] args)
         {
+            var serviceProvider = new ServiceCollection()
+                .AddScoped<IPhoneService, PhoneService>()
+                .BuildServiceProvider();
+
+            _phoneService = serviceProvider.GetService<IPhoneService>();
+
             GetAllPhones();
 
             while (true)
@@ -60,7 +68,7 @@ namespace WebstorePhones
                 string searchInput = Console.ReadLine();
                 if (searchInput.Length > 0)
                 {
-                    List<Phone> searchResults = phoneService.Search(searchInput).ToList();
+                    List<Phone> searchResults = _phoneService.Search(searchInput).ToList();
                     Console.WriteLine();
 
                     if (searchResults.Count == 0)
@@ -98,7 +106,7 @@ namespace WebstorePhones
 
         private static void GetAllPhones()
         {
-            List<Phone> phonesList = phoneService.Get().ToList();
+            List<Phone> phonesList = _phoneService.Get().ToList();
 
             for (int i = 0; i < phonesList.Count; i++)
             {

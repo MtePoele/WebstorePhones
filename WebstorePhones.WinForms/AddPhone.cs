@@ -70,7 +70,7 @@ namespace WebstorePhones.WinForms
             };
 
             PhoneService phoneService = new();
-            phoneService.AddPhoneToDatabase(phone);
+            phoneService.AddToDatabase(phone);
         }
 
         private void BtnApply_Click(object sender, EventArgs e)

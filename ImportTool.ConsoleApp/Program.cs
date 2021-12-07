@@ -9,28 +9,24 @@ namespace ImportTool.ConsoleApp
 {
     class Program
     {
-        private readonly IXmlService _xmlService;
-        private readonly IPhoneService _phoneService;
+        private static IXmlService _xmlService;
+        private static IPhoneService _phoneService;
 
-        public Program(IXmlService xmlService, IPhoneService phoneService)
-        {
-            _xmlService = xmlService;
-            _phoneService = phoneService;
-        }
-
-          void Main(string[] args)
+        static void Main(string[] args)
         {
             var serviceProvider = new ServiceCollection()
                 .AddScoped<IXmlService, XmlService>()
                 .AddScoped<IPhoneService, PhoneService>()
+                .AddScoped<IBrandService, BrandService>()
                 .BuildServiceProvider();
 
-            var xmlService = serviceProvider.GetService<XmlService>();
-            var phoneService = serviceProvider.GetService<PhoneService>();
+            _xmlService = serviceProvider.GetService<IXmlService>();
+            _phoneService = serviceProvider.GetService<IPhoneService>();
 
             // TODO Null reference exceptions. Not an object.
-            List<Phone> phones = xmlService.ReadFromXmlFile(args[0]);
-            int phonesAdded = phoneService.AddMissingPhones(phones);
+            List<Phone> phones = _xmlService.ReadFromXmlFile(args[0]);
+            int phonesAdded = _phoneService.AddMissingPhones(phones);
+            
             Console.WriteLine($"{phonesAdded} new phones have been added.");
             Console.ReadLine();
         }
