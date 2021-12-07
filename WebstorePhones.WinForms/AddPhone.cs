@@ -3,17 +3,20 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using WebstorePhones.Business.Services;
+using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.WinForms
 {
     public partial class AddPhone : Form
     {
+        private IPhoneService _phoneService;
 
         public AddPhone()
         {
-            InitializeComponent();
+            _phoneService = (IPhoneService)Program.ServiceProvider.GetService(typeof(IPhoneService));
 
+            InitializeComponent();
         }
 
         private string ValidateText(string textboxName, string textboxValue)
@@ -69,8 +72,7 @@ namespace WebstorePhones.WinForms
                 Stock = Convert.ToInt32(TxtStock.Text)
             };
 
-            PhoneService phoneService = new();
-            phoneService.AddToDatabase(phone);
+            _phoneService.AddToDatabase(phone);
         }
 
         private void BtnApply_Click(object sender, EventArgs e)

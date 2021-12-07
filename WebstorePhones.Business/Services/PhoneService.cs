@@ -17,6 +17,10 @@ namespace WebstorePhones.Business.Services
             this._brandService = brandService;
         }
 
+        public PhoneService()
+        {
+        }
+
         public Phone Get(int id)
         {
             return Get(
@@ -41,7 +45,7 @@ namespace WebstorePhones.Business.Services
                 "SELECT phones.Id, brands.BrandName, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
                 "FROM phoneshop.dbo.phones " +
                 "INNER JOIN brands ON phones.BrandId = brands.Id " +
-                $"WHERE brands.Brand LIKE '%{query}%' OR phones.Type LIKE '%{query}%' OR phones.Description LIKE '%{query}%'"
+                $"WHERE brands.BrandName LIKE '%{query}%' OR phones.Type LIKE '%{query}%' OR phones.Description LIKE '%{query}%'"
                 ).OrderBy(x => x.Brand);
         }
 
@@ -65,10 +69,9 @@ namespace WebstorePhones.Business.Services
 
             SqlCommand command = new(
                 $"INSERT INTO phoneshop.dbo.phones (BrandId, Type, Description, PriceWithTax, Stock) " +
-                $"VALUES ((SELECT Id FROM phoneshop.dbo.brands WHERE BrandName = @Brand), @Type, @Description, @PriceWithTax, @Stock)"
+                $"VALUES ((SELECT Id FROM phoneshop.dbo.brands WHERE BrandName = '{phone.Brand}'), @Type, @Description, @PriceWithTax, @Stock)"
             );
 
-            //command.Parameters.Add("@Brand", SqlDbType.BigInt).Value = _brandService.GetBrandId(phone);
             command.Parameters.Add("@Type", SqlDbType.VarChar).Value = phone.Type;
             command.Parameters.Add("@Description", SqlDbType.VarChar).Value = phone.Description;
             command.Parameters.Add("@PriceWithTax", SqlDbType.Decimal).Value = phone.PriceWithTax;

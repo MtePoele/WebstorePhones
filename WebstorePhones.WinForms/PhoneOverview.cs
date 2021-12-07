@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using WebstorePhones.Business.Services;
+using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Objects;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WebstorePhones.WinForms
 {
     public partial class PhoneOverview : Form
     {
-        private readonly PhoneService phoneService = new();
+        private readonly IPhoneService _phoneService;
         private List<Phone> phones;
         readonly BindingSource bindingSource = new();
 
         public PhoneOverview()
         {
+            _phoneService = (IPhoneService)Program.ServiceProvider.GetService(typeof(IPhoneService));
+
             InitializeComponent();
 
             GetPhones();
@@ -24,7 +28,7 @@ namespace WebstorePhones.WinForms
 
         private void GetPhones()
         {
-            phones = phoneService.Get().ToList();
+            phones = _phoneService.Get().ToList();
         }
 
         private void UpdateListBox()
@@ -72,7 +76,7 @@ namespace WebstorePhones.WinForms
                 GetPhones();
 
             if (TxtboxSearch.Text.Length > 3)
-                phones = phoneService.Search(TxtboxSearch.Text).ToList();
+                phones = _phoneService.Search(TxtboxSearch.Text).ToList();
 
             UpdateListBox();
         }
@@ -111,12 +115,10 @@ namespace WebstorePhones.WinForms
                 MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                phoneService.Delete(phones[ListBoxPhoneOverview.SelectedIndex].Id);
+                _phoneService.Delete(phones[ListBoxPhoneOverview.SelectedIndex].Id);
                 GetPhones();
                 UpdateListBox();
             }
         }
-
-
     }
 }

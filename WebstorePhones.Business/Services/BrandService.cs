@@ -15,6 +15,8 @@ namespace WebstorePhones.Business.Services
                 $"INSERT INTO phoneshop.dbo.brands (BrandName) VALUES (@Brand)"
                 );
             command.Parameters.Add("@Brand", SqlDbType.VarChar).Value = phone.Brand;
+
+            ExecuteNonQuery(command);
         }
 
         public long GetBrandId(Phone phone)
