@@ -66,7 +66,7 @@ namespace WebstorePhones.WinForms
             Phone phone = new()
             {
                 Brand = TxtBrand.Text,
-                Type = TxtBrand.Text,
+                Type = TxtType.Text,
                 Description = TxtDescription.Text,
                 PriceWithTax = Convert.ToDecimal(TxtPrice.Text),
                 Stock = Convert.ToInt32(TxtStock.Text)
