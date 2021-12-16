@@ -54,7 +54,7 @@ namespace WebstorePhones.WinForms
 
         private void UpdateLabels(Phone phone)
         {
-            lblBrand.Text = phone.Brand;
+            lblBrand.Text = phone.Brand.BrandName;
             lblType.Text = phone.Type;
             lblPrice.Text = phone.PriceWithTax.ToString();
             lblStock.Text = phone.Stock.ToString();

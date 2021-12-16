@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using WebstorePhones.Domain.Interfaces;
+using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.Business.Repositories
 {
     public class AdoRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
+        public Func<SqlDataReader, TEntity> ConvertEntry { private get; set; }
+     
         private static SqlConnection _connection;
+        private readonly IRepository<Brand> brandRepository;
 
-        public AdoRepository()
+        public AdoRepository(IRepository<Brand> _brandRepository)
         {
             _connection = new SqlConnection(Constants.ConnectionString);
+            brandRepository = _brandRepository;
         }
 
-        public virtual TEntity PopulateRecord(SqlDataReader reader)
-        {
-            return null;
-        }
-
-        public virtual TEntity Get(string queryString)
+        public TEntity Get(string queryString)
         {
             SqlCommand command = new(queryString, _connection);
 
@@ -30,7 +30,7 @@ namespace WebstorePhones.Business.Repositories
                 _connection.Open();
                 reader = command.ExecuteReader();
                 while (reader.Read())
-                    record = PopulateRecord(reader);
+                    record = ConvertEntry(reader);
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace WebstorePhones.Business.Repositories
             return record;
         }
 
-        public virtual IEnumerable<TEntity> GetRecords(string queryString)
+        public IEnumerable<TEntity> GetRecords(string queryString)
         {
             SqlCommand command = new(queryString, _connection);
 
@@ -57,7 +57,7 @@ namespace WebstorePhones.Business.Repositories
                 _connection.Open();
                 reader = command.ExecuteReader();
                 while (reader.Read())
-                    list.Add(PopulateRecord(reader));
+                    list.Add(ConvertEntry(reader));
             }
             catch (Exception ex)
             {
@@ -73,7 +73,7 @@ namespace WebstorePhones.Business.Repositories
             return list;
         }
 
-        public virtual void ExecuteNonQuery(SqlCommand command)
+        public void ExecuteNonQuery(SqlCommand command)
         {
             command.Connection = _connection;
 

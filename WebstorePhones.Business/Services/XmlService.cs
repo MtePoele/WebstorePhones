@@ -24,7 +24,10 @@ namespace WebstorePhones.Business.Services
                         {
                             case "Brand":
                                 if (reader.Read())
-                                    phone.Brand = reader.Value;
+                                    phone.Brand = new Brand()
+                                    {
+                                        BrandName = reader.Value
+                                    };
                                 break;
                             case "Type":
                                 if (reader.Read())

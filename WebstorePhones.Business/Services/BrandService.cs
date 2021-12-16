@@ -6,8 +6,15 @@ using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.Business.Services
 {
-    public class BrandService : AdoRepository<Brand>, IBrandService
+    public class BrandService : IBrandService
     {
+        private readonly IRepository<Brand> _brandRepository;
+
+        public BrandService(IRepository<Brand> brandRepository)
+        {
+            this._brandRepository = brandRepository;
+        }
+
         public void AddToDatabase(Phone phone)
         {
             SqlCommand command = new(
@@ -16,12 +23,12 @@ namespace WebstorePhones.Business.Services
                 );
             command.Parameters.Add("@Brand", SqlDbType.VarChar).Value = phone.Brand;
 
-            ExecuteNonQuery(command);
+            _brandRepository.ExecuteNonQuery(command);
         }
 
         public long GetBrandId(Phone phone)
         {
-            return Get(
+            return _brandRepository.Get(
                 "SELECT b.Id " +
                 "FROM phoneshop.dbo.brands AS b " +
                 $"WHERE b.BrandName = {phone.Brand}"

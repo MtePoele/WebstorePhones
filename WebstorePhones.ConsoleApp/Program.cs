@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebstorePhones.Business.Extensions;
+using WebstorePhones.Business.Repositories;
 using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Objects;
@@ -18,8 +19,11 @@ namespace WebstorePhones
         {
             var serviceProvider = new ServiceCollection()
                 .AddScoped<IPhoneService, PhoneService>()
+                .AddScoped<IBrandService, BrandService>()
+                .AddScoped(typeof(IRepository<>), typeof(AdoRepository<>))
                 .BuildServiceProvider();
 
+            // TODO Circular dependency error
             _phoneService = serviceProvider.GetService<IPhoneService>();
 
             GetAllPhones();

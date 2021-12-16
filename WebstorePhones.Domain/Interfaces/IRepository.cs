@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace WebstorePhones.Domain.Interfaces
 {
+
     public interface IRepository<TEntity> where TEntity : class
     {
         /// <summary>
@@ -10,7 +12,7 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        TEntity PopulateRecord(SqlDataReader reader);
+        Func<SqlDataReader, TEntity> ConvertEntry { set; }
         /// <summary>
         /// Get a TEntity.
         /// </summary>

@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using PhoneWebShop.Business.Extensions;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using WebstorePhones.Business.Repositories;
 using WebstorePhones.Domain.Interfaces;
@@ -8,23 +11,27 @@ using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.Business.Services
 {
-    public class PhoneService : AdoRepository<Phone>, IPhoneService
+    public class PhoneService : IPhoneService
     {
+        private readonly IRepository<Phone> _phoneRepository;
         private readonly IBrandService _brandService;
 
-        public PhoneService(IBrandService brandService)
+        public PhoneService(IRepository<Phone> phoneRepository, IBrandService brandService)
         {
-            this._brandService = brandService;
+            _phoneRepository = phoneRepository;
+            _phoneRepository.ConvertEntry = ConvertEntry;
+            _brandService = brandService;
         }
 
         public PhoneService()
         {
+
         }
 
         public Phone Get(int id)
         {
-            return Get(
-                "SELECT p.Id, b.BrandName, p.Type, p.Description, p.PriceWithTax, p.Stock " +
+            return _phoneRepository.Get(
+                "SELECT p.Id, b.BrandName, p.Type, p.Description, p.PriceWithTax, p.Stock, b.Id " +
                 "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
                 "WHERE p.BrandId = {id}"
                 );
@@ -32,16 +39,18 @@ namespace WebstorePhones.Business.Services
 
         public IEnumerable<Phone> Get()
         {
-            return GetRecords(
-                "SELECT p.Id, b.BrandName, p.Type, p.Description, p.PriceWithTax, p.Stock " +
+            // TODO remove local variable
+                var a = _phoneRepository.GetRecords(
+                "SELECT p.Id, b.BrandName, p.Type, p.Description, p.PriceWithTax, p.Stock, b.Id  " +
                 "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
                 "WHERE p.BrandId = b.Id"
-                ).OrderBy(x => x.Brand);
+                );
+            return a.OrderBy(x => x.Brand.BrandName);
         }
 
         public IEnumerable<Phone> Search(string query)
         {
-            return GetRecords(
+            return _phoneRepository.GetRecords(
                 "SELECT phones.Id, brands.BrandName, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
                 "FROM phoneshop.dbo.phones " +
                 "INNER JOIN brands ON phones.BrandId = brands.Id " +
@@ -65,8 +74,6 @@ namespace WebstorePhones.Business.Services
 
         public void AddToDatabase(Phone phone)
         {
-            _brandService.AddToDatabase(phone);
-
             SqlCommand command = new(
                 $"INSERT INTO phoneshop.dbo.phones (BrandId, Type, Description, PriceWithTax, Stock) " +
                 $"VALUES ((SELECT Id FROM phoneshop.dbo.brands WHERE BrandName = '{phone.Brand}'), @Type, @Description, @PriceWithTax, @Stock)"
@@ -77,7 +84,7 @@ namespace WebstorePhones.Business.Services
             command.Parameters.Add("@PriceWithTax", SqlDbType.Decimal).Value = phone.PriceWithTax;
             command.Parameters.Add("@Stock", SqlDbType.BigInt).Value = phone.Stock;
 
-            ExecuteNonQuery(command);
+            _phoneRepository.ExecuteNonQuery(command);
         }
 
         public void Delete(long id)
@@ -88,15 +95,36 @@ namespace WebstorePhones.Business.Services
                 );
             command.Parameters.Add("@Id", SqlDbType.BigInt).Value = id;
 
-            ExecuteNonQuery(command);
+             _phoneRepository.ExecuteNonQuery(command);
         }
 
-        public override Phone PopulateRecord(SqlDataReader reader)
+        public Phone PopulateRecord(SqlDataReader reader)
         {
             return new Phone()
             {
                 Id = reader.GetInt64(0),
-                Brand = reader.GetString(1),
+                Brand = new Brand()
+                {
+                    Id = reader.GetInt64(6),
+                    BrandName = reader.GetString(1)
+                },
+                Type = reader.GetString(2),
+                Description = reader.GetString(3),
+                PriceWithTax = reader.GetDecimal(4),
+                Stock = reader.GetInt32(5)
+            };
+        }
+
+        private Phone ConvertEntry(SqlDataReader reader)
+        {
+            return new Phone
+            {
+                Id = reader.GetInt64(0),
+                Brand = new Brand()
+                {
+                    Id = reader.GetInt64(6),
+                    BrandName = reader.GetString(1)
+                },
                 Type = reader.GetString(2),
                 Description = reader.GetString(3),
                 PriceWithTax = reader.GetDecimal(4),
@@ -106,7 +134,7 @@ namespace WebstorePhones.Business.Services
 
         private bool PhoneNotInDatabase(Phone phoneToLookFor)
         {
-            List<Phone> phones = GetRecords(
+            List<Phone> phones = _phoneRepository.GetRecords(
                 "SELECT phones.Id, brands.BrandName, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
                 "FROM phoneshop.dbo.phones " +
                 "INNER JOIN brands ON phones.BrandId = brands.Id " +
