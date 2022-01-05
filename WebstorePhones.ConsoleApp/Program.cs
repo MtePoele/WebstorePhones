@@ -23,7 +23,6 @@ namespace WebstorePhones
                 .AddScoped(typeof(IRepository<>), typeof(AdoRepository<>))
                 .BuildServiceProvider();
 
-            // TODO Circular dependency error
             _phoneService = serviceProvider.GetService<IPhoneService>();
 
             GetAllPhones();
@@ -38,7 +37,7 @@ namespace WebstorePhones
         {
             foreach (var phone in phonesDictionary)
             {
-                Console.WriteLine($"{phone.Key}. {phone.Value.Brand} \t{phone.Value.Type}");
+                Console.WriteLine($"{phone.Key}. {phone.Value.Brand.BrandName} \t{phone.Value.Type}");
             }
             Console.WriteLine($"{phonesDictionary.Count + 1}. Search");
             Console.WriteLine($"{phonesDictionary.Count + 2}. Exit");
@@ -70,6 +69,7 @@ namespace WebstorePhones
                 Console.WriteLine($"Enter text to search for.");
 
                 string searchInput = Console.ReadLine();
+
                 if (searchInput.Length > 0)
                 {
                     List<Phone> searchResults = _phoneService.Search(searchInput).ToList();
@@ -120,7 +120,7 @@ namespace WebstorePhones
 
         private static void PrintResults(Phone phone)
         {
-            Console.WriteLine($"Brand: {phone.Brand} \tType: {phone.Type} \tPrice: {phone.PriceWithTax} \tWithout VAT: {phone.PriceWithoutVat()} \tStock: {phone.Stock}");
+            Console.WriteLine($"Brand: {phone.Brand.BrandName} \tType: {phone.Type} \tPrice: {phone.PriceWithTax} \tWithout VAT: {phone.PriceWithoutVat()} \tStock: {phone.Stock}");
             Console.WriteLine($"Description: {phone.Description}\n");
         }
     }

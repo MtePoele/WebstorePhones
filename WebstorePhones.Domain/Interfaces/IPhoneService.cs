@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.SqlClient;
 using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.Domain.Interfaces
@@ -46,6 +45,5 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="reader"></param>
         /// <returns>Phone</returns>
-        Phone PopulateRecord(SqlDataReader reader);
     }
 }

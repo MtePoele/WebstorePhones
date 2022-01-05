@@ -2,7 +2,6 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Objects;
 

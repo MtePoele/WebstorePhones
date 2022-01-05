@@ -12,8 +12,8 @@ namespace WebstorePhones.Business.Testing.PhoneServiceTests
         [Fact]
         public void Should_Return_OnePhone()
         {
-            
-            sut.Setup(x => x.Get(1)).Returns(new Phone(){Type = "Pear"});
+
+            sut.Setup(x => x.Get(1)).Returns(new Phone() { Type = "Pear" });
 
             Phone phone = sut.Object.Get(1);
 

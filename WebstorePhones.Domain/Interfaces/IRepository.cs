@@ -12,7 +12,7 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        Func<SqlDataReader, TEntity> ConvertEntry { set; }
+        Func<SqlDataReader, TEntity> PopulateRecord { set; }
         /// <summary>
         /// Get a TEntity.
         /// </summary>

@@ -1,11 +1,7 @@
-﻿using PhoneWebShop.Business.Extensions;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using WebstorePhones.Business.Repositories;
 using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Objects;
 
@@ -19,7 +15,7 @@ namespace WebstorePhones.Business.Services
         public PhoneService(IRepository<Phone> phoneRepository, IBrandService brandService)
         {
             _phoneRepository = phoneRepository;
-            _phoneRepository.ConvertEntry = ConvertEntry;
+            _phoneRepository.PopulateRecord = PopulateRecord;
             _brandService = brandService;
         }
 
@@ -33,29 +29,29 @@ namespace WebstorePhones.Business.Services
             return _phoneRepository.Get(
                 "SELECT p.Id, b.BrandName, p.Type, p.Description, p.PriceWithTax, p.Stock, b.Id " +
                 "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
+                "INNER JOIN brands ON phones.BrandId = brands.Id " +
                 "WHERE p.BrandId = {id}"
                 );
         }
 
         public IEnumerable<Phone> Get()
         {
-            // TODO remove local variable
-                var a = _phoneRepository.GetRecords(
-                "SELECT p.Id, b.BrandName, p.Type, p.Description, p.PriceWithTax, p.Stock, b.Id  " +
-                "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
-                "WHERE p.BrandId = b.Id"
-                );
-            return a.OrderBy(x => x.Brand.BrandName);
+            return _phoneRepository.GetRecords(
+            "SELECT p.Id, b.BrandName, p.Type, p.Description, p.PriceWithTax, p.Stock, b.Id  " +
+            "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
+            "INNER JOIN brands ON phones.BrandId = brands.Id " +
+            "WHERE p.BrandId = b.Id"
+            ).OrderBy(x => x.Brand.BrandName);
         }
 
         public IEnumerable<Phone> Search(string query)
         {
             return _phoneRepository.GetRecords(
-                "SELECT phones.Id, brands.BrandName, phones.Type, phones.Description, phones.PriceWithTax, phones.Stock " +
-                "FROM phoneshop.dbo.phones " +
+                "SELECT p.Id, b.BrandName, p.Type, p.Description, p.PriceWithTax, p.Stock, b.Id  " +
+                "FROM phoneshop.dbo.phones AS p, phoneshop.dbo.brands AS b " +
                 "INNER JOIN brands ON phones.BrandId = brands.Id " +
                 $"WHERE brands.BrandName LIKE '%{query}%' OR phones.Type LIKE '%{query}%' OR phones.Description LIKE '%{query}%'"
-                ).OrderBy(x => x.Brand);
+                ).OrderBy(x => x.Brand.BrandName);
         }
 
         public int AddMissingPhones(List<Phone> phones)
@@ -95,34 +91,17 @@ namespace WebstorePhones.Business.Services
                 );
             command.Parameters.Add("@Id", SqlDbType.BigInt).Value = id;
 
-             _phoneRepository.ExecuteNonQuery(command);
+            _phoneRepository.ExecuteNonQuery(command);
         }
 
         public Phone PopulateRecord(SqlDataReader reader)
-        {
-            return new Phone()
-            {
-                Id = reader.GetInt64(0),
-                Brand = new Brand()
-                {
-                    Id = reader.GetInt64(6),
-                    BrandName = reader.GetString(1)
-                },
-                Type = reader.GetString(2),
-                Description = reader.GetString(3),
-                PriceWithTax = reader.GetDecimal(4),
-                Stock = reader.GetInt32(5)
-            };
-        }
-
-        private Phone ConvertEntry(SqlDataReader reader)
         {
             return new Phone
             {
                 Id = reader.GetInt64(0),
                 Brand = new Brand()
                 {
-                    Id = reader.GetInt64(6),
+                    //Id = reader.GetInt64(6),
                     BrandName = reader.GetString(1)
                 },
                 Type = reader.GetString(2),

@@ -25,7 +25,7 @@ namespace ImportTool.ConsoleApp
 
             List<Phone> phones = _xmlService.ReadFromXmlFile(args[0]);
             int phonesAdded = _phoneService.AddMissingPhones(phones);
-            
+
             Console.WriteLine($"{phonesAdded} new phones have been added.");
             Console.ReadLine();
         }

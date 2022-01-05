@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Objects;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace WebstorePhones.WinForms
 {

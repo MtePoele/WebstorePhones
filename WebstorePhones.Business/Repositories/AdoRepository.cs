@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Domain.Objects;
 
 namespace WebstorePhones.Business.Repositories
 {
     public class AdoRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        public Func<SqlDataReader, TEntity> ConvertEntry { private get; set; }
-     
-        private static SqlConnection _connection;
-        private readonly IRepository<Brand> brandRepository;
+        public Func<SqlDataReader, TEntity> PopulateRecord { get; set; }
 
-        public AdoRepository(IRepository<Brand> _brandRepository)
+        private static SqlConnection _connection;
+
+        public AdoRepository()
         {
             _connection = new SqlConnection(Constants.ConnectionString);
-            brandRepository = _brandRepository;
         }
 
         public TEntity Get(string queryString)
@@ -30,7 +27,7 @@ namespace WebstorePhones.Business.Repositories
                 _connection.Open();
                 reader = command.ExecuteReader();
                 while (reader.Read())
-                    record = ConvertEntry(reader);
+                    record = PopulateRecord(reader);
             }
             catch (Exception ex)
             {
@@ -57,7 +54,7 @@ namespace WebstorePhones.Business.Repositories
                 _connection.Open();
                 reader = command.ExecuteReader();
                 while (reader.Read())
-                    list.Add(ConvertEntry(reader));
+                    list.Add(PopulateRecord(reader));
             }
             catch (Exception ex)
             {

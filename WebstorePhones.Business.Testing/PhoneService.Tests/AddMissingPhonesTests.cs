@@ -16,7 +16,7 @@ namespace WebstorePhones.Business.Testing.PhoneServiceTests
             phoneService.Setup(x => x.AddMissingPhones(It.IsAny<List<Phone>>())).Returns(2);
 
             int actual = phoneService.Object.AddMissingPhones(phones);
-            
+
             Assert.Equal(2, actual);
         }
 
