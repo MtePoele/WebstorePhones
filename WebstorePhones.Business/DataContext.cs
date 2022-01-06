@@ -10,6 +10,10 @@ namespace WebstorePhones.Business
 {
     class DataContext : DbContext
     {
+        public DataContext()
+        {
+
+        }
         public DataContext(DbContextOptions options) : base(options)
         {
 
@@ -19,7 +23,7 @@ namespace WebstorePhones.Business
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-I9V7KFJQ;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer("Data Source=LAPTOP-I9V7KFJQ;Database=WebstorePhones;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
