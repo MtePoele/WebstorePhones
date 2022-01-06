@@ -12,7 +12,7 @@ namespace WebstorePhones.Domain.Objects
         public Phone(Phone phone)
         {
             Id = phone.Id;
-            Brand = phone.Brand;
+            BrandId = phone.BrandId;
             Type = phone.Type;
             Description = phone.Description;
             PriceWithTax = phone.PriceWithTax;
@@ -20,6 +20,7 @@ namespace WebstorePhones.Domain.Objects
         }
         public long Id { get; set; }
         public Brand Brand { get; set; }
+        public long BrandId { get; set; }
         public string Type { get; set; }
         public string FullName { get { return $"{Brand} - {Type}"; } }
         public string Description { get; set; }
