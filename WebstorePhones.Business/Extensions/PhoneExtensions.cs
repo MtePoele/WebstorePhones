@@ -1,5 +1,5 @@
 ﻿using System;
-using WebstorePhones.Domain.Objects;
+using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.Business.Extensions
 {

@@ -1,14 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebstorePhones.Domain.Objects;
+using WebstorePhones.Domain.Entities;
+using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business
 {
-    class DataContext : DbContext
+    public class DataContext : DbContext
     {
         public DataContext()
         {
@@ -56,10 +52,10 @@ namespace WebstorePhones.Business
                 PriceWithTax = 100
             });
 
-            modelBuilder.Entity<Brand>().HasData(new Brand 
-            { 
-                Id = 1, 
-                BrandName = "Apple" 
+            modelBuilder.Entity<Brand>().HasData(new Brand
+            {
+                Id = 1,
+                BrandName = "Apple"
             });
             modelBuilder.Entity<Brand>().HasData(new Brand
             {

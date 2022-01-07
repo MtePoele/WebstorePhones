@@ -1,4 +1,4 @@
-﻿namespace WebstorePhones.Domain.Objects
+﻿namespace WebstorePhones.Domain.Entities
 {
     public class Brand
     {

@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Domain.Objects;
+using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.Business.Services
 {
@@ -15,7 +15,6 @@ namespace WebstorePhones.Business.Services
         public PhoneService(IRepository<Phone> phoneRepository, IBrandService brandService)
         {
             _phoneRepository = phoneRepository;
-            _phoneRepository.PopulateRecord = PopulateRecord;
             _brandService = brandService;
         }
 

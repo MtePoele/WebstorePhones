@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Domain.Objects;
+using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.Business.Services
 {

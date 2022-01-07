@@ -1,7 +1,7 @@
 ﻿using Moq;
 using System.Collections.Generic;
 using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Domain.Objects;
+using WebstorePhones.Domain.Entities;
 using Xunit;
 
 namespace WebstorePhones.Business.Testing.PhoneServiceTests

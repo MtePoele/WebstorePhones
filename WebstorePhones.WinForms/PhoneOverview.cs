@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Domain.Objects;
+using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.WinForms
 {

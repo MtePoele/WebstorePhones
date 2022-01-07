@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Domain.Objects;
+using WebstorePhones.Domain.Entities;
 
 namespace ImportTool.ConsoleApp
 {

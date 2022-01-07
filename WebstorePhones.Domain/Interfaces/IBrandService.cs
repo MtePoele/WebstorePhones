@@ -1,4 +1,4 @@
-﻿using WebstorePhones.Domain.Objects;
+﻿using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.Domain.Interfaces
 {

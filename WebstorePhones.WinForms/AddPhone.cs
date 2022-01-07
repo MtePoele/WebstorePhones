@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Domain.Objects;
+using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.WinForms
 {

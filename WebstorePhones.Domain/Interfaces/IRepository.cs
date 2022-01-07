@@ -1,34 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
 
 namespace WebstorePhones.Domain.Interfaces
 {
-
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<T> where T : class
     {
         /// <summary>
-        /// Fills a record of type TEntity.
+        /// Get all.
         /// </summary>
-        /// <param name="reader"></param>
-        /// <returns></returns>
-        Func<SqlDataReader, TEntity> PopulateRecord { set; }
+        /// <returns>IEnumerable of T.</returns>
+        IEnumerable<T> GetAll();
         /// <summary>
-        /// Get a TEntity.
+        /// Get T by id.
         /// </summary>
-        /// <param name="queryString"></param>
-        /// <returns></returns>
-        TEntity Get(string queryString);
+        /// <param name="id"></param>
+        /// <returns>T.</returns>
+        T GetById(int id);
         /// <summary>
-        /// Get an IEnumerable<TEntity>.
+        /// Create a T.
         /// </summary>
-        /// <param name="queryString"></param>
-        /// <returns></returns>
-        IEnumerable<TEntity> GetRecords(string queryString);
+        /// <param name="entity"></param>
+        /// <returns>T.</returns>
+        T Create(T entity);
         /// <summary>
-        /// Execute the nonquery. So it doesn't return anything.
+        /// Delete by id.
         /// </summary>
-        /// <param name="command"></param>
-        void ExecuteNonQuery(SqlCommand command);
+        /// <param name="id"></param>
+        void Delete(int id);
     }
 }
