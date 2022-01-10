@@ -1,8 +1,9 @@
 ﻿using System;
+using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Domain.Entities
 {
-    public class Phone
+    public class Phone : IEntity
     {
         public Phone()
         {

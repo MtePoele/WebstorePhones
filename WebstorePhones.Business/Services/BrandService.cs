@@ -21,7 +21,8 @@ namespace WebstorePhones.Business.Services
 
         public long GetBrandId(Phone phone)
         {
-            
+            long fix = 0;
+            return fix;
         }
     }
 }

@@ -8,6 +8,7 @@ using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using WebstorePhones.Business;
 
 namespace WebstorePhones
 {
@@ -21,10 +22,9 @@ namespace WebstorePhones
             var serviceProvider = new ServiceCollection()
                 .AddScoped<IPhoneService, PhoneService>()
                 .AddScoped<IBrandService, BrandService>()
-                .AddScoped(typeof(IRepository<>), typeof(EFRepository<>))
-                .AddScoped<DbContext>()
+                .AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>))
+                .AddDbContext<DataContext>(x => x.UseSqlServer(Constants.ConnectionString), ServiceLifetime.Scoped)
                 .BuildServiceProvider();
-            // TODO Possibly need to tweak addscoped for database or something
 
             _phoneService = serviceProvider.GetService<IPhoneService>();
 
