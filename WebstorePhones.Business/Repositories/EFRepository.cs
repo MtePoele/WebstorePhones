@@ -9,7 +9,7 @@ using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business.Repositories
 {
-    public class EFRepository<T> : IRepository<T> where T : class, IEntity
+    public abstract class EFRepository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly DataContext _context;
 
@@ -20,27 +20,12 @@ namespace WebstorePhones.Business.Repositories
 
         public int Id { get; set; }
 
-        public T Create(T entity)
-        {
-            _context.Add(entity);
-            return entity;
-        }
+        public abstract T Create(T entity);
 
-        public void Delete(int id)
-        {
-            T entity;
-            // TODO Was working here
-            _context.Remove(entity);
-        }
+        public abstract void Delete(int id);
 
-        public IEnumerable<T> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IEnumerable<T> GetAll();
 
-        public T GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract T GetById(int id);
     }
 }

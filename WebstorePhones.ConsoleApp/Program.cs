@@ -36,6 +36,7 @@ namespace WebstorePhones
             }
         }
 
+        // TODO split into multiple methods to reduce complexity.
         private static void MainMenu()
         {
             foreach (var phone in phonesDictionary)
