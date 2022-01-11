@@ -14,7 +14,7 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns>T.</returns>
-        T GetById(int id);
+        T GetById(long id);
         /// <summary>
         /// Create a T.
         /// </summary>
@@ -25,6 +25,6 @@ namespace WebstorePhones.Domain.Interfaces
         /// Delete by id.
         /// </summary>
         /// <param name="id"></param>
-        void Delete(int id);
+        void Delete(long id);
     }
 }

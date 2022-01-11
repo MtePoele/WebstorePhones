@@ -10,10 +10,10 @@ namespace WebstorePhones.Domain.Interfaces
         /// <param name="phone"></param>
         void AddToDatabase(Phone phone);
         /// <summary>
-        /// Gets the Id of brand based on phone.brand
+        /// Returns a Brand object based on the id provided.
         /// </summary>
-        /// <param name="phone"></param>
-        /// <returns>long</returns>
-        long GetBrandId(Phone phone);
+        /// <param name="id"></param>
+        /// <returns>Brand object</returns>
+        Brand GetById(long id);
     }
 }

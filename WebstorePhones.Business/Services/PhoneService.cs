@@ -12,39 +12,39 @@ namespace WebstorePhones.Business.Services
     {
         private readonly IRepository<Phone> _phoneRepository;
         private readonly IBrandService _brandService;
-        private readonly DataContext _dataContext;
 
-        public PhoneService(IRepository<Phone> phoneRepository, IBrandService brandService, DataContext dataContext)
+        public PhoneService(IRepository<Phone> phoneRepository, IBrandService brandService)
         {
             _phoneRepository = phoneRepository;
             _brandService = brandService;
-            _dataContext = dataContext;
-        }
-
-        //public PhoneService()
-        //{
-
-        //}
-
-
-        public Phone Get(int id)
-        {
-            Phone fix = new();
-            return fix;
         }
 
         public IEnumerable<Phone> Get()
         {
-            var phones = _dataContext.Phones
-                .Include(a => a.Brand)
-                .ToList();
+            IEnumerable<Phone> phones = _phoneRepository.GetAll().ToList();
+
+            foreach (Phone phone in phones)
+            {
+                phone.Brand = _brandService.GetById(phone.BrandId);
+            }
+            
             return phones;
         }
 
         public IEnumerable<Phone> Search(string query)
         {
-            IEnumerable<Phone> a = null;
-            return a;
+            IEnumerable<Phone> phones = _phoneRepository.GetAll().ToList();
+
+            foreach (Phone phone in phones)
+            {
+                phone.Brand = _brandService.GetById(phone.BrandId);
+            }
+
+            return phones.Where(x =>
+            x.Brand.BrandName.ToLower().Contains(query.ToLower()) ||
+            x.Type.ToLower().Contains(query.ToLower()) ||
+            x.Description.ToLower().Contains(query.ToLower())
+            );
         }
 
         public int AddMissingPhones(List<Phone> phones)
@@ -73,6 +73,7 @@ namespace WebstorePhones.Business.Services
 
         private bool PhoneNotInDatabase(Phone phoneToLookFor)
         {
+            //TODO Fix this
             bool fix = false;
             return fix;
         }

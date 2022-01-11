@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Entities;
+using System.Collections.Generic;
 
 namespace WebstorePhones.Business.Services
 {
@@ -14,15 +15,14 @@ namespace WebstorePhones.Business.Services
             this._brandRepository = brandRepository;
         }
 
+        public Brand GetById(long id)
+        {
+            return _brandRepository.GetById(id);
+        }
+
         public void AddToDatabase(Phone phone)
         {
             
-        }
-
-        public long GetBrandId(Phone phone)
-        {
-            long fix = 0;
-            return fix;
         }
     }
 }

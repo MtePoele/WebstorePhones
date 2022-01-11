@@ -37,4 +37,10 @@
 		<ProjectReference Include="..\WebstorePhones.Business\WebstorePhones.Business.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="BrandService.Tests\" />
+	  <Folder Include="PhoneService.Tests\" />
+	  <Folder Include="XmlService.Tests\" />
+	</ItemGroup>
+
 </Project>

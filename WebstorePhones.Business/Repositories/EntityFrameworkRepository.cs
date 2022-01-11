@@ -22,11 +22,11 @@ namespace WebstorePhones.Business.Repositories
 
         public T Create(T entity)
         {
-            T a = null;
-            return a;
+            _context.Add(entity);
+            return entity;
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             var entity = GetById(id);
             _context.Remove(entity);
@@ -35,10 +35,12 @@ namespace WebstorePhones.Business.Repositories
 
         public IEnumerable<T> GetAll()
         {
+            // TODO Can't make it ".Include(a => a.Brand)" because T does not contain a Brand.
             return _context.Set<T>();
+                //.Include(a => a.Brand);
         }
 
-        public T GetById(int id)
+        public T GetById(long id)
         {
             return _context.Set<T>().SingleOrDefault(x => x.Id == id);
         }
