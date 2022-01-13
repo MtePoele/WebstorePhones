@@ -71,10 +71,10 @@ namespace WebstorePhones.WinForms
                 PriceWithTax = Convert.ToDecimal(TxtPrice.Text),
                 Stock = Convert.ToInt32(TxtStock.Text)
             };
+            // TODO Check if this still works as intended now that it checks for it existing first.
+            List<Phone> phones = new() { phone };
 
-            List<Phone> phoneToAdd = new() { phone };
-
-            int phoneAddedOrNot = _phoneService.AddMissingPhones(phone);
+            int phoneAddedOrNot = _phoneService.AddMissingPhones(phones);
         }
 
         private void BtnApply_Click(object sender, EventArgs e)

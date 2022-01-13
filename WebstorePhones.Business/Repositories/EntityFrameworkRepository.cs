@@ -22,7 +22,9 @@ namespace WebstorePhones.Business.Repositories
 
         public T Create(T entity)
         {
+            // TODO Add some check to see if BrandId is assigned to some existing brand, or something.
             _context.Add(entity);
+            _context.SaveChanges();
             return entity;
         }
 
@@ -32,6 +34,14 @@ namespace WebstorePhones.Business.Repositories
             _context.Remove(entity);
             _context.SaveChanges();
         }
+
+        // Oplossing van Thomas, maar kan niet omdat het GetAll() moet zijn, dus zonder parameters.
+        //public IEnumerable<T> GetAll(Action<IQueryable<T>> predicate)
+        //{
+        //    var set = _context.Set<T>();
+        //    predicate.Invoke(set);
+        //    return set.AsEnumerable();
+        //}
 
         public IEnumerable<T> GetAll()
         {

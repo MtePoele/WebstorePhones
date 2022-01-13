@@ -29,10 +29,5 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         void Delete(long id);
-        /// <summary>
-        /// Creates a phone object and fills it using SqlDataReader.
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns>Phone</returns>
     }
 }

@@ -27,7 +27,7 @@ namespace WebstorePhones.Business.Services
                 phone.Brand = _brandService.GetById(phone.BrandId);
             }
 
-            return phones;
+            return phones.OrderBy(x => x.Brand.BrandName);
         }
 
         public IEnumerable<Phone> Search(string query)
@@ -53,7 +53,7 @@ namespace WebstorePhones.Business.Services
             int phonesAdded = 0;
             foreach (var phone in phones)
             {
-                if (PhoneNotInDatabase(phone))
+                if (!PhoneInDatabase(phone))
                 {
                     AddToDatabase(phone);
                     phonesAdded++;
@@ -64,21 +64,21 @@ namespace WebstorePhones.Business.Services
 
         public void Delete(long id)
         {
-
+            _phoneRepository.Delete(id);
         }
 
         private void AddToDatabase(Phone phone)
         {
-
+            _phoneRepository.Create(phone);
         }
 
-        private bool PhoneNotInDatabase(Phone phoneToLookFor)
+        private bool PhoneInDatabase(Phone phoneToLookFor)
         {
-
-
-            //TODO Fix this
-            bool fix = false;
-            return fix;
+            return _phoneRepository.GetAll()
+                .Where(x => x.Brand.BrandName == phoneToLookFor.Brand.BrandName)
+                .Where(x => x.Type == phoneToLookFor.Type)
+                .Where(x => x.Description == phoneToLookFor.Description)
+                .Any();
         }
     }
 }

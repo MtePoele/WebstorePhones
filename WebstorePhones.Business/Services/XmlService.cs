@@ -49,7 +49,8 @@ namespace WebstorePhones.Business.Services
                                 {
                                     int stock = Convert.ToInt32(reader.Value);
                                     phone.Stock = stock;
-                                    phones.Add(new Phone(phone));
+
+                                    AddToList(phones, phone);
                                 }
                                 break;
                         }
@@ -57,6 +58,21 @@ namespace WebstorePhones.Business.Services
                 }
             }
             return phones;
+        }
+
+        private static void AddToList(List<Phone> phones, Phone phone)
+        {
+            phones.Add(new Phone()
+            {
+                Brand = new Brand()
+                {
+                    BrandName = phone.Brand.BrandName
+                },
+                Type = phone.Type,
+                Description = phone.Description,
+                PriceWithTax = phone.PriceWithTax,
+                Stock = phone.Stock
+            });
         }
     }
 }

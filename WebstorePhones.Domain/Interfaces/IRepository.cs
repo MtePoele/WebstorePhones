@@ -16,10 +16,10 @@ namespace WebstorePhones.Domain.Interfaces
         /// <returns>T.</returns>
         T GetById(long id);
         /// <summary>
-        /// Create a T.
+        /// Adds a T to the database. Returns a T too.
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns>T.</returns>
+        /// <returns>T</returns>
         T Create(T entity);
         /// <summary>
         /// Delete by id.
