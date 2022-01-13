@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Entities;
+using System.Collections.Generic;
 
 namespace WebstorePhones.WinForms
 {
@@ -71,7 +72,9 @@ namespace WebstorePhones.WinForms
                 Stock = Convert.ToInt32(TxtStock.Text)
             };
 
-            _phoneService.AddToDatabase(phone);
+            List<Phone> phoneToAdd = new() { phone };
+
+            int phoneAddedOrNot = _phoneService.AddMissingPhones(phone);
         }
 
         private void BtnApply_Click(object sender, EventArgs e)

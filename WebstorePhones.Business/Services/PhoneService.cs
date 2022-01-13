@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Entities;
+using WebstorePhones.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebstorePhones.Business.Services
@@ -27,12 +26,14 @@ namespace WebstorePhones.Business.Services
             {
                 phone.Brand = _brandService.GetById(phone.BrandId);
             }
-            
+
             return phones;
         }
 
         public IEnumerable<Phone> Search(string query)
         {
+            // TODO Ask Kenji how to optimize this to search in the database and include Brands in that search at the same time, without using GetAll() first
+            // Maybe make EFRepo.GetAll() virtual and override it to what I want .. somewhere in the code? Or not possible because of DI?
             IEnumerable<Phone> phones = _phoneRepository.GetAll().ToList();
 
             foreach (Phone phone in phones)
@@ -61,18 +62,20 @@ namespace WebstorePhones.Business.Services
             return phonesAdded;
         }
 
-        public void AddToDatabase(Phone phone)
+        public void Delete(long id)
         {
 
         }
 
-        public void Delete(long id)
+        private void AddToDatabase(Phone phone)
         {
 
         }
 
         private bool PhoneNotInDatabase(Phone phoneToLookFor)
         {
+
+
             //TODO Fix this
             bool fix = false;
             return fix;

@@ -25,11 +25,6 @@ namespace WebstorePhones.Domain.Interfaces
         /// <returns>int</returns>
         int AddMissingPhones(List<Phone> phones);
         /// <summary>
-        /// Adds a phone to the database.
-        /// </summary>
-        /// <param name="phone"></param>
-        void AddToDatabase(Phone phone);
-        /// <summary>
         /// Deletes a phone based on its "id"
         /// </summary>
         /// <param name="id"></param>

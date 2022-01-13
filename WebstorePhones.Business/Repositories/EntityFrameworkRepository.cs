@@ -37,7 +37,7 @@ namespace WebstorePhones.Business.Repositories
         {
             // TODO Can't make it ".Include(a => a.Brand)" because T does not contain a Brand.
             return _context.Set<T>();
-                //.Include(a => a.Brand);
+            //.Include(a => a.Brand);
         }
 
         public T GetById(long id)
