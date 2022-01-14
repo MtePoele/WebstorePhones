@@ -17,7 +17,7 @@ namespace WebstorePhones
         static readonly Dictionary<int, Phone> phonesDictionary = new();
         private static IPhoneService _phoneService;
 
-        static void Main(string[] args)
+        static void Main()
         {
             var serviceProvider = new ServiceCollection()
                 .AddScoped<IPhoneService, PhoneService>()

@@ -4,6 +4,8 @@ using System.Linq;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Diagnostics;
 
 namespace WebstorePhones.Business.Services
 {
@@ -69,12 +71,16 @@ namespace WebstorePhones.Business.Services
 
         private void AddToDatabase(Phone phone)
         {
+            phone.BrandId = _brandService.AddBrandIdToPhone(phone.Brand.BrandName);
+            Debug.WriteLine(phone.BrandId);
+            phone.Brand = null;
             _phoneRepository.Create(phone);
+            Debug.WriteLine("BrandId" + phone.BrandId);
         }
 
         private bool PhoneInDatabase(Phone phoneToLookFor)
         {
-            return _phoneRepository.GetAll()
+            return Get()
                 .Where(x => x.Brand.BrandName == phoneToLookFor.Brand.BrandName)
                 .Where(x => x.Type == phoneToLookFor.Type)
                 .Where(x => x.Description == phoneToLookFor.Description)

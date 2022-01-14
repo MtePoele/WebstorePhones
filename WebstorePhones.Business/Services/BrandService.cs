@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Entities;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WebstorePhones.Business.Services
 {
@@ -20,9 +21,24 @@ namespace WebstorePhones.Business.Services
             return _brandRepository.GetById(id);
         }
 
-        public void AddToDatabase(Phone phone)
+        public long AddBrandIdToPhone(string brandName)
         {
-            
+            long foundId = GetBrandId(brandName);
+
+            if (foundId == 0)
+            {
+                _brandRepository.Create(new Brand() { BrandName = brandName });
+                foundId = GetBrandId(brandName);
+            }
+
+            return foundId;
+        }
+
+        private long GetBrandId(string brandName)
+        {
+            return _brandRepository.GetAll()
+                .Where(x => x.BrandName.ToLower() == brandName.ToLower())
+                .FirstOrDefault()?.Id ?? 0L;
         }
     }
 }

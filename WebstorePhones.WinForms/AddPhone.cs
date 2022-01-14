@@ -10,7 +10,7 @@ namespace WebstorePhones.WinForms
 {
     public partial class AddPhone : Form
     {
-        private IPhoneService _phoneService;
+        private readonly IPhoneService _phoneService;
 
         public AddPhone()
         {
@@ -19,7 +19,7 @@ namespace WebstorePhones.WinForms
             InitializeComponent();
         }
 
-        private string ValidateText(string textboxName, string textboxValue)
+        private static string ValidateText(string textboxName, string textboxValue)
         {
             string errorMessage = string.Empty;
 
@@ -34,12 +34,12 @@ namespace WebstorePhones.WinForms
                         {
                             if (Convert.ToDecimal(textboxValue) != Math.Round(Convert.ToDecimal(textboxValue), 2))
                             {
-                                errorMessage = $"{textboxName.Substring(3)} needs to have two or fewer decimals.\n";
+                                errorMessage = $"{textboxName[3..]} needs to have two or fewer decimals.\n";
                             }
                         }
                         else
                         {
-                            errorMessage = $"{textboxName.Substring(3)} needs to be a number.\n";
+                            errorMessage = $"{textboxName[3..]} needs to be a number.\n";
                         }
 
                     }
@@ -47,13 +47,13 @@ namespace WebstorePhones.WinForms
                 case "TxtStock":
                     if (!int.TryParse(textboxValue, out _))
                     {
-                        errorMessage = $"{textboxName.Substring(3)} needs to be a number.\n";
+                        errorMessage = $"{textboxName[3..]} needs to be a number.\n";
                     }
                     break;
                 default:
                     if (textboxValue.Trim() == string.Empty)
                     {
-                        errorMessage = $"{textboxName.Substring(3)} is empty.\n";
+                        errorMessage = $"{textboxName[3..]} is empty.\n";
                     }
                     break;
             }
@@ -71,10 +71,9 @@ namespace WebstorePhones.WinForms
                 PriceWithTax = Convert.ToDecimal(TxtPrice.Text),
                 Stock = Convert.ToInt32(TxtStock.Text)
             };
-            // TODO Check if this still works as intended now that it checks for it existing first.
             List<Phone> phones = new() { phone };
 
-            int phoneAddedOrNot = _phoneService.AddMissingPhones(phones);
+            _phoneService.AddMissingPhones(phones);
         }
 
         private void BtnApply_Click(object sender, EventArgs e)

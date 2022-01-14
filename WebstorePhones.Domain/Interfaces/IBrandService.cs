@@ -5,10 +5,11 @@ namespace WebstorePhones.Domain.Interfaces
     public interface IBrandService
     {
         /// <summary>
-        /// Checks if the brand exists in the database, and adds it if it doesn't.
+        /// Checks if the brand exists in the database, and adds it if it doesn't. Returns brandId
         /// </summary>
         /// <param name="phone"></param>
-        void AddToDatabase(Phone phone);
+        /// <returns>long</returns>
+        long AddBrandIdToPhone(string brandName);
         /// <summary>
         /// Returns a Brand object based on the id provided.
         /// </summary>

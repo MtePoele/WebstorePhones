@@ -67,6 +67,10 @@ namespace WebstorePhones.Business
                 Id = 3,
                 BrandName = "Nokia"
             });
+
+            modelBuilder.Entity<Brand>()
+                .HasIndex(x => x.BrandName)
+                .IsUnique();
         }
     }
 }

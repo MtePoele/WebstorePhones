@@ -1,3 +1,8 @@
+C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.csproj.AssemblyReference.cache
+C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.AssemblyInfoInputs.cache
+C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.AssemblyInfo.cs
+C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.csproj.CoreCompileInputs.cache
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\ImportTool.ConsoleApp.exe
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\ImportTool.ConsoleApp.deps.json
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\ImportTool.ConsoleApp.runtimeconfig.json
@@ -68,11 +73,6 @@ C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\WebstorePhones.Domain.dll
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\WebstorePhones.Business.pdb
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\WebstorePhones.Domain.pdb
-C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.csproj.AssemblyReference.cache
-C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.AssemblyInfoInputs.cache
-C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.AssemblyInfo.cs
-C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.csproj.CoreCompileInputs.cache
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.csproj.CopyComplete
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ImportTool.ConsoleApp.dll
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\obj\Debug\net5.0\ref\ImportTool.ConsoleApp.dll
