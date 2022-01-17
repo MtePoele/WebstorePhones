@@ -26,7 +26,7 @@ namespace WebstorePhones.Testing.PhoneService
         }
 
         [Fact]
-        private void Should_Return_1()
+        public void Should_Return_1()
         {
             Phone phone = new()
             {

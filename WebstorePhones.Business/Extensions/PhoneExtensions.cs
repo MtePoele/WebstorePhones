@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.Business.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class PhoneExtensions
     {
         private const decimal tax = 0.21m;

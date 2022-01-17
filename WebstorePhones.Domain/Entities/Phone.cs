@@ -1,24 +1,22 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Domain.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class Phone : IEntity
     {
-        public Phone()
-        {
-
-        }
-
-        public Phone(Phone phone)
-        {
-            Id = phone.Id;
-            BrandId = phone.BrandId;
-            Type = phone.Type;
-            Description = phone.Description;
-            PriceWithTax = phone.PriceWithTax;
-            Stock = phone.Stock;
-        }
+        // TODO Can this code be removed?
+        //public Phone(Phone phone)
+        //{
+        //    Id = phone.Id;
+        //    BrandId = phone.BrandId;
+        //    Type = phone.Type;
+        //    Description = phone.Description;
+        //    PriceWithTax = phone.PriceWithTax;
+        //    Stock = phone.Stock;
+        //}
         public long Id { get; set; }
         public Brand Brand { get; set; }
         public long BrandId { get; set; }

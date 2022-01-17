@@ -27,7 +27,7 @@ namespace WebstorePhones.Business.Services
                 phone.Brand = _brandService.GetById(phone.BrandId);
             }
 
-            return phones.OrderBy(x => x.Brand.BrandName);
+            return phones.OrderBy(x => x.Brand.BrandName).ThenBy(x => x.Type);
         }
 
         public IEnumerable<Phone> Search(string query)

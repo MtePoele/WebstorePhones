@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebstorePhones.Testing.BrandService
 {
-    class AddBrandIdToPhone
+    public class AddBrandIdToPhone
     {
     }
 }

@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.Business
 {
+    [ExcludeFromCodeCoverage]
     public class DataContext : DbContext
     {
         public DataContext()

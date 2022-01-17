@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business.Repositories
 {
+    [ExcludeFromCodeCoverage]
     public class EntityFrameworkRepository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly DataContext _context;

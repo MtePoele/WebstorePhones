@@ -28,7 +28,7 @@ namespace WebstorePhones.Testing.PhoneService
         {
             _phoneService.Delete(1);
 
-            _mockPhoneRepository.Verify(x => x.Delete(It.IsAny<long>()), Times.Once);
+            _mockPhoneRepository.Verify(x => x.Delete(1), Times.Once);
         }
     }
 }
