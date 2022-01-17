@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Diagnostics;
 
 namespace WebstorePhones.Business.Services
 {

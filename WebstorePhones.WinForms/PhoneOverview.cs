@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Entities;
+using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.WinForms
 {

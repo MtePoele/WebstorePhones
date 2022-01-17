@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Entities;
-using System.Collections.Generic;
+using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.WinForms
 {

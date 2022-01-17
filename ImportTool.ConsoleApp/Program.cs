@@ -1,12 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using WebstorePhones.Business.Services;
-using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Domain.Entities;
-using WebstorePhones.Business.Repositories;
 using WebstorePhones.Business;
-using Microsoft.EntityFrameworkCore;
+using WebstorePhones.Business.Repositories;
+using WebstorePhones.Business.Services;
+using WebstorePhones.Domain.Entities;
+using WebstorePhones.Domain.Interfaces;
 
 namespace ImportTool.ConsoleApp
 {

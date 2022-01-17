@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-using WebstorePhones.Domain.Interfaces;
 using WebstorePhones.Domain.Entities;
+using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business.Services
 {

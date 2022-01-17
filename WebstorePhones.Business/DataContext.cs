@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebstorePhones.Domain.Entities;
-using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business
 {

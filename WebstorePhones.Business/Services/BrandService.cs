@@ -1,9 +1,7 @@
 ﻿using System.Data;
-using System.Data.SqlClient;
-using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Domain.Entities;
-using System.Collections.Generic;
 using System.Linq;
+using WebstorePhones.Domain.Entities;
+using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business.Services
 {
