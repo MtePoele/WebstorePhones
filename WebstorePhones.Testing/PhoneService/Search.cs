@@ -23,33 +23,51 @@ namespace WebstorePhones.Testing.PhoneService
             _phoneService = new Business.Services.PhoneService(_mockPhoneRepository.Object, _mockBrandService.Object);
         }
 
-        public void Should_Return_AListWithThreePhones()
+        [Fact]
+        public void Should_Return_OnePhoneWithMatchingBrand()
         {
-
             _mockPhoneRepository.Setup(x => x.GetAll()).Returns(
                 new List<Phone>()
                 {
-                    new Phone()
-                    {
-                        new Brand()
-                        {
-                            Id = 1,
-                            BrandName = "test"
-                        }
-                    },
-                    new Phone()
-                    {
-                        Type = "test"
-                    },
-                    new Phone()
-                    {
-                        Description = "test"
-                    }
+                    new Phone(){Type = "", Description = ""}
                 });
+            _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "test" });
 
-            List<Phone> phones = _phoneService.Search("test").ToList();
+            List<Phone> phones = _phoneService.Search("TEst").ToList();
 
-            Assert.Equal(3, phones.Count);
+            Assert.Single(phones);
         }
+
+        [Fact]
+        public void Should_Return_OnePhoneWithMatchingType()
+        {
+            _mockPhoneRepository.Setup(x => x.GetAll()).Returns(
+                new List<Phone>()
+                {
+                    new Phone(){Brand = new Brand(){ BrandName = ""}, Description = "", Type = "test"}
+                });
+            _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "" });
+
+            List<Phone> phones = _phoneService.Search("TEst").ToList();
+
+            Assert.Single(phones);
+        }
+
+        [Fact]
+        public void Should_Return_OnePhoneWithMatchingDescription()
+        {
+            _mockPhoneRepository.Setup(x => x.GetAll()).Returns(
+                new List<Phone>()
+                {
+                    new Phone(){Brand = new Brand(){ Id = 1, BrandName = ""}, Description = "test", Type = ""}
+                });
+            _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() {BrandName = "" });
+
+            List<Phone> phones = _phoneService.Search("TEst").ToList();
+
+            Assert.Single(phones);
+        }
+
+
     }
 }

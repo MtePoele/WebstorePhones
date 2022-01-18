@@ -31,31 +31,15 @@ namespace WebstorePhones.Testing.PhoneService
             _mockPhoneRepository.Verify(x => x.GetAll(), Times.Once());
         }
 
-        //[Fact]
-        //private void Should_Return_AListWithTwoPhones()
-        //{
-        //    _mockPhoneRepository.Setup(x => x.GetAll()).Returns(new List<Phone>() 
-        //    { 
-        //        new Phone()
-        //        {
-        //            Brand = new Brand()
-        //            {
-        //                BrandName = "a"
-        //            }
-        //        }, 
-        //        new Phone()
-        //        {
-        //            Brand = new Brand()
-        //            {
-        //                BrandName = "b"
-        //            } 
-        //        }
-        //    });
+        [Fact]
+        public void Should_CallBrandRepositoryTwice()
+        {
+            _mockPhoneRepository.Setup(x => x.GetAll()).Returns(new List<Phone>() { new Phone(), new Phone() });
+            _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand());
 
-        //    List<Phone> phones = new();
-        //    phones = _phoneService.Get().ToList();
+            _phoneService.Get();
 
-        //    Assert.Equal(2, phones.Count);
-        //}
+            _mockBrandService.Verify(x => x.GetById(It.IsAny<long>()), Times.Exactly(2));
+        }
     }
 }

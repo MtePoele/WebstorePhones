@@ -41,7 +41,6 @@ namespace WebstorePhones.WinForms
                         {
                             errorMessage = $"{textboxName[3..]} needs to be a number.\n";
                         }
-
                     }
                     break;
                 case "TxtStock":
