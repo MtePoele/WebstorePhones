@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 
 namespace WebstorePhones.Domain.Interfaces
 {
@@ -8,7 +8,7 @@ namespace WebstorePhones.Domain.Interfaces
         /// Get all.
         /// </summary>
         /// <returns>IEnumerable of T.</returns>
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
         /// <summary>
         /// Get T by id.
         /// </summary>
@@ -20,7 +20,7 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>T</returns>
-        T Create(T entity);
+        void Create(T entity);
         /// <summary>
         /// Delete by id.
         /// </summary>

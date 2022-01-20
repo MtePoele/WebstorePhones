@@ -42,12 +42,21 @@ namespace WebstorePhones.WinForms
                             errorMessage = $"{textboxName[3..]} needs to be a number.\n";
                         }
                     }
+                    // TODO This should prevent negative values, but doesn't?
+                    else if (decimal.TryParse(textboxValue, out decimal price))
+                    {
+                        if (price < 0)
+                        {
+                            errorMessage = $"{textboxName[3..]} can't be negative.";
+                        }
+                    }
                     break;
                 case "TxtStock":
                     if (!int.TryParse(textboxValue, out _))
                     {
-                        errorMessage = $"{textboxName[3..]} needs to be a number.\n";
+                        errorMessage = $"{textboxName[3..]} needs to be a whole number.\n";
                     }
+                    // TODO Find some way to prevent entering negative values.
                     break;
                 default:
                     if (textboxValue.Trim() == string.Empty)

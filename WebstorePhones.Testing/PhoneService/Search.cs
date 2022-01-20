@@ -1,9 +1,6 @@
 ﻿using Moq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Xunit;
@@ -30,7 +27,7 @@ namespace WebstorePhones.Testing.PhoneService
                 new List<Phone>()
                 {
                     new Phone(){Type = "", Description = ""}
-                });
+                }.AsQueryable());
             _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "test" });
 
             List<Phone> phones = _phoneService.Search("TEst").ToList();
@@ -45,7 +42,7 @@ namespace WebstorePhones.Testing.PhoneService
                 new List<Phone>()
                 {
                     new Phone(){Brand = new Brand(){ BrandName = ""}, Description = "", Type = "test"}
-                });
+                }.AsQueryable());
             _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "" });
 
             List<Phone> phones = _phoneService.Search("TEst").ToList();
@@ -60,8 +57,8 @@ namespace WebstorePhones.Testing.PhoneService
                 new List<Phone>()
                 {
                     new Phone(){Brand = new Brand(){ Id = 1, BrandName = ""}, Description = "test", Type = ""}
-                });
-            _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() {BrandName = "" });
+                }.AsQueryable());
+            _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "" });
 
             List<Phone> phones = _phoneService.Search("TEst").ToList();
 

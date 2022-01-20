@@ -1,12 +1,7 @@
-﻿using System;
+﻿using Moq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Business.Services;
 using Xunit;
 
 namespace WebstorePhones.Testing.PhoneService

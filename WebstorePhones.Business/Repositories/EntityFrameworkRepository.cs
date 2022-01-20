@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using WebstorePhones.Domain.Interfaces;
 
@@ -17,11 +16,10 @@ namespace WebstorePhones.Business.Repositories
 
         public int Id { get; set; }
 
-        public T Create(T entity)
+        public void Create(T entity)
         {
             _context.Add(entity);
             _context.SaveChanges();
-            return entity;
         }
 
         public void Delete(long id)
@@ -39,11 +37,9 @@ namespace WebstorePhones.Business.Repositories
         //    return set.AsEnumerable();
         //}
 
-        public IEnumerable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
-            // TODO Can't make it ".Include(a => a.Brand)" because T does not contain a Brand.
             return _context.Set<T>();
-            //.Include(a => a.Brand);
         }
 
         public T GetById(long id)

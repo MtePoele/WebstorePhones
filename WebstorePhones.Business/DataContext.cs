@@ -20,7 +20,7 @@ namespace WebstorePhones.Business
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-I9V7KFJQ;Database=WebstorePhones;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer(Constants.ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

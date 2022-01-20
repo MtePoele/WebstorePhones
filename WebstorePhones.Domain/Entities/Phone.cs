@@ -7,16 +7,6 @@ namespace WebstorePhones.Domain.Entities
     [ExcludeFromCodeCoverage]
     public class Phone : IEntity
     {
-        // TODO Can this code be removed?
-        //public Phone(Phone phone)
-        //{
-        //    Id = phone.Id;
-        //    BrandId = phone.BrandId;
-        //    Type = phone.Type;
-        //    Description = phone.Description;
-        //    PriceWithTax = phone.PriceWithTax;
-        //    Stock = phone.Stock;
-        //}
         public long Id { get; set; }
         public Brand Brand { get; set; }
         public long BrandId { get; set; }

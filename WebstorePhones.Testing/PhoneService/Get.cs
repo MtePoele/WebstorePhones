@@ -1,9 +1,6 @@
 ﻿using Moq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Xunit;
@@ -34,7 +31,7 @@ namespace WebstorePhones.Testing.PhoneService
         [Fact]
         public void Should_CallBrandRepositoryTwice()
         {
-            _mockPhoneRepository.Setup(x => x.GetAll()).Returns(new List<Phone>() { new Phone(), new Phone() });
+            _mockPhoneRepository.Setup(x => x.GetAll()).Returns(new List<Phone>() { new Phone(), new Phone() }.AsQueryable());
             _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand());
 
             _phoneService.Get();

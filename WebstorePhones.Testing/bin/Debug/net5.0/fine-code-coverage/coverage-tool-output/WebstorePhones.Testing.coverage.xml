@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.7701" branch-rate="0.4" version="1.9" timestamp="1642524133" lines-covered="191" lines-valid="248" branches-covered="16" branches-valid="40">
+<coverage line-rate="0.75" branch-rate="0.3333" version="1.9" timestamp="1642676444" lines-covered="180" lines-valid="240" branches-covered="12" branches-valid="36">
   <sources>
     <source>C:\Users\rsmar\</source>
   </sources>
   <packages>
-    <package name="WebstorePhones.Business" line-rate="0.5625" branch-rate="0.4" complexity="47">
+    <package name="WebstorePhones.Business" line-rate="0.5333" branch-rate="0.3333" complexity="44">
       <classes>
         <class name="WebstorePhones.Business.Services.BrandService" filename="Source\Repos\WebstorePhones\WebstorePhones.Business\Services\BrandService.cs" line-rate="1" branch-rate="1" complexity="6">
           <methods>
@@ -37,7 +37,7 @@
                 <line number="36" hits="3" branch="False" />
                 <line number="37" hits="3" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
-                    <condition number="48" type="jump" coverage="100%" />
+                    <condition number="179" type="jump" coverage="100%" />
                   </conditions>
                 </line>
                 <line number="38" hits="3" branch="False" />
@@ -74,7 +74,7 @@
             <line number="36" hits="3" branch="False" />
             <line number="37" hits="3" branch="True" condition-coverage="100% (2/2)">
               <conditions>
-                <condition number="48" type="jump" coverage="100%" />
+                <condition number="179" type="jump" coverage="100%" />
               </conditions>
             </line>
             <line number="38" hits="3" branch="False" />
@@ -86,188 +86,156 @@
             <line number="15" hits="4" branch="False" />
           </lines>
         </class>
-        <class name="WebstorePhones.Business.Services.PhoneService" filename="Source\Repos\WebstorePhones\WebstorePhones.Business\Services\PhoneService.cs" line-rate="0.9444" branch-rate="1" complexity="16">
+        <class name="WebstorePhones.Business.Services.PhoneService" filename="Source\Repos\WebstorePhones\WebstorePhones.Business\Services\PhoneService.cs" line-rate="0.9347" branch-rate="1" complexity="13">
           <methods>
-            <method name="Get" signature="()" line-rate="1" branch-rate="1" complexity="2">
+            <method name="Get" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="22" hits="3" branch="False" />
                 <line number="23" hits="3" branch="False" />
-                <line number="25" hits="13" branch="True" condition-coverage="100% (2/2)">
-                  <conditions>
-                    <condition number="67" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-                <line number="26" hits="2" branch="False" />
-                <line number="27" hits="2" branch="False" />
-                <line number="28" hits="2" branch="False" />
-                <line number="30" hits="3" branch="False" />
+                <line number="24" hits="3" branch="False" />
                 <line number="31" hits="3" branch="False" />
+                <line number="32" hits="3" branch="False" />
               </lines>
             </method>
-            <method name="Search" signature="(System.String)" line-rate="1" branch-rate="1" complexity="6">
+            <method name="Search" signature="(System.String)" line-rate="1" branch-rate="1" complexity="4">
               <lines>
-                <line number="34" hits="3" branch="False" />
-                <line number="37" hits="3" branch="False" />
-                <line number="39" hits="15" branch="True" condition-coverage="100% (2/2)">
-                  <conditions>
-                    <condition number="80" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-                <line number="40" hits="3" branch="False" />
-                <line number="41" hits="3" branch="False" />
-                <line number="42" hits="3" branch="False" />
-                <line number="44" hits="3" branch="False" />
-                <line number="45" hits="3" branch="True" condition-coverage="100% (4/4)">
+                <line number="35" hits="3" branch="False" />
+                <line number="38" hits="3" branch="False" />
+                <line number="45" hits="3" branch="False" />
+                <line number="46" hits="3" branch="True" condition-coverage="100% (4/4)">
                   <conditions>
                     <condition number="32" type="jump" coverage="100%" />
                     <condition number="61" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="46" hits="3" branch="False" />
                 <line number="47" hits="3" branch="False" />
                 <line number="48" hits="3" branch="False" />
                 <line number="49" hits="3" branch="False" />
+                <line number="50" hits="3" branch="False" />
               </lines>
             </method>
             <method name="AddMissingPhones" signature="(System.Collections.Generic.List`1&lt;WebstorePhones.Domain.Entities.Phone&gt;)" line-rate="1" branch-rate="1" complexity="4">
               <lines>
-                <line number="52" hits="1" branch="False" />
                 <line number="53" hits="1" branch="False" />
-                <line number="54" hits="5" branch="True" condition-coverage="100% (2/2)">
+                <line number="54" hits="1" branch="False" />
+                <line number="55" hits="5" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
                     <condition number="58" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="55" hits="1" branch="False" />
-                <line number="56" hits="1" branch="True" condition-coverage="100% (2/2)">
+                <line number="56" hits="1" branch="False" />
+                <line number="57" hits="1" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
                     <condition number="34" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="57" hits="1" branch="False" />
                 <line number="58" hits="1" branch="False" />
                 <line number="59" hits="1" branch="False" />
                 <line number="60" hits="1" branch="False" />
                 <line number="61" hits="1" branch="False" />
                 <line number="62" hits="1" branch="False" />
                 <line number="63" hits="1" branch="False" />
+                <line number="64" hits="1" branch="False" />
               </lines>
             </method>
             <method name="Delete" signature="(System.Int64)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="66" hits="1" branch="False" />
                 <line number="67" hits="1" branch="False" />
                 <line number="68" hits="1" branch="False" />
+                <line number="69" hits="1" branch="False" />
               </lines>
             </method>
             <method name="AddToDatabase" signature="(WebstorePhones.Domain.Entities.Phone)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="71" hits="1" branch="False" />
                 <line number="72" hits="1" branch="False" />
                 <line number="73" hits="1" branch="False" />
                 <line number="74" hits="1" branch="False" />
                 <line number="75" hits="1" branch="False" />
                 <line number="76" hits="1" branch="False" />
                 <line number="77" hits="1" branch="False" />
+                <line number="78" hits="1" branch="False" />
               </lines>
             </method>
             <method name="PhoneInDatabase" signature="(WebstorePhones.Domain.Entities.Phone)" line-rate="0.5714" branch-rate="1" complexity="1">
               <lines>
-                <line number="80" hits="1" branch="False" />
                 <line number="81" hits="1" branch="False" />
-                <line number="82" hits="0" branch="False" />
+                <line number="82" hits="1" branch="False" />
                 <line number="83" hits="0" branch="False" />
                 <line number="84" hits="0" branch="False" />
-                <line number="85" hits="1" branch="False" />
+                <line number="85" hits="0" branch="False" />
                 <line number="86" hits="1" branch="False" />
+                <line number="87" hits="1" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="(WebstorePhones.Domain.Interfaces.IRepository`1&lt;WebstorePhones.Domain.Entities.Phone&gt;,WebstorePhones.Domain.Interfaces.IBrandService)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="15" hits="7" branch="False" />
                 <line number="16" hits="7" branch="False" />
                 <line number="17" hits="7" branch="False" />
                 <line number="18" hits="7" branch="False" />
                 <line number="19" hits="7" branch="False" />
+                <line number="20" hits="7" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="22" hits="3" branch="False" />
             <line number="23" hits="3" branch="False" />
-            <line number="25" hits="13" branch="True" condition-coverage="100% (2/2)">
-              <conditions>
-                <condition number="67" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="26" hits="2" branch="False" />
-            <line number="27" hits="2" branch="False" />
-            <line number="28" hits="2" branch="False" />
-            <line number="30" hits="3" branch="False" />
+            <line number="24" hits="3" branch="False" />
             <line number="31" hits="3" branch="False" />
-            <line number="34" hits="3" branch="False" />
-            <line number="37" hits="3" branch="False" />
-            <line number="39" hits="15" branch="True" condition-coverage="100% (2/2)">
-              <conditions>
-                <condition number="80" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="40" hits="3" branch="False" />
-            <line number="41" hits="3" branch="False" />
-            <line number="42" hits="3" branch="False" />
-            <line number="44" hits="3" branch="False" />
-            <line number="45" hits="3" branch="True" condition-coverage="100% (4/4)">
+            <line number="32" hits="3" branch="False" />
+            <line number="35" hits="3" branch="False" />
+            <line number="38" hits="3" branch="False" />
+            <line number="45" hits="3" branch="False" />
+            <line number="46" hits="3" branch="True" condition-coverage="100% (4/4)">
               <conditions>
                 <condition number="32" type="jump" coverage="100%" />
                 <condition number="61" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="46" hits="3" branch="False" />
             <line number="47" hits="3" branch="False" />
             <line number="48" hits="3" branch="False" />
             <line number="49" hits="3" branch="False" />
-            <line number="52" hits="1" branch="False" />
+            <line number="50" hits="3" branch="False" />
             <line number="53" hits="1" branch="False" />
-            <line number="54" hits="5" branch="True" condition-coverage="100% (2/2)">
+            <line number="54" hits="1" branch="False" />
+            <line number="55" hits="5" branch="True" condition-coverage="100% (2/2)">
               <conditions>
                 <condition number="58" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="55" hits="1" branch="False" />
-            <line number="56" hits="1" branch="True" condition-coverage="100% (2/2)">
+            <line number="56" hits="1" branch="False" />
+            <line number="57" hits="1" branch="True" condition-coverage="100% (2/2)">
               <conditions>
                 <condition number="34" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="57" hits="1" branch="False" />
             <line number="58" hits="1" branch="False" />
             <line number="59" hits="1" branch="False" />
             <line number="60" hits="1" branch="False" />
             <line number="61" hits="1" branch="False" />
             <line number="62" hits="1" branch="False" />
             <line number="63" hits="1" branch="False" />
-            <line number="66" hits="1" branch="False" />
+            <line number="64" hits="1" branch="False" />
             <line number="67" hits="1" branch="False" />
             <line number="68" hits="1" branch="False" />
-            <line number="71" hits="1" branch="False" />
+            <line number="69" hits="1" branch="False" />
             <line number="72" hits="1" branch="False" />
             <line number="73" hits="1" branch="False" />
             <line number="74" hits="1" branch="False" />
             <line number="75" hits="1" branch="False" />
             <line number="76" hits="1" branch="False" />
             <line number="77" hits="1" branch="False" />
-            <line number="80" hits="1" branch="False" />
+            <line number="78" hits="1" branch="False" />
             <line number="81" hits="1" branch="False" />
-            <line number="82" hits="0" branch="False" />
+            <line number="82" hits="1" branch="False" />
             <line number="83" hits="0" branch="False" />
             <line number="84" hits="0" branch="False" />
-            <line number="85" hits="1" branch="False" />
+            <line number="85" hits="0" branch="False" />
             <line number="86" hits="1" branch="False" />
-            <line number="15" hits="7" branch="False" />
+            <line number="87" hits="1" branch="False" />
             <line number="16" hits="7" branch="False" />
             <line number="17" hits="7" branch="False" />
             <line number="18" hits="7" branch="False" />
             <line number="19" hits="7" branch="False" />
+            <line number="20" hits="7" branch="False" />
           </lines>
         </class>
         <class name="WebstorePhones.Business.Services.XmlService" filename="Source\Repos\WebstorePhones\WebstorePhones.Business\Services\XmlService.cs" line-rate="0" branch-rate="0" complexity="25">
@@ -467,7 +435,7 @@
     <package name="WebstorePhones.Domain" line-rate="1" branch-rate="1" complexity="0">
       <classes />
     </package>
-    <package name="WebstorePhones.Testing" line-rate="0.9915999999999999" branch-rate="1" complexity="18">
+    <package name="WebstorePhones.Testing" line-rate="0.9666" branch-rate="1" complexity="18">
       <classes>
         <class name="AutoGeneratedProgram" filename=".nuget\packages\microsoft.net.test.sdk\16.9.4\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.Program.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
@@ -485,6 +453,11 @@
           <methods>
             <method name="Should_Return_1" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
+                <line number="25" hits="1" branch="False" />
+                <line number="26" hits="1" branch="False" />
+                <line number="27" hits="1" branch="False" />
+                <line number="28" hits="1" branch="False" />
+                <line number="29" hits="1" branch="False" />
                 <line number="30" hits="1" branch="False" />
                 <line number="31" hits="1" branch="False" />
                 <line number="32" hits="1" branch="False" />
@@ -493,29 +466,29 @@
                 <line number="35" hits="1" branch="False" />
                 <line number="36" hits="1" branch="False" />
                 <line number="37" hits="1" branch="False" />
-                <line number="38" hits="1" branch="False" />
                 <line number="39" hits="1" branch="False" />
-                <line number="40" hits="1" branch="False" />
                 <line number="41" hits="1" branch="False" />
-                <line number="42" hits="1" branch="False" />
+                <line number="43" hits="1" branch="False" />
                 <line number="44" hits="1" branch="False" />
-                <line number="46" hits="1" branch="False" />
-                <line number="48" hits="1" branch="False" />
-                <line number="49" hits="1" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
+                <line number="16" hits="1" branch="False" />
+                <line number="17" hits="1" branch="False" />
+                <line number="18" hits="1" branch="False" />
+                <line number="19" hits="1" branch="False" />
+                <line number="20" hits="1" branch="False" />
                 <line number="21" hits="1" branch="False" />
-                <line number="22" hits="1" branch="False" />
-                <line number="23" hits="1" branch="False" />
-                <line number="24" hits="1" branch="False" />
-                <line number="25" hits="1" branch="False" />
-                <line number="26" hits="1" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
+            <line number="25" hits="1" branch="False" />
+            <line number="26" hits="1" branch="False" />
+            <line number="27" hits="1" branch="False" />
+            <line number="28" hits="1" branch="False" />
+            <line number="29" hits="1" branch="False" />
             <line number="30" hits="1" branch="False" />
             <line number="31" hits="1" branch="False" />
             <line number="32" hits="1" branch="False" />
@@ -524,116 +497,209 @@
             <line number="35" hits="1" branch="False" />
             <line number="36" hits="1" branch="False" />
             <line number="37" hits="1" branch="False" />
-            <line number="38" hits="1" branch="False" />
             <line number="39" hits="1" branch="False" />
-            <line number="40" hits="1" branch="False" />
             <line number="41" hits="1" branch="False" />
-            <line number="42" hits="1" branch="False" />
+            <line number="43" hits="1" branch="False" />
             <line number="44" hits="1" branch="False" />
-            <line number="46" hits="1" branch="False" />
-            <line number="48" hits="1" branch="False" />
-            <line number="49" hits="1" branch="False" />
+            <line number="16" hits="1" branch="False" />
+            <line number="17" hits="1" branch="False" />
+            <line number="18" hits="1" branch="False" />
+            <line number="19" hits="1" branch="False" />
+            <line number="20" hits="1" branch="False" />
             <line number="21" hits="1" branch="False" />
-            <line number="22" hits="1" branch="False" />
-            <line number="23" hits="1" branch="False" />
-            <line number="24" hits="1" branch="False" />
-            <line number="25" hits="1" branch="False" />
-            <line number="26" hits="1" branch="False" />
           </lines>
         </class>
         <class name="WebstorePhones.Testing.PhoneService.Delete" filename="Source\Repos\WebstorePhones\WebstorePhones.Testing\PhoneService\Delete.cs" line-rate="1" branch-rate="1" complexity="2">
           <methods>
             <method name="Should_CallPhoneRepositoryDelete_Once" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="28" hits="1" branch="False" />
-                <line number="29" hits="1" branch="False" />
-                <line number="31" hits="1" branch="False" />
-                <line number="32" hits="1" branch="False" />
+                <line number="23" hits="1" branch="False" />
+                <line number="24" hits="1" branch="False" />
+                <line number="26" hits="1" branch="False" />
+                <line number="27" hits="1" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
+                <line number="14" hits="1" branch="False" />
+                <line number="15" hits="1" branch="False" />
+                <line number="16" hits="1" branch="False" />
+                <line number="17" hits="1" branch="False" />
+                <line number="18" hits="1" branch="False" />
                 <line number="19" hits="1" branch="False" />
-                <line number="20" hits="1" branch="False" />
-                <line number="21" hits="1" branch="False" />
-                <line number="22" hits="1" branch="False" />
-                <line number="23" hits="1" branch="False" />
-                <line number="24" hits="1" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="28" hits="1" branch="False" />
-            <line number="29" hits="1" branch="False" />
-            <line number="31" hits="1" branch="False" />
-            <line number="32" hits="1" branch="False" />
-            <line number="19" hits="1" branch="False" />
-            <line number="20" hits="1" branch="False" />
-            <line number="21" hits="1" branch="False" />
-            <line number="22" hits="1" branch="False" />
             <line number="23" hits="1" branch="False" />
             <line number="24" hits="1" branch="False" />
+            <line number="26" hits="1" branch="False" />
+            <line number="27" hits="1" branch="False" />
+            <line number="14" hits="1" branch="False" />
+            <line number="15" hits="1" branch="False" />
+            <line number="16" hits="1" branch="False" />
+            <line number="17" hits="1" branch="False" />
+            <line number="18" hits="1" branch="False" />
+            <line number="19" hits="1" branch="False" />
           </lines>
         </class>
-        <class name="WebstorePhones.Testing.PhoneService.Get" filename="Source\Repos\WebstorePhones\WebstorePhones.Testing\PhoneService\Get.cs" line-rate="1" branch-rate="1" complexity="3">
+        <class name="WebstorePhones.Testing.PhoneService.Get" filename="Source\Repos\WebstorePhones\WebstorePhones.Testing\PhoneService\Get.cs" line-rate="0.9375" branch-rate="1" complexity="3">
           <methods>
             <method name="Should_CallPhoneRepositoryGetAllOnce" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
+                <line number="25" hits="1" branch="False" />
+                <line number="26" hits="1" branch="False" />
                 <line number="28" hits="1" branch="False" />
                 <line number="29" hits="1" branch="False" />
-                <line number="31" hits="1" branch="False" />
-                <line number="32" hits="1" branch="False" />
               </lines>
             </method>
-            <method name="Should_CallBrandRepositoryTwice" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="Should_CallBrandRepositoryTwice" signature="()" line-rate="0.8332999999999999" branch-rate="1" complexity="1">
               <lines>
-                <line number="36" hits="1" branch="False" />
+                <line number="33" hits="1" branch="False" />
+                <line number="34" hits="1" branch="False" />
+                <line number="35" hits="1" branch="False" />
                 <line number="37" hits="1" branch="False" />
-                <line number="38" hits="1" branch="False" />
-                <line number="40" hits="1" branch="False" />
-                <line number="42" hits="1" branch="False" />
-                <line number="43" hits="1" branch="False" />
+                <line number="39" hits="1" branch="False" />
+                <line number="40" hits="0" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
+                <line number="16" hits="2" branch="False" />
+                <line number="17" hits="2" branch="False" />
+                <line number="18" hits="2" branch="False" />
                 <line number="19" hits="2" branch="False" />
                 <line number="20" hits="2" branch="False" />
                 <line number="21" hits="2" branch="False" />
-                <line number="22" hits="2" branch="False" />
-                <line number="23" hits="2" branch="False" />
-                <line number="24" hits="2" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
+            <line number="25" hits="1" branch="False" />
+            <line number="26" hits="1" branch="False" />
             <line number="28" hits="1" branch="False" />
             <line number="29" hits="1" branch="False" />
-            <line number="31" hits="1" branch="False" />
-            <line number="32" hits="1" branch="False" />
-            <line number="36" hits="1" branch="False" />
+            <line number="33" hits="1" branch="False" />
+            <line number="34" hits="1" branch="False" />
+            <line number="35" hits="1" branch="False" />
             <line number="37" hits="1" branch="False" />
-            <line number="38" hits="1" branch="False" />
-            <line number="40" hits="1" branch="False" />
-            <line number="42" hits="1" branch="False" />
-            <line number="43" hits="1" branch="False" />
+            <line number="39" hits="1" branch="False" />
+            <line number="40" hits="0" branch="False" />
+            <line number="16" hits="2" branch="False" />
+            <line number="17" hits="2" branch="False" />
+            <line number="18" hits="2" branch="False" />
             <line number="19" hits="2" branch="False" />
             <line number="20" hits="2" branch="False" />
             <line number="21" hits="2" branch="False" />
-            <line number="22" hits="2" branch="False" />
-            <line number="23" hits="2" branch="False" />
-            <line number="24" hits="2" branch="False" />
           </lines>
         </class>
-        <class name="WebstorePhones.Testing.PhoneService.Search" filename="Source\Repos\WebstorePhones\WebstorePhones.Testing\PhoneService\Search.cs" line-rate="1" branch-rate="1" complexity="4">
+        <class name="WebstorePhones.Testing.PhoneService.Search" filename="Source\Repos\WebstorePhones\WebstorePhones.Testing\PhoneService\Search.cs" line-rate="0.9444" branch-rate="1" complexity="4">
           <methods>
-            <method name="Should_Return_OnePhoneWithMatchingBrand" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="Should_Return_OnePhoneWithMatchingBrand" signature="()" line-rate="0.8" branch-rate="1" complexity="1">
               <lines>
+                <line number="25" hits="1" branch="False" />
+                <line number="26" hits="1" branch="False" />
+                <line number="27" hits="1" branch="False" />
                 <line number="28" hits="1" branch="False" />
                 <line number="29" hits="1" branch="False" />
                 <line number="30" hits="1" branch="False" />
                 <line number="31" hits="1" branch="False" />
-                <line number="32" hits="1" branch="False" />
+                <line number="33" hits="1" branch="False" />
+                <line number="35" hits="0" branch="False" />
+                <line number="36" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="Should_Return_OnePhoneWithMatchingType" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="40" hits="1" branch="False" />
+                <line number="41" hits="1" branch="False" />
+                <line number="42" hits="1" branch="False" />
+                <line number="43" hits="1" branch="False" />
+                <line number="44" hits="1" branch="False" />
+                <line number="45" hits="1" branch="False" />
+                <line number="46" hits="1" branch="False" />
+                <line number="48" hits="1" branch="False" />
+                <line number="50" hits="1" branch="False" />
+                <line number="51" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="Should_Return_OnePhoneWithMatchingDescription" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="55" hits="1" branch="False" />
+                <line number="56" hits="1" branch="False" />
+                <line number="57" hits="1" branch="False" />
+                <line number="58" hits="1" branch="False" />
+                <line number="59" hits="1" branch="False" />
+                <line number="60" hits="1" branch="False" />
+                <line number="61" hits="1" branch="False" />
+                <line number="63" hits="1" branch="False" />
+                <line number="65" hits="1" branch="False" />
+                <line number="66" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="3" branch="False" />
+                <line number="17" hits="3" branch="False" />
+                <line number="18" hits="3" branch="False" />
+                <line number="19" hits="3" branch="False" />
+                <line number="20" hits="3" branch="False" />
+                <line number="21" hits="3" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="25" hits="1" branch="False" />
+            <line number="26" hits="1" branch="False" />
+            <line number="27" hits="1" branch="False" />
+            <line number="28" hits="1" branch="False" />
+            <line number="29" hits="1" branch="False" />
+            <line number="30" hits="1" branch="False" />
+            <line number="31" hits="1" branch="False" />
+            <line number="33" hits="1" branch="False" />
+            <line number="35" hits="0" branch="False" />
+            <line number="36" hits="0" branch="False" />
+            <line number="40" hits="1" branch="False" />
+            <line number="41" hits="1" branch="False" />
+            <line number="42" hits="1" branch="False" />
+            <line number="43" hits="1" branch="False" />
+            <line number="44" hits="1" branch="False" />
+            <line number="45" hits="1" branch="False" />
+            <line number="46" hits="1" branch="False" />
+            <line number="48" hits="1" branch="False" />
+            <line number="50" hits="1" branch="False" />
+            <line number="51" hits="1" branch="False" />
+            <line number="55" hits="1" branch="False" />
+            <line number="56" hits="1" branch="False" />
+            <line number="57" hits="1" branch="False" />
+            <line number="58" hits="1" branch="False" />
+            <line number="59" hits="1" branch="False" />
+            <line number="60" hits="1" branch="False" />
+            <line number="61" hits="1" branch="False" />
+            <line number="63" hits="1" branch="False" />
+            <line number="65" hits="1" branch="False" />
+            <line number="66" hits="1" branch="False" />
+            <line number="16" hits="3" branch="False" />
+            <line number="17" hits="3" branch="False" />
+            <line number="18" hits="3" branch="False" />
+            <line number="19" hits="3" branch="False" />
+            <line number="20" hits="3" branch="False" />
+            <line number="21" hits="3" branch="False" />
+          </lines>
+        </class>
+        <class name="WebstorePhones.Testing.BrandService.AddBrandIdToPhone" filename="Source\Repos\WebstorePhones\WebstorePhones.Testing\BrandService\AddBrandIdToPhone.cs" line-rate="1" branch-rate="1" complexity="3">
+          <methods>
+            <method name="Should_ReturnBrandIdOfOne" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="23" hits="1" branch="False" />
+                <line number="24" hits="1" branch="False" />
+                <line number="26" hits="1" branch="False" />
+                <line number="28" hits="1" branch="False" />
+                <line number="29" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="Should_CallBrandRepositoryCreateOnce" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
                 <line number="33" hits="1" branch="False" />
                 <line number="34" hits="1" branch="False" />
                 <line number="36" hits="1" branch="False" />
@@ -641,88 +707,43 @@
                 <line number="39" hits="1" branch="False" />
               </lines>
             </method>
-            <method name="Should_Return_OnePhoneWithMatchingType" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="43" hits="1" branch="False" />
-                <line number="44" hits="1" branch="False" />
-                <line number="45" hits="1" branch="False" />
-                <line number="46" hits="1" branch="False" />
-                <line number="47" hits="1" branch="False" />
-                <line number="48" hits="1" branch="False" />
-                <line number="49" hits="1" branch="False" />
-                <line number="51" hits="1" branch="False" />
-                <line number="53" hits="1" branch="False" />
-                <line number="54" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="Should_Return_OnePhoneWithMatchingDescription" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="58" hits="1" branch="False" />
-                <line number="59" hits="1" branch="False" />
-                <line number="60" hits="1" branch="False" />
-                <line number="61" hits="1" branch="False" />
-                <line number="62" hits="1" branch="False" />
-                <line number="63" hits="1" branch="False" />
-                <line number="64" hits="1" branch="False" />
-                <line number="66" hits="1" branch="False" />
-                <line number="68" hits="1" branch="False" />
-                <line number="69" hits="1" branch="False" />
-              </lines>
-            </method>
             <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="19" hits="3" branch="False" />
-                <line number="20" hits="3" branch="False" />
-                <line number="21" hits="3" branch="False" />
-                <line number="22" hits="3" branch="False" />
-                <line number="23" hits="3" branch="False" />
-                <line number="24" hits="3" branch="False" />
+                <line number="15" hits="2" branch="False" />
+                <line number="16" hits="2" branch="False" />
+                <line number="17" hits="2" branch="False" />
+                <line number="18" hits="2" branch="False" />
+                <line number="19" hits="2" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
+            <line number="23" hits="1" branch="False" />
+            <line number="24" hits="1" branch="False" />
+            <line number="26" hits="1" branch="False" />
             <line number="28" hits="1" branch="False" />
             <line number="29" hits="1" branch="False" />
-            <line number="30" hits="1" branch="False" />
-            <line number="31" hits="1" branch="False" />
-            <line number="32" hits="1" branch="False" />
             <line number="33" hits="1" branch="False" />
             <line number="34" hits="1" branch="False" />
             <line number="36" hits="1" branch="False" />
             <line number="38" hits="1" branch="False" />
             <line number="39" hits="1" branch="False" />
-            <line number="43" hits="1" branch="False" />
-            <line number="44" hits="1" branch="False" />
-            <line number="45" hits="1" branch="False" />
-            <line number="46" hits="1" branch="False" />
-            <line number="47" hits="1" branch="False" />
-            <line number="48" hits="1" branch="False" />
-            <line number="49" hits="1" branch="False" />
-            <line number="51" hits="1" branch="False" />
-            <line number="53" hits="1" branch="False" />
-            <line number="54" hits="1" branch="False" />
-            <line number="58" hits="1" branch="False" />
-            <line number="59" hits="1" branch="False" />
-            <line number="60" hits="1" branch="False" />
-            <line number="61" hits="1" branch="False" />
-            <line number="62" hits="1" branch="False" />
-            <line number="63" hits="1" branch="False" />
-            <line number="64" hits="1" branch="False" />
-            <line number="66" hits="1" branch="False" />
-            <line number="68" hits="1" branch="False" />
-            <line number="69" hits="1" branch="False" />
-            <line number="19" hits="3" branch="False" />
-            <line number="20" hits="3" branch="False" />
-            <line number="21" hits="3" branch="False" />
-            <line number="22" hits="3" branch="False" />
-            <line number="23" hits="3" branch="False" />
-            <line number="24" hits="3" branch="False" />
+            <line number="15" hits="2" branch="False" />
+            <line number="16" hits="2" branch="False" />
+            <line number="17" hits="2" branch="False" />
+            <line number="18" hits="2" branch="False" />
+            <line number="19" hits="2" branch="False" />
           </lines>
         </class>
-        <class name="WebstorePhones.Testing.BrandService.AddBrandIdToPhone" filename="Source\Repos\WebstorePhones\WebstorePhones.Testing\BrandService\AddBrandIdToPhone.cs" line-rate="1" branch-rate="1" complexity="3">
+        <class name="WebstorePhones.Testing.BrandService.GetById" filename="Source\Repos\WebstorePhones\WebstorePhones.Testing\BrandService\GetById.cs" line-rate="1" branch-rate="1" complexity="3">
           <methods>
-            <method name="Should_ReturnBrandIdOfOne" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="Should_Return_ABrandWithAnIdOf1" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
+                <line number="21" hits="1" branch="False" />
+                <line number="22" hits="1" branch="False" />
+                <line number="23" hits="1" branch="False" />
+                <line number="24" hits="1" branch="False" />
+                <line number="25" hits="1" branch="False" />
                 <line number="26" hits="1" branch="False" />
                 <line number="27" hits="1" branch="False" />
                 <line number="29" hits="1" branch="False" />
@@ -730,26 +751,30 @@
                 <line number="32" hits="1" branch="False" />
               </lines>
             </method>
-            <method name="Should_CallBrandRepositoryCreateOnce" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="Should_CallBrandDepositoryGetByIdOnce" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
                 <line number="36" hits="1" branch="False" />
                 <line number="37" hits="1" branch="False" />
                 <line number="39" hits="1" branch="False" />
-                <line number="41" hits="1" branch="False" />
-                <line number="42" hits="1" branch="False" />
+                <line number="40" hits="1" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="18" hits="2" branch="False" />
-                <line number="19" hits="2" branch="False" />
-                <line number="20" hits="2" branch="False" />
-                <line number="21" hits="2" branch="False" />
-                <line number="22" hits="2" branch="False" />
+                <line number="13" hits="2" branch="False" />
+                <line number="14" hits="2" branch="False" />
+                <line number="15" hits="2" branch="False" />
+                <line number="16" hits="2" branch="False" />
+                <line number="17" hits="2" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
+            <line number="21" hits="1" branch="False" />
+            <line number="22" hits="1" branch="False" />
+            <line number="23" hits="1" branch="False" />
+            <line number="24" hits="1" branch="False" />
+            <line number="25" hits="1" branch="False" />
             <line number="26" hits="1" branch="False" />
             <line number="27" hits="1" branch="False" />
             <line number="29" hits="1" branch="False" />
@@ -758,69 +783,12 @@
             <line number="36" hits="1" branch="False" />
             <line number="37" hits="1" branch="False" />
             <line number="39" hits="1" branch="False" />
-            <line number="41" hits="1" branch="False" />
-            <line number="42" hits="1" branch="False" />
-            <line number="18" hits="2" branch="False" />
-            <line number="19" hits="2" branch="False" />
-            <line number="20" hits="2" branch="False" />
-            <line number="21" hits="2" branch="False" />
-            <line number="22" hits="2" branch="False" />
-          </lines>
-        </class>
-        <class name="WebstorePhones.Testing.BrandService.GetById" filename="Source\Repos\WebstorePhones\WebstorePhones.Testing\BrandService\GetById.cs" line-rate="1" branch-rate="1" complexity="3">
-          <methods>
-            <method name="Should_Return_ABrandWithAnIdOf1" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="22" hits="1" branch="False" />
-                <line number="23" hits="1" branch="False" />
-                <line number="24" hits="1" branch="False" />
-                <line number="25" hits="1" branch="False" />
-                <line number="26" hits="1" branch="False" />
-                <line number="27" hits="1" branch="False" />
-                <line number="28" hits="1" branch="False" />
-                <line number="30" hits="1" branch="False" />
-                <line number="32" hits="1" branch="False" />
-                <line number="33" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name="Should_CallBrandDepositoryGetByIdOnce" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="37" hits="1" branch="False" />
-                <line number="38" hits="1" branch="False" />
-                <line number="40" hits="1" branch="False" />
-                <line number="41" hits="1" branch="False" />
-              </lines>
-            </method>
-            <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="14" hits="2" branch="False" />
-                <line number="15" hits="2" branch="False" />
-                <line number="16" hits="2" branch="False" />
-                <line number="17" hits="2" branch="False" />
-                <line number="18" hits="2" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="22" hits="1" branch="False" />
-            <line number="23" hits="1" branch="False" />
-            <line number="24" hits="1" branch="False" />
-            <line number="25" hits="1" branch="False" />
-            <line number="26" hits="1" branch="False" />
-            <line number="27" hits="1" branch="False" />
-            <line number="28" hits="1" branch="False" />
-            <line number="30" hits="1" branch="False" />
-            <line number="32" hits="1" branch="False" />
-            <line number="33" hits="1" branch="False" />
-            <line number="37" hits="1" branch="False" />
-            <line number="38" hits="1" branch="False" />
             <line number="40" hits="1" branch="False" />
-            <line number="41" hits="1" branch="False" />
+            <line number="13" hits="2" branch="False" />
             <line number="14" hits="2" branch="False" />
             <line number="15" hits="2" branch="False" />
             <line number="16" hits="2" branch="False" />
             <line number="17" hits="2" branch="False" />
-            <line number="18" hits="2" branch="False" />
           </lines>
         </class>
       </classes>

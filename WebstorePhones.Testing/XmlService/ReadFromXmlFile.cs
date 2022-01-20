@@ -1,15 +1,4 @@
-﻿using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using WebstorePhones.Domain.Entities;
-using WebstorePhones.Domain.Interfaces;
-using Xunit;
-
-namespace WebstorePhones.Testing.XmlService
+﻿namespace WebstorePhones.Testing.XmlService
 {
     public class ReadFromXmlFile
     {

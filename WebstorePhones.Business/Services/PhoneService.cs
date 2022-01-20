@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
@@ -20,32 +21,21 @@ namespace WebstorePhones.Business.Services
 
         public IEnumerable<Phone> Get()
         {
-            IEnumerable<Phone> phones = _phoneRepository.GetAll().ToList();
-
-            foreach (Phone phone in phones)
-            {
-                phone.Brand = _brandService.GetById(phone.BrandId);
-            }
+            IEnumerable<Phone> phones = _phoneRepository.GetAll().Include(x => x.Brand).ToList();
 
             return phones.OrderBy(x => x.Brand.BrandName).ThenBy(x => x.Type);
         }
 
         public IEnumerable<Phone> Search(string query)
         {
-            // TODO Ask Kenji how to optimize this to search in the database and include Brands in that search at the same time, without using GetAll() first
-            // Maybe make EFRepo.GetAll() virtual and override it to what I want .. somewhere in the code? Or not possible because of DI?
-            IEnumerable<Phone> phones = _phoneRepository.GetAll().ToList();
-
-            foreach (Phone phone in phones)
-            {
-                phone.Brand = _brandService.GetById(phone.BrandId);
-            }
+            // TODO was hier
+            var phones = _phoneRepository.GetAll().Include(x => x.Brand);
 
             return phones.Where(x =>
             x.Brand.BrandName.ToLower().Contains(query.ToLower()) ||
             x.Type.ToLower().Contains(query.ToLower()) ||
             x.Description.ToLower().Contains(query.ToLower())
-            );
+            ).ToList();
         }
 
         public int AddMissingPhones(List<Phone> phones)
@@ -70,10 +60,8 @@ namespace WebstorePhones.Business.Services
         private void AddToDatabase(Phone phone)
         {
             phone.BrandId = _brandService.AddBrandIdToPhone(phone.Brand.BrandName);
-            Debug.WriteLine(phone.BrandId);
             phone.Brand = null;
             _phoneRepository.Create(phone);
-            Debug.WriteLine("BrandId" + phone.BrandId);
         }
 
         private bool PhoneInDatabase(Phone phoneToLookFor)
