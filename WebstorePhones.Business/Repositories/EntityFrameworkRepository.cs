@@ -29,14 +29,6 @@ namespace WebstorePhones.Business.Repositories
             _context.SaveChanges();
         }
 
-        // Oplossing van Thomas, maar kan niet omdat het GetAll() moet zijn, dus zonder parameters.
-        //public IEnumerable<T> GetAll(Action<IQueryable<T>> predicate)
-        //{
-        //    var set = _context.Set<T>();
-        //    predicate.Invoke(set);
-        //    return set.AsEnumerable();
-        //}
-
         public IQueryable<T> GetAll()
         {
             return _context.Set<T>();

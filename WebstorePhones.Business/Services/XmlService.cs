@@ -8,7 +8,6 @@ namespace WebstorePhones.Business.Services
 {
     public class XmlService : IXmlService
     {
-        // TODO Ask Kenji how to best test this or if at all.
         public List<Phone> ReadFromXmlFile(string xmlPath)
         {
             List<Phone> phones = new();

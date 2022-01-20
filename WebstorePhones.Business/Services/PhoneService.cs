@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
@@ -21,21 +20,16 @@ namespace WebstorePhones.Business.Services
 
         public IEnumerable<Phone> Get()
         {
-            IEnumerable<Phone> phones = _phoneRepository.GetAll().Include(x => x.Brand).ToList();
-
-            return phones.OrderBy(x => x.Brand.BrandName).ThenBy(x => x.Type);
+            return _phoneRepository.GetAll().Include(x => x.Brand).OrderBy(y => y.Brand.BrandName).ThenBy(z => z.Type).ToList();
         }
 
         public IEnumerable<Phone> Search(string query)
         {
-            // TODO was hier
-            var phones = _phoneRepository.GetAll().Include(x => x.Brand);
-
-            return phones.Where(x =>
-            x.Brand.BrandName.ToLower().Contains(query.ToLower()) ||
-            x.Type.ToLower().Contains(query.ToLower()) ||
-            x.Description.ToLower().Contains(query.ToLower())
-            ).ToList();
+            return _phoneRepository.GetAll().Include(x => x.Brand)
+                .Where(y =>
+            y.Brand.BrandName.ToLower().Contains(query.ToLower()) ||
+            y.Type.ToLower().Contains(query.ToLower()) ||
+            y.Description.ToLower().Contains(query.ToLower()));
         }
 
         public int AddMissingPhones(List<Phone> phones)
@@ -66,6 +60,7 @@ namespace WebstorePhones.Business.Services
 
         private bool PhoneInDatabase(Phone phoneToLookFor)
         {
+            // TODO Ask Wubbo if there's some way to test this even though it involves private methods.
             return Get()
                 .Where(x => x.Brand.BrandName == phoneToLookFor.Brand.BrandName)
                 .Where(x => x.Type == phoneToLookFor.Type)

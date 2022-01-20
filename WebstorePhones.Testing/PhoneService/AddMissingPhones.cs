@@ -10,7 +10,6 @@ namespace WebstorePhones.Testing.PhoneService
     {
         private readonly Mock<IRepository<Phone>> _mockPhoneRepository;
         private readonly Mock<IBrandService> _mockBrandService;
-        // TODO Why does it need Business.Services?
         private readonly Business.Services.PhoneService _phoneService;
 
         public AddMissingPhones()

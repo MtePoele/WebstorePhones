@@ -1,6 +1,4 @@
 ﻿using Moq;
-using System.Collections.Generic;
-using System.Linq;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Xunit;
@@ -26,17 +24,6 @@ namespace WebstorePhones.Testing.PhoneService
             _phoneService.Get();
 
             _mockPhoneRepository.Verify(x => x.GetAll(), Times.Once());
-        }
-
-        [Fact]
-        public void Should_CallBrandRepositoryTwice()
-        {
-            _mockPhoneRepository.Setup(x => x.GetAll()).Returns(new List<Phone>() { new Phone(), new Phone() }.AsQueryable());
-            _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand());
-
-            _phoneService.Get();
-
-            _mockBrandService.Verify(x => x.GetById(It.IsAny<long>()), Times.Exactly(2));
         }
     }
 }

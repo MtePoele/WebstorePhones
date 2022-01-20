@@ -26,9 +26,9 @@ namespace WebstorePhones.Testing.PhoneService
             _mockPhoneRepository.Setup(x => x.GetAll()).Returns(
                 new List<Phone>()
                 {
-                    new Phone(){Type = "", Description = ""}
+                    new Phone(){Brand = new Brand(){ BrandName = "test"}, Type = "", Description = ""}
                 }.AsQueryable());
-            _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "test" });
+            //_mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "test"});
 
             List<Phone> phones = _phoneService.Search("TEst").ToList();
 

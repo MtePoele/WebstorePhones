@@ -21,6 +21,8 @@ namespace WebstorePhones.WinForms
 
         private static string ValidateText(string textboxName, string textboxValue)
         {
+            // TODO Refactor to reduce complexity.
+
             string errorMessage = string.Empty;
 
             switch (textboxName)

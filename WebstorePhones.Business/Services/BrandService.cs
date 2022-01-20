@@ -14,6 +14,7 @@ namespace WebstorePhones.Business.Services
             this._brandRepository = brandRepository;
         }
 
+        // TODO This method is no longer needed for functionality. Kenji said to keep it for now.
         public Brand GetById(long id)
         {
             return _brandRepository.GetById(id);
