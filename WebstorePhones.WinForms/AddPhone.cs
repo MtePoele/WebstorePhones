@@ -21,62 +21,72 @@ namespace WebstorePhones.WinForms
 
         private static string ValidateText(string textboxName, string textboxValue)
         {
-            string errorMessage = string.Empty;
-
-            // TODO Wubbo vragen - Heeft early return meerwaarde? Of kan een switch gesplits worden vanwege complexity > 5?
-            switch (textboxName)
+            return textboxName switch
             {
-                case "TxtPrice":
-                    var reg = new Regex("/[0-9]+[,][0-9]{2}/");
-
-                    if (!reg.IsMatch(textboxValue))
-                    {
-                        if (decimal.TryParse(textboxValue, out _))
-                        {
-                            if (Convert.ToDecimal(textboxValue) != Math.Round(Convert.ToDecimal(textboxValue), 2))
-                            {
-                                errorMessage = $"{textboxName[3..]} needs to have two or fewer decimals.\n";
-                            }
-                        }
-                        else
-                        {
-                            errorMessage = $"{textboxName[3..]} needs to be a number.\n";
-                        }
-                    }
-                    if (decimal.TryParse(textboxValue, out decimal price))
-                    {
-                        errorMessage = NumberCantBeNegative(textboxName, errorMessage, price);
-                    }
-                    break;
-                case "TxtStock":
-                    if (!int.TryParse(textboxValue, out _))
-                    {
-                        errorMessage = $"{textboxName[3..]} needs to be a whole number.\n";
-                    }
-                    if (decimal.TryParse(textboxValue, out decimal stock))
-                    {
-                        errorMessage = NumberCantBeNegative(textboxName, errorMessage, stock);
-                    }
-                    break;
-                default:
-                    if (textboxValue.Trim() == string.Empty)
-                    {
-                        errorMessage = $"{textboxName[3..]} is empty.\n";
-                    }
-                    break;
-            }
-
-            return errorMessage;
+                "TxtPrice" => CheckPriceValidity(textboxName, textboxValue),
+                "TxtStock" => CheckStockValidity(textboxName, textboxValue),
+                _ => CheckTextValidity(textboxName, textboxValue),
+            };
         }
 
-        private static string NumberCantBeNegative(string textboxName, string errorMessage, decimal price)
+        private static string CheckTextValidity(string textboxName, string textboxValue)
+        {
+            if (textboxValue.Trim() == string.Empty)
+            {
+                return $"{textboxName[3..]} is empty.\n";
+            }
+
+            return string.Empty;
+        }
+
+        private static string CheckStockValidity(string textboxName, string textboxValue)
+        {
+            if (!int.TryParse(textboxValue, out _))
+            {
+                return $"{textboxName[3..]} needs to be a whole number.\n";
+            }
+            if (decimal.TryParse(textboxValue, out decimal stock))
+            {
+                return NumberCantBeNegative(textboxName, stock);
+            }
+
+            return string.Empty;
+        }
+
+        private static string CheckPriceValidity(string textboxName, string textboxValue)
+        {
+            var reg = new Regex("/[0-9]+[,][0-9]{2}/");
+
+            if (!reg.IsMatch(textboxValue))
+            {
+                if (decimal.TryParse(textboxValue, out _))
+                {
+                    if (Convert.ToDecimal(textboxValue) != Math.Round(Convert.ToDecimal(textboxValue), 2))
+                    {
+                        return $"{textboxName[3..]} needs to have two or fewer decimals.\n";
+                    }
+                }
+                else
+                {
+                    return $"{textboxName[3..]} needs to be a number.\n";
+                }
+            }
+            if (decimal.TryParse(textboxValue, out decimal price))
+            {
+                return NumberCantBeNegative(textboxName, price);
+            }
+
+            return string.Empty;
+        }
+
+        private static string NumberCantBeNegative(string textboxName, decimal price)
         {
             if (price < 0)
             {
-                errorMessage = $"{textboxName[3..]} can't be negative.\n";
+                return $"{textboxName[3..]} can't be negative.\n";
             }
 
-            return errorMessage;
+            return string.Empty;
         }
 
         private void AddPhoneToDatabase()

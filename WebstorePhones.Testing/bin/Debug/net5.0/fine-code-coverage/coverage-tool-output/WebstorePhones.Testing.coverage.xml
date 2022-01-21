@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.9831" branch-rate="1" version="1.9" timestamp="1642769703" lines-covered="233" lines-valid="237" branches-covered="32" branches-valid="32">
+<coverage line-rate="0.9831" branch-rate="0.8887999999999999" version="1.9" timestamp="1642777711" lines-covered="234" lines-valid="238" branches-covered="32" branches-valid="36">
   <sources>
     <source>C:\Users\rsmar\</source>
   </sources>
   <packages>
-    <package name="WebstorePhones.Business" line-rate="0.9741" branch-rate="1" complexity="41">
+    <package name="WebstorePhones.Business" line-rate="0.9743" branch-rate="0.8887999999999999" complexity="44">
       <classes>
         <class name="WebstorePhones.Business.Services.BrandService" filename="Source\Repos\WebstorePhones\WebstorePhones.Business\Services\BrandService.cs" line-rate="1" branch-rate="1" complexity="6">
           <methods>
@@ -86,7 +86,7 @@
             <line number="15" hits="4" branch="False" />
           </lines>
         </class>
-        <class name="WebstorePhones.Business.Services.PhoneService" filename="Source\Repos\WebstorePhones\WebstorePhones.Business\Services\PhoneService.cs" line-rate="0.9285" branch-rate="1" complexity="10">
+        <class name="WebstorePhones.Business.Services.PhoneService" filename="Source\Repos\WebstorePhones\WebstorePhones.Business\Services\PhoneService.cs" line-rate="0.9301999999999999" branch-rate="0.5" complexity="13">
           <methods>
             <method name="Get" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
@@ -146,11 +146,17 @@
                 <line number="59" hits="1" branch="False" />
               </lines>
             </method>
-            <method name="PhoneInDatabase" signature="(WebstorePhones.Domain.Entities.Phone)" line-rate="0.5714" branch-rate="1" complexity="1">
+            <method name="PhoneInDatabase" signature="(WebstorePhones.Domain.Entities.Phone)" line-rate="0.625" branch-rate="0" complexity="4">
               <lines>
                 <line number="62" hits="1" branch="False" />
+                <line number="63" hits="1" branch="False" />
                 <line number="64" hits="1" branch="False" />
-                <line number="65" hits="0" branch="False" />
+                <line number="65" hits="0" branch="True" condition-coverage="0% (0/4)">
+                  <conditions>
+                    <condition number="32" type="jump" coverage="0%" />
+                    <condition number="56" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
                 <line number="66" hits="0" branch="False" />
                 <line number="67" hits="0" branch="False" />
                 <line number="68" hits="1" branch="False" />
@@ -207,8 +213,14 @@
             <line number="58" hits="1" branch="False" />
             <line number="59" hits="1" branch="False" />
             <line number="62" hits="1" branch="False" />
+            <line number="63" hits="1" branch="False" />
             <line number="64" hits="1" branch="False" />
-            <line number="65" hits="0" branch="False" />
+            <line number="65" hits="0" branch="True" condition-coverage="0% (0/4)">
+              <conditions>
+                <condition number="32" type="jump" coverage="0%" />
+                <condition number="56" type="jump" coverage="0%" />
+              </conditions>
+            </line>
             <line number="66" hits="0" branch="False" />
             <line number="67" hits="0" branch="False" />
             <line number="68" hits="1" branch="False" />

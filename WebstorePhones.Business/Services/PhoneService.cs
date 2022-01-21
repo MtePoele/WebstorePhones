@@ -60,11 +60,11 @@ namespace WebstorePhones.Business.Services
 
         private bool PhoneInDatabase(Phone phoneToLookFor)
         {
-            // TODO Ask Wubbo if there's some way to test this even though it involves private methods.
             return Get()
-                .Where(x => x.Brand.BrandName == phoneToLookFor.Brand.BrandName)
-                .Where(x => x.Type == phoneToLookFor.Type)
-                .Where(x => x.Description == phoneToLookFor.Description)
+                .Where(
+                x => x.Brand.BrandName == phoneToLookFor.Brand.BrandName && 
+                x.Type == phoneToLookFor.Type && 
+                x.Description == phoneToLookFor.Description)
                 .Any();
         }
     }

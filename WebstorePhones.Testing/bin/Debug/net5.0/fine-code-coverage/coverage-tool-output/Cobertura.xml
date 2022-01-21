@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.9831223628691983" branch-rate="1" lines-covered="233" lines-valid="237" branches-covered="32" branches-valid="32" complexity="60" version="0" timestamp="1642773304">
+<coverage line-rate="0.9831932773109243" branch-rate="0.8888888888888888" lines-covered="234" lines-valid="238" branches-covered="32" branches-valid="36" complexity="63" version="0" timestamp="1642781311">
   <sources>
     <source>C:\Users\rsmar\</source>
   </sources>
   <packages>
-    <package name="WebstorePhones.Business" line-rate="0.9741379310344828" branch-rate="1" complexity="41">
+    <package name="WebstorePhones.Business" line-rate="0.9743589743589743" branch-rate="0.8888888888888888" complexity="44">
       <classes>
         <class name="WebstorePhones.Business.Services.BrandService" filename="C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Business\Services\BrandService.cs" line-rate="1" branch-rate="1" complexity="6">
           <methods>
@@ -71,7 +71,7 @@
             <line number="41" hits="3" branch="false" />
           </lines>
         </class>
-        <class name="WebstorePhones.Business.Services.PhoneService" filename="C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Business\Services\PhoneService.cs" line-rate="0.9285714285714286" branch-rate="1" complexity="10">
+        <class name="WebstorePhones.Business.Services.PhoneService" filename="C:\Users\rsmar\Source\Repos\WebstorePhones\WebstorePhones.Business\Services\PhoneService.cs" line-rate="0.9302325581395349" branch-rate="0.5" complexity="13">
           <methods>
             <method name="Get" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
@@ -123,11 +123,12 @@
                 <line number="59" hits="1" branch="false" />
               </lines>
             </method>
-            <method name="PhoneInDatabase" signature="(...)" line-rate="0.5714285714285714" branch-rate="1" complexity="1">
+            <method name="PhoneInDatabase" signature="(...)" line-rate="0.625" branch-rate="0" complexity="4">
               <lines>
                 <line number="62" hits="1" branch="false" />
+                <line number="63" hits="1" branch="false" />
                 <line number="64" hits="1" branch="false" />
-                <line number="65" hits="0" branch="false" />
+                <line number="65" hits="0" branch="true" condition-coverage="0% (0/4)" />
                 <line number="66" hits="0" branch="false" />
                 <line number="67" hits="0" branch="false" />
                 <line number="68" hits="1" branch="false" />
@@ -181,8 +182,9 @@
             <line number="58" hits="1" branch="false" />
             <line number="59" hits="1" branch="false" />
             <line number="62" hits="1" branch="false" />
+            <line number="63" hits="1" branch="false" />
             <line number="64" hits="1" branch="false" />
-            <line number="65" hits="0" branch="false" />
+            <line number="65" hits="0" branch="true" condition-coverage="0% (0/4)" />
             <line number="66" hits="0" branch="false" />
             <line number="67" hits="0" branch="false" />
             <line number="68" hits="1" branch="false" />
