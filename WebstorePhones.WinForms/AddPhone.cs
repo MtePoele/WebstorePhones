@@ -21,10 +21,9 @@ namespace WebstorePhones.WinForms
 
         private static string ValidateText(string textboxName, string textboxValue)
         {
-            // TODO Refactor to reduce complexity.
-
             string errorMessage = string.Empty;
 
+            // TODO Wubbo vragen - Heeft early return meerwaarde? Of kan een switch gesplits worden vanwege complexity > 5?
             switch (textboxName)
             {
                 case "TxtPrice":
@@ -44,13 +43,9 @@ namespace WebstorePhones.WinForms
                             errorMessage = $"{textboxName[3..]} needs to be a number.\n";
                         }
                     }
-                    // TODO This should prevent negative values, but doesn't?
-                    else if (decimal.TryParse(textboxValue, out decimal price))
+                    if (decimal.TryParse(textboxValue, out decimal price))
                     {
-                        if (price < 0)
-                        {
-                            errorMessage = $"{textboxName[3..]} can't be negative.";
-                        }
+                        errorMessage = NumberCantBeNegative(textboxName, errorMessage, price);
                     }
                     break;
                 case "TxtStock":
@@ -58,7 +53,10 @@ namespace WebstorePhones.WinForms
                     {
                         errorMessage = $"{textboxName[3..]} needs to be a whole number.\n";
                     }
-                    // TODO Find some way to prevent entering negative values.
+                    if (decimal.TryParse(textboxValue, out decimal stock))
+                    {
+                        errorMessage = NumberCantBeNegative(textboxName, errorMessage, stock);
+                    }
                     break;
                 default:
                     if (textboxValue.Trim() == string.Empty)
@@ -66,6 +64,16 @@ namespace WebstorePhones.WinForms
                         errorMessage = $"{textboxName[3..]} is empty.\n";
                     }
                     break;
+            }
+
+            return errorMessage;
+        }
+
+        private static string NumberCantBeNegative(string textboxName, string errorMessage, decimal price)
+        {
+            if (price < 0)
+            {
+                errorMessage = $"{textboxName[3..]} can't be negative.\n";
             }
 
             return errorMessage;
