@@ -9,6 +9,7 @@ using WebstorePhones.Business.Repositories;
 using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
+using WebstorePhones.Business.Loggers;
 
 namespace WebstorePhones
 {
@@ -16,6 +17,7 @@ namespace WebstorePhones
     {
         static readonly Dictionary<int, Phone> phonesDictionary = new();
         private static IPhoneService _phoneService;
+        private static ILogger _fileLogger;
 
         static void Main()
         {
@@ -23,10 +25,12 @@ namespace WebstorePhones
                 .AddScoped<IPhoneService, PhoneService>()
                 .AddScoped<IBrandService, BrandService>()
                 .AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>))
+                .AddScoped<ILogger, FileLogger>()
                 .AddDbContext<DataContext>(x => x.UseSqlServer(Constants.ConnectionString), ServiceLifetime.Scoped)
                 .BuildServiceProvider();
 
             _phoneService = serviceProvider.GetService<IPhoneService>();
+            _fileLogger = serviceProvider.GetService<ILogger>();
 
             GetAllPhones();
 
@@ -118,6 +122,7 @@ namespace WebstorePhones
                 else
                 {
                     PrintListOfPhones(searchResults);
+                    _fileLogger.Log(searchInput);
                 }
             }
             else
