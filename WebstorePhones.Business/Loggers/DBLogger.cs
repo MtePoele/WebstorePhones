@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 
@@ -17,9 +13,16 @@ namespace WebstorePhones.Business.Loggers
             _logRepository = logRepository;
         }
 
-        public void Log(string whatItIs, string message)
+        public void Log(WhatHappened whatHappened, string message)
         {
+            Log log = new()
+            {
+                NameOfEvent = whatHappened.ToString(),
+                DateTimeOfEvent = DateTime.Now.ToString(),
+                Details = message
+            };
 
+            _logRepository.Create(log);
         }
     }
 }

@@ -2,14 +2,15 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using WebstorePhones.Business;
 using WebstorePhones.Business.Extensions;
+using WebstorePhones.Business.Loggers;
 using WebstorePhones.Business.Repositories;
 using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Business.Loggers;
 
 namespace WebstorePhones
 {
@@ -17,7 +18,6 @@ namespace WebstorePhones
     {
         static readonly Dictionary<int, Phone> phonesDictionary = new();
         private static IPhoneService _phoneService;
-        private static ILogger _logger;
 
         static void Main()
         {
@@ -26,11 +26,10 @@ namespace WebstorePhones
                 .AddScoped<IBrandService, BrandService>()
                 .AddScoped<ILogger, FileLogger>()
                 .AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>))
-                .AddDbContext<DataContext>(x => x.UseSqlServer(Constants.ConnectionString), ServiceLifetime.Scoped)
+                .AddDbContext<DataContext>(x => x.UseSqlServer(ConfigurationManager.AppSettings.Get("connectionString")), ServiceLifetime.Scoped)
                 .BuildServiceProvider();
 
             _phoneService = serviceProvider.GetService<IPhoneService>();
-            _logger = serviceProvider.GetService<ILogger>();
 
             GetAllPhones();
 
@@ -110,8 +109,6 @@ namespace WebstorePhones
 
         private static void RunSearch(string searchInput)
         {
-            _logger.Log("Search", searchInput);
-
             if (searchInput.Length > 0)
             {
                 List<Phone> searchResults = _phoneService.Search(searchInput).ToList();

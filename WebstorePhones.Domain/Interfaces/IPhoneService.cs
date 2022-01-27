@@ -29,5 +29,10 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         void Delete(long id);
+        /// <summary>
+        /// Logs the message of the exception.
+        /// </summary>
+        /// <param name="exceptionMessage"></param>
+        void LoggingException(string exceptionMessage);
     }
 }

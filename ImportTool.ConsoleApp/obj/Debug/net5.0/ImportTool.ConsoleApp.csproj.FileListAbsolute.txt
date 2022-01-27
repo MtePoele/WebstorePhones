@@ -1,4 +1,6 @@
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\ImportTool.ConsoleApp.exe
+C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\app.config
+C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\ImportTool.ConsoleApp.dll.config
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\ImportTool.ConsoleApp.deps.json
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\ImportTool.ConsoleApp.runtimeconfig.json
 C:\Users\rsmar\Source\Repos\WebstorePhones\ImportTool.ConsoleApp\bin\Debug\net5.0\ImportTool.ConsoleApp.runtimeconfig.dev.json

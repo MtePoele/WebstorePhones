@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WebstorePhones.Domain.Entities
+﻿namespace WebstorePhones.Domain.Entities
 {
     public class Log
     {
-        public DateTime DateTimeOfEvent { get; set; }
+        public long Id { get; set; }
+        public string DateTimeOfEvent { get; set; }
         public string NameOfEvent { get; set; }
-        public string Type { get; set; }
+        public string Details { get; set; }
     }
 }

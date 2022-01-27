@@ -8,7 +8,7 @@ namespace WebstorePhones.Business.Loggers
     public class FileLogger : ILogger
     {
 
-        public void Log(string whatHappened, string value)
+        public void Log(WhatHappened whatHappened, string value)
         {
             string filepath = ConfigurationManager.AppSettings.Get("filelogger");
 
@@ -16,8 +16,7 @@ namespace WebstorePhones.Business.Loggers
             {
                 using (StreamWriter streamWriter = new(filepath, append: true))
                 {
-                    
-                    streamWriter.WriteLine($"{whatHappened} at {DateTime.Now.ToLongTimeString()} with value \"{value}\".");
+                    streamWriter.WriteLine($"{whatHappened} at {DateTime.Now} with value \"{value}\".");
                     streamWriter.Close();
                 }
             }

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Configuration;
 using System.Windows.Forms;
 using WebstorePhones.Business;
 using WebstorePhones.Business.Loggers;
@@ -21,7 +22,7 @@ namespace WebstorePhones.WinForms
             services.AddScoped<IBrandService, BrandService>();
             services.AddScoped<ILogger, FileLogger>();
             services.AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>));
-            services.AddDbContext<DataContext>(x => x.UseSqlServer(Constants.ConnectionString), ServiceLifetime.Scoped);
+            services.AddDbContext<DataContext>(x => x.UseSqlServer(ConfigurationManager.AppSettings.Get("connectionString")), ServiceLifetime.Scoped);
             ServiceProvider = services.BuildServiceProvider();
         }
 

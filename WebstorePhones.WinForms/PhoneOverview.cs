@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using WebstorePhones.Business.Loggers;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 
@@ -11,15 +10,12 @@ namespace WebstorePhones.WinForms
     public partial class PhoneOverview : Form
     {
         private readonly IPhoneService _phoneService;
-        private readonly ILogger _logger;
         private List<Phone> phones;
         readonly BindingSource bindingSource = new();
 
         public PhoneOverview()
         {
             _phoneService = (IPhoneService)Program.ServiceProvider.GetService(typeof(IPhoneService));
-            // TODO was here
-            _logger = (ILogger)Program.ServiceProvider.GetService(typeof(ILogger));
 
             InitializeComponent();
 
@@ -76,10 +72,8 @@ namespace WebstorePhones.WinForms
         {
             if (string.IsNullOrEmpty(TxtboxSearch.Text))
                 GetPhones();
-
             if (TxtboxSearch.Text.Length > 3)
             {
-                _logger.Log("Search", TxtboxSearch.Text);
                 phones = _phoneService.Search(TxtboxSearch.Text).ToList();
             }
 

@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Business.Loggers;
 
 namespace WebstorePhones.WinForms
 {
@@ -119,7 +118,7 @@ namespace WebstorePhones.WinForms
 
             string errorMessages = sb.ToString();
 
-            if (errorMessages.Length > 1)
+            if (errorMessages.Length > 0)
             {
                 MessageBox.Show(errorMessages);
             }

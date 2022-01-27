@@ -11,11 +11,13 @@ namespace WebstorePhones.Business.Services
     {
         private readonly IRepository<Phone> _phoneRepository;
         private readonly IBrandService _brandService;
+        private readonly ILogger _logger;
 
-        public PhoneService(IRepository<Phone> phoneRepository, IBrandService brandService)
+        public PhoneService(IRepository<Phone> phoneRepository, IBrandService brandService, ILogger fileLogger)
         {
             _phoneRepository = phoneRepository;
             _brandService = brandService;
+            _logger = fileLogger;
         }
 
         public IEnumerable<Phone> Get()
@@ -25,6 +27,8 @@ namespace WebstorePhones.Business.Services
 
         public IEnumerable<Phone> Search(string query)
         {
+            _logger.Log(WhatHappened.Search, query);
+
             return _phoneRepository.GetAll().Include(x => x.Brand)
                 .Where(y =>
             y.Brand.BrandName.ToLower().Contains(query.ToLower()) ||
@@ -49,6 +53,13 @@ namespace WebstorePhones.Business.Services
         public void Delete(long id)
         {
             _phoneRepository.Delete(id);
+
+            _logger.Log(WhatHappened.PhoneDeleted, id.ToString());
+        }
+
+        public void LoggingException(string exceptionMessage)
+        {
+            _logger.Log(WhatHappened.Exception, exceptionMessage);
         }
 
         private void AddToDatabase(Phone phone)
@@ -56,14 +67,16 @@ namespace WebstorePhones.Business.Services
             phone.BrandId = _brandService.AddBrandIdToPhone(phone.Brand.BrandName);
             phone.Brand = null;
             _phoneRepository.Create(phone);
+
+            _logger.Log(WhatHappened.PhoneAdded, $"{phone.Brand.BrandName} {phone.Type}");
         }
 
         private bool PhoneInDatabase(Phone phoneToLookFor)
         {
             return Get()
                 .Where(
-                x => x.Brand.BrandName == phoneToLookFor.Brand.BrandName && 
-                x.Type == phoneToLookFor.Type && 
+                x => x.Brand.BrandName == phoneToLookFor.Brand.BrandName &&
+                x.Type == phoneToLookFor.Type &&
                 x.Description == phoneToLookFor.Description)
                 .Any();
         }
