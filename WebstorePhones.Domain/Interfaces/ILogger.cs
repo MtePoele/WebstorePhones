@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace WebstorePhones.Domain.Interfaces
 {
+    /// <summary>
+    /// Logs what happened at that moment using what value.
+    /// </summary>
     public interface ILogger
     {
-        void Log(string message);
+        void Log(string whatHappened, string value);
     }
 }

@@ -17,20 +17,20 @@ namespace WebstorePhones
     {
         static readonly Dictionary<int, Phone> phonesDictionary = new();
         private static IPhoneService _phoneService;
-        private static ILogger _fileLogger;
+        private static ILogger _logger;
 
         static void Main()
         {
             var serviceProvider = new ServiceCollection()
                 .AddScoped<IPhoneService, PhoneService>()
                 .AddScoped<IBrandService, BrandService>()
-                .AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>))
                 .AddScoped<ILogger, FileLogger>()
+                .AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>))
                 .AddDbContext<DataContext>(x => x.UseSqlServer(Constants.ConnectionString), ServiceLifetime.Scoped)
                 .BuildServiceProvider();
 
             _phoneService = serviceProvider.GetService<IPhoneService>();
-            _fileLogger = serviceProvider.GetService<ILogger>();
+            _logger = serviceProvider.GetService<ILogger>();
 
             GetAllPhones();
 
@@ -110,6 +110,8 @@ namespace WebstorePhones
 
         private static void RunSearch(string searchInput)
         {
+            _logger.Log("Search", searchInput);
+
             if (searchInput.Length > 0)
             {
                 List<Phone> searchResults = _phoneService.Search(searchInput).ToList();
@@ -122,7 +124,6 @@ namespace WebstorePhones
                 else
                 {
                     PrintListOfPhones(searchResults);
-                    _fileLogger.Log(searchInput);
                 }
             }
             else

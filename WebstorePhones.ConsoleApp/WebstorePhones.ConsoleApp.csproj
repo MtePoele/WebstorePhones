@@ -18,4 +18,10 @@
     <ProjectReference Include="..\WebstorePhones.Business\WebstorePhones.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

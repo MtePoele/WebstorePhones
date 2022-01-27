@@ -5,16 +5,19 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
+using WebstorePhones.Business.Loggers;
 
 namespace WebstorePhones.WinForms
 {
     public partial class AddPhone : Form
     {
         private readonly IPhoneService _phoneService;
+        private readonly ILogger _logger;
 
         public AddPhone()
         {
             _phoneService = (IPhoneService)Program.ServiceProvider.GetService(typeof(IPhoneService));
+            _logger = (ILogger)Program.ServiceProvider.GetService(typeof(ILogger));
 
             InitializeComponent();
         }

@@ -1,27 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebstorePhones.Domain.Interfaces;
 using System.Configuration;
-using System.Collections.Specialized;
+using System.IO;
+using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business.Loggers
 {
     public class FileLogger : ILogger
     {
 
-        public void Log(string message)
+        public void Log(string whatHappened, string value)
         {
             string filepath = ConfigurationManager.AppSettings.Get("filelogger");
 
-            using (StreamWriter streamWriter = new(filepath))
+            if (value != string.Empty)
             {
-                streamWriter.WriteLine(message);
-                streamWriter.Close();
+                using (StreamWriter streamWriter = new(filepath, append: true))
+                {
+                    
+                    streamWriter.WriteLine($"{whatHappened} at {DateTime.Now.ToLongTimeString()} with value \"{value}\".");
+                    streamWriter.Close();
+                }
             }
+
         }
     }
 }

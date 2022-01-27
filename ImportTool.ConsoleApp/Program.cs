@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using WebstorePhones.Business;
+using WebstorePhones.Business.Loggers;
 using WebstorePhones.Business.Repositories;
 using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Entities;
@@ -21,6 +22,7 @@ namespace ImportTool.ConsoleApp
                 .AddScoped<IXmlService, XmlService>()
                 .AddScoped<IPhoneService, PhoneService>()
                 .AddScoped<IBrandService, BrandService>()
+                .AddScoped<ILogger, FileLogger>()
                 .AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>))
                 .AddDbContext<DataContext>(x => x.UseSqlServer(Constants.ConnectionString), ServiceLifetime.Scoped)
                 .BuildServiceProvider();
