@@ -7,14 +7,14 @@ using Xunit;
 
 namespace WebstorePhones.Testing.PhoneService
 {
-    public class Search
+    public class SearchTests
     {
         private readonly Mock<IRepository<Phone>> _mockPhoneRepository;
         private readonly Mock<IBrandService> _mockBrandService;
         private readonly Mock<ILogger> _mockLogger;
         private readonly Business.Services.PhoneService _phoneService;
 
-        public Search()
+        public SearchTests()
         {
             _mockPhoneRepository = new Mock<IRepository<Phone>>();
             _mockBrandService = new Mock<IBrandService>();

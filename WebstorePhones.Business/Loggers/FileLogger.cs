@@ -7,20 +7,15 @@ namespace WebstorePhones.Business.Loggers
 {
     public class FileLogger : ILogger
     {
-
         public void Log(WhatHappened whatHappened, string value)
         {
             string filepath = ConfigurationManager.AppSettings.Get("filelogger");
 
             if (value != string.Empty)
             {
-                using (StreamWriter streamWriter = new(filepath, append: true))
-                {
-                    streamWriter.WriteLine($"{whatHappened} at {DateTime.Now} with value \"{value}\".");
-                    streamWriter.Close();
-                }
+                using StreamWriter streamWriter = new(filepath, append: true);
+                streamWriter.WriteLine($"{whatHappened} at {DateTime.Now} with value \"{value}\".");
             }
-
         }
     }
 }

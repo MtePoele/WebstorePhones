@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using WebstorePhones.Domain.Entities;
 

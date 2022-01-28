@@ -1,6 +1,10 @@
-﻿namespace WebstorePhones.Domain.Entities
+﻿using System.Diagnostics.CodeAnalysis;
+using WebstorePhones.Domain.Interfaces;
+
+namespace WebstorePhones.Domain.Entities
 {
-    public class Log
+    [ExcludeFromCodeCoverage]
+    public class Log : IEntity
     {
         public long Id { get; set; }
         public string DateTimeOfEvent { get; set; }

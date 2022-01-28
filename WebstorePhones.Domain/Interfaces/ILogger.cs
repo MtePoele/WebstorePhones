@@ -8,6 +8,9 @@
         void Log(WhatHappened whatHappened, string value);
     }
 
+    /// <summary>
+    /// Names for kinds of things to log.
+    /// </summary>
     public enum WhatHappened
     {
         Exception,

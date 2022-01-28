@@ -13,11 +13,11 @@ namespace WebstorePhones.Business.Services
         private readonly IBrandService _brandService;
         private readonly ILogger _logger;
 
-        public PhoneService(IRepository<Phone> phoneRepository, IBrandService brandService, ILogger fileLogger)
+        public PhoneService(IRepository<Phone> phoneRepository, IBrandService brandService, ILogger logger)
         {
             _phoneRepository = phoneRepository;
             _brandService = brandService;
-            _logger = fileLogger;
+            _logger = logger;
         }
 
         public IEnumerable<Phone> Get()

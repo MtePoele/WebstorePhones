@@ -5,12 +5,12 @@ using Xunit;
 
 namespace WebstorePhones.Testing.BrandService
 {
-    public class GetById
+    public class GetByIdTests
     {
         private readonly Mock<IRepository<Brand>> _mockBrandRepository;
         private readonly Business.Services.BrandService _brandService;
 
-        public GetById()
+        public GetByIdTests()
         {
             _mockBrandRepository = new Mock<IRepository<Brand>>();
             _brandService = new(_mockBrandRepository.Object);

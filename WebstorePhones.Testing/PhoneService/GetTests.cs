@@ -5,14 +5,14 @@ using Xunit;
 
 namespace WebstorePhones.Testing.PhoneService
 {
-    public class Delete
+    public class GetTests
     {
         private readonly Mock<IRepository<Phone>> _mockPhoneRepository;
         private readonly Mock<IBrandService> _mockBrandService;
         private readonly Mock<ILogger> _mockLogger;
         private readonly Business.Services.PhoneService _phoneService;
 
-        public Delete()
+        public GetTests()
         {
             _mockPhoneRepository = new Mock<IRepository<Phone>>();
             _mockBrandService = new Mock<IBrandService>();
@@ -21,11 +21,11 @@ namespace WebstorePhones.Testing.PhoneService
         }
 
         [Fact]
-        public void Should_CallPhoneRepositoryDelete_Once()
+        public void Should_CallPhoneRepositoryGetAllOnce()
         {
-            _phoneService.Delete(1);
+            _phoneService.Get();
 
-            _mockPhoneRepository.Verify(x => x.Delete(1), Times.Once);
+            _mockPhoneRepository.Verify(x => x.GetAll(), Times.Once());
         }
     }
 }

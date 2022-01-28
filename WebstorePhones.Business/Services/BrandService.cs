@@ -11,7 +11,7 @@ namespace WebstorePhones.Business.Services
 
         public BrandService(IRepository<Brand> brandRepository)
         {
-            this._brandRepository = brandRepository;
+            _brandRepository = brandRepository;
         }
 
         // TODO This method is no longer needed for functionality. Kenji said to keep it for now.

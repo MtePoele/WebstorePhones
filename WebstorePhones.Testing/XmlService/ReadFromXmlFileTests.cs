@@ -4,11 +4,11 @@ using Xunit;
 
 namespace WebstorePhones.Testing.XmlService
 {
-    public class ReadFromXmlFile
+    public class ReadFromXmlFileTests
     {
         private readonly Business.Services.XmlService _xmlService;
 
-        public ReadFromXmlFile()
+        public ReadFromXmlFileTests()
         {
             _xmlService = new Business.Services.XmlService();
         }
