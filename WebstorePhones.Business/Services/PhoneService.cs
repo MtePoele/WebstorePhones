@@ -71,7 +71,7 @@ namespace WebstorePhones.Business.Services
             phone.Brand = null;
             _phoneRepository.Create(phone);
 
-            _logger.Log(WhatHappened.PhoneAdded, $"{brandName}, {phone.Type}");
+                _logger.Log(WhatHappened.PhoneAdded, $"{brandName}, {phone.Type}");
         }
 
         private bool PhoneInDatabase(Phone phoneToLookFor)

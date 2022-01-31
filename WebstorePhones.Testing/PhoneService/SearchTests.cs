@@ -30,7 +30,6 @@ namespace WebstorePhones.Testing.PhoneService
                 {
                     new Phone(){Brand = new Brand(){ BrandName = "test"}, Type = "", Description = ""}
                 }.AsQueryable());
-            //_mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "test"});
 
             List<Phone> phones = _phoneService.Search("TEst").ToList();
 

@@ -21,7 +21,7 @@ namespace WebstorePhones.Testing.DBLogger
         {
             _dBLogger.Log(WhatHappened.Search, "test");
 
-            _mockLogRepository.Verify(x => x.Create(It.IsAny<Log>()));
+            _mockLogRepository.Verify(x => x.Create(It.IsAny<Log>()), Times.Once);
         }
 
     }

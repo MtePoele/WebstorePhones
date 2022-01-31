@@ -25,7 +25,7 @@ namespace WebstorePhones.Testing.PhoneService
         {
             _phoneService.LoggingException("test");
 
-            _mockLogger.Verify(x => x.Log(WhatHappened.Exception, "test"));
+            _mockLogger.Verify(x => x.Log(WhatHappened.Exception, "test"), Times.Once);
         }
     }
 }
