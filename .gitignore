@@ -91,3 +91,4 @@
 /WebstorePhones.Testing/bin/Debug/net5.0/cs
 /WebstorePhones.Testing/bin/Debug/net5.0
 /WebstorePhones/ImportTool.ConsoleApp/obj/*
+/ImportTool.ConsoleApp/obj/project.nuget.cache
