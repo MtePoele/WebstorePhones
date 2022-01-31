@@ -1,5 +1,6 @@
 ﻿using Moq;
 using System.Collections.Generic;
+using System.Linq;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Xunit;
@@ -42,6 +43,29 @@ namespace WebstorePhones.Testing.PhoneService
             int result = _phoneService.AddMissingPhones(phoneList);
 
             Assert.Equal(1, result);
+        }
+
+        [Fact]
+        public void Should_Return_0()
+        {
+            List<Phone> listPhones = new List<Phone>()
+            {
+                new Phone()
+                {
+                    Brand = new Brand()
+                    {
+                        BrandName = "A", Id = 1
+                    },
+                    Type = "B",
+                    Description = "C"
+                }
+            };
+
+            _mockPhoneRepository.Setup(x => x.GetAll()).Returns(listPhones.AsQueryable());
+
+            int result = _phoneService.AddMissingPhones(listPhones);
+
+            Assert.Equal(0, result);
         }
     }
 }

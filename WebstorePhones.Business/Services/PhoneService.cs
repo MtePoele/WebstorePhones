@@ -57,6 +57,7 @@ namespace WebstorePhones.Business.Services
             _logger.Log(WhatHappened.PhoneDeleted, id.ToString());
         }
 
+        // TODO No use for exception logging (yet?)
         public void LoggingException(string exceptionMessage)
         {
             _logger.Log(WhatHappened.Exception, exceptionMessage);
@@ -64,11 +65,13 @@ namespace WebstorePhones.Business.Services
 
         private void AddToDatabase(Phone phone)
         {
+            string brandName = phone.Brand.BrandName;
+
             phone.BrandId = _brandService.AddBrandIdToPhone(phone.Brand.BrandName);
             phone.Brand = null;
             _phoneRepository.Create(phone);
 
-            _logger.Log(WhatHappened.PhoneAdded, $"{phone.Brand.BrandName} {phone.Type}");
+            _logger.Log(WhatHappened.PhoneAdded, $"{brandName}, {phone.Type}");
         }
 
         private bool PhoneInDatabase(Phone phoneToLookFor)

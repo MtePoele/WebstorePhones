@@ -7,7 +7,7 @@ namespace WebstorePhones.Domain.Interfaces
         /// <summary>
         /// Get all.
         /// </summary>
-        /// <returns>IEnumerable of T.</returns>
+        /// <returns>IQueryable of T.</returns>
         IQueryable<T> GetAll();
         /// <summary>
         /// Get T by id.

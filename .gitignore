@@ -78,3 +78,4 @@
 /AddPhone/bin/Debug/net5.0-windows
 /TestResults
 /WebstorePhones.Testing/obj
+/WebstorePhones.Testing/bin/Debug/net5.0/fine-code-coverage/coverage-tool-output
