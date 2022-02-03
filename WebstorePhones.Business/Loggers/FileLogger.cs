@@ -14,7 +14,7 @@ namespace WebstorePhones.Business.Loggers
             if (value != string.Empty)
             {
                 using StreamWriter streamWriter = new(filepath, append: true);
-                streamWriter.WriteLine($"{whatHappened} at {DateTime.Now} with value \"{value}\".");
+                streamWriter.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss} -> {whatHappened} with value \"{value}\".");
             }
         }
     }

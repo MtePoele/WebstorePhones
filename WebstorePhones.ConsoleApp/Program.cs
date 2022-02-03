@@ -24,7 +24,7 @@ namespace WebstorePhones
             var serviceProvider = new ServiceCollection()
                 .AddScoped<IPhoneService, PhoneService>()
                 .AddScoped<IBrandService, BrandService>()
-                .AddScoped<ILogger, DBLogger>()
+                .AddScoped<ILogger, FileLogger>()
                 .AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>))
                 .AddDbContext<DataContext>(x => x.UseSqlServer(ConfigurationManager.AppSettings.Get("connectionString")), ServiceLifetime.Scoped)
                 .BuildServiceProvider();

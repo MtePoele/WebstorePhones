@@ -18,7 +18,7 @@ namespace WebstorePhones.Business.Loggers
             Log log = new()
             {
                 NameOfEvent = whatHappened.ToString(),
-                DateTimeOfEvent = DateTime.Now.ToString(),
+                DateTimeOfEvent = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss"),
                 Details = message
             };
 
