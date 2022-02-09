@@ -23,7 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{E5E5A9D5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImportTool.ConsoleApp", "ImportTool.ConsoleApp\ImportTool.ConsoleApp.csproj", "{D006F7C1-ABD4-4B3D-B762-8B617F20E1BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebstorePhones.Testing", "WebstorePhones.Testing\WebstorePhones.Testing.csproj", "{F9CB0389-5783-48A3-8223-69A26B24F741}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebstorePhones.Testing", "WebstorePhones.Testing\WebstorePhones.Testing.csproj", "{F9CB0389-5783-48A3-8223-69A26B24F741}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebstorePhones", "WebstorePhones\WebstorePhones.csproj", "{86BB37A9-F761-4C59-8351-B77DBC281348}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{F9CB0389-5783-48A3-8223-69A26B24F741}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9CB0389-5783-48A3-8223-69A26B24F741}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9CB0389-5783-48A3-8223-69A26B24F741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86BB37A9-F761-4C59-8351-B77DBC281348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86BB37A9-F761-4C59-8351-B77DBC281348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86BB37A9-F761-4C59-8351-B77DBC281348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86BB37A9-F761-4C59-8351-B77DBC281348}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
