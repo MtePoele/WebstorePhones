@@ -72,9 +72,10 @@ namespace WebstorePhones.WinForms
         {
             if (string.IsNullOrEmpty(TxtboxSearch.Text))
                 GetPhones();
-
             if (TxtboxSearch.Text.Length > 3)
+            {
                 phones = _phoneService.Search(TxtboxSearch.Text).ToList();
+            }
 
             UpdateListBox();
         }

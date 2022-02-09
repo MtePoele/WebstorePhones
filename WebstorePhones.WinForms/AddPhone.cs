@@ -11,10 +11,12 @@ namespace WebstorePhones.WinForms
     public partial class AddPhone : Form
     {
         private readonly IPhoneService _phoneService;
+        private readonly ILogger _logger;
 
         public AddPhone()
         {
             _phoneService = (IPhoneService)Program.ServiceProvider.GetService(typeof(IPhoneService));
+            _logger = (ILogger)Program.ServiceProvider.GetService(typeof(ILogger));
 
             InitializeComponent();
         }
@@ -116,7 +118,7 @@ namespace WebstorePhones.WinForms
 
             string errorMessages = sb.ToString();
 
-            if (errorMessages.Length > 1)
+            if (errorMessages.Length > 0)
             {
                 MessageBox.Show(errorMessages);
             }

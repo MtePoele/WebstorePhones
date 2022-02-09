@@ -18,7 +18,7 @@ namespace WebstorePhones.Business.Migrations
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WebstorePhones.Domain.Objects.Brand", b =>
+            modelBuilder.Entity("WebstorePhones.Domain.Entities.Brand", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -26,9 +26,13 @@ namespace WebstorePhones.Business.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BrandName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BrandName")
+                        .IsUnique()
+                        .HasFilter("[BrandName] IS NOT NULL");
 
                     b.ToTable("Brands");
 
@@ -50,7 +54,28 @@ namespace WebstorePhones.Business.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WebstorePhones.Domain.Objects.Phone", b =>
+            modelBuilder.Entity("WebstorePhones.Domain.Entities.Log", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DateTimeOfEvent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameOfEvent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs");
+                });
+
+            modelBuilder.Entity("WebstorePhones.Domain.Entities.Phone", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,9 +133,9 @@ namespace WebstorePhones.Business.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WebstorePhones.Domain.Objects.Phone", b =>
+            modelBuilder.Entity("WebstorePhones.Domain.Entities.Phone", b =>
                 {
-                    b.HasOne("WebstorePhones.Domain.Objects.Brand", "Brand")
+                    b.HasOne("WebstorePhones.Domain.Entities.Brand", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)

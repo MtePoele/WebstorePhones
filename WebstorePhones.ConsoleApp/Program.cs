@@ -2,9 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using WebstorePhones.Business;
 using WebstorePhones.Business.Extensions;
+using WebstorePhones.Business.Loggers;
 using WebstorePhones.Business.Repositories;
 using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Entities;
@@ -22,8 +24,9 @@ namespace WebstorePhones
             var serviceProvider = new ServiceCollection()
                 .AddScoped<IPhoneService, PhoneService>()
                 .AddScoped<IBrandService, BrandService>()
+                .AddScoped<ILogger, FileLogger>()
                 .AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>))
-                .AddDbContext<DataContext>(x => x.UseSqlServer(Constants.ConnectionString), ServiceLifetime.Scoped)
+                .AddDbContext<DataContext>(x => x.UseSqlServer(ConfigurationManager.AppSettings.Get("connectionString")), ServiceLifetime.Scoped)
                 .BuildServiceProvider();
 
             _phoneService = serviceProvider.GetService<IPhoneService>();
