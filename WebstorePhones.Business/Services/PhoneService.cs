@@ -25,6 +25,13 @@ namespace WebstorePhones.Business.Services
             return _phoneRepository.GetAll().Include(x => x.Brand).OrderBy(y => y.Brand.BrandName).ThenBy(z => z.Type).ToList();
         }
 
+        public Phone GetById(long id)
+        {
+            IEnumerable<Phone> phones = _phoneRepository.GetAll().Include(x => x.Brand).Where(y => y.Id == id);
+
+            return phones.FirstOrDefault();
+        }
+
         public IEnumerable<Phone> Search(string query)
         {
             _logger.Log(WhatHappened.Search, query);

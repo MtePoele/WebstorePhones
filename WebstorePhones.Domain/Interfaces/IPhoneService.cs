@@ -11,6 +11,12 @@ namespace WebstorePhones.Domain.Interfaces
         /// <returns>IEnumerable<Phone></returns>
         IEnumerable<Phone> Get();
         /// <summary>
+        /// Returns a Phone based on id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Phone</returns>
+        Phone GetById(long id);
+        /// <summary>
         /// Returns an IEnumerable<Phone> where Name, Brand or Description contains "query".
         /// </summary>
         /// <param name="query"></param>
