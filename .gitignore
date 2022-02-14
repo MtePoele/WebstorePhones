@@ -100,3 +100,5 @@
 /WebstorePhones.Api/obj/Debug/net5.0
 /ImportTool.ConsoleApp/obj/Debug/net5.0
 /WebstorePhones.Api/obj/project.nuget.cache
+/WebstorePhones.Api/obj/Release/net5.0
+/ImportTool.ConsoleApp/obj/Release/net5.0
