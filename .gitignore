@@ -97,3 +97,5 @@
 /WebstorePhones.Testing/bin/Debug/net5.0/fine-code-coverage/coverage-tool-output/diagnostics.datacollector.22-01-31_13-59-29_82871_4.log
 /WebstorePhones.Api/bin/Debug/net5.0
 /WebstorePhones/WebstorePhones.Api/obj
+/WebstorePhones.Api/obj/Debug/net5.0
+/ImportTool.ConsoleApp/obj/Debug/net5.0
