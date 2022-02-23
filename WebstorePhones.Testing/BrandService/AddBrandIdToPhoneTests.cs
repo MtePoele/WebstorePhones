@@ -23,7 +23,7 @@ namespace WebstorePhones.Testing.BrandService
         {
             _mockBrandRepository.Setup(x => x.GetAll()).Returns(new List<Brand>() { new Brand() { Id = 1, BrandName = "test" } }.AsQueryable());
 
-            long sut = _brandService.AddBrandIdToPhone("TEst");
+            long sut = _brandService.AddBrandIdToPhoneAsync("TEst");
 
             Assert.Equal(1, sut);
         }
@@ -33,7 +33,7 @@ namespace WebstorePhones.Testing.BrandService
         {
             _mockBrandRepository.Setup(x => x.GetAll()).Returns(new List<Brand>() { new Brand() { Id = 1, BrandName = "" } }.AsQueryable());
 
-            _brandService.AddBrandIdToPhone("TEst");
+            _brandService.AddBrandIdToPhoneAsync("TEst");
 
             _mockBrandRepository.Verify(x => x.Create(It.IsAny<Brand>()), Times.Once);
         }

@@ -53,7 +53,7 @@ namespace WebstorePhones.Api.Controllers
             List<Phone> phones = new();
             phones.Add(phone);
 
-            _phoneService.AddMissingPhones(phones);
+            _phoneService.AddMissingPhonesAsync(phones);
 
             return Ok(phone);
         }

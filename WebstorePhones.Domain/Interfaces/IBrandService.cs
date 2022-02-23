@@ -1,4 +1,5 @@
-﻿using WebstorePhones.Domain.Entities;
+﻿using System.Threading.Tasks;
+using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.Domain.Interfaces
 {
@@ -9,7 +10,7 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="phone"></param>
         /// <returns>long</returns>
-        long AddBrandIdToPhone(string brandName);
+        Task <long> AddBrandIdToPhoneAsync(string brandName);
         /// <summary>
         /// Returns a Brand object based on the id provided.
         /// </summary>

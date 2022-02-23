@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business.Repositories
@@ -16,10 +17,10 @@ namespace WebstorePhones.Business.Repositories
 
         public int Id { get; set; }
 
-        public void Create(T entity)
+        public async Task CreateAsync(T entity)
         {
-            _context.Add(entity);
-            _context.SaveChanges();
+            await _context.AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
         public void Delete(long id)

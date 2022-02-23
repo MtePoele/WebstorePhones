@@ -103,7 +103,7 @@ namespace WebstorePhones.WinForms
             };
             List<Phone> phones = new() { phone };
 
-            _phoneService.AddMissingPhones(phones);
+            _phoneService.AddMissingPhonesAsync(phones);
         }
 
         private void BtnApply_Click(object sender, EventArgs e)

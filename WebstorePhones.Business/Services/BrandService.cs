@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 
@@ -20,13 +21,13 @@ namespace WebstorePhones.Business.Services
             return _brandRepository.GetById(id);
         }
 
-        public long AddBrandIdToPhone(string brandName)
+        public async Task<long> AddBrandIdToPhoneAsync(string brandName)
         {
             long foundId = GetBrandId(brandName);
 
             if (foundId == 0)
             {
-                _brandRepository.Create(new Brand() { BrandName = brandName });
+                await _brandRepository.CreateAsync(new Brand() { BrandName = brandName });
                 foundId = GetBrandId(brandName);
             }
 

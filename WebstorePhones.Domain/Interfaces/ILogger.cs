@@ -1,11 +1,13 @@
-﻿namespace WebstorePhones.Domain.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace WebstorePhones.Domain.Interfaces
 {
     /// <summary>
     /// Logs type (Search, Exception, PhoneAdded or PhoneDeleted)  at that moment using what value.
     /// </summary>
     public interface ILogger
     {
-        void Log(WhatHappened whatHappened, string value);
+        Task LogAsync(WhatHappened whatHappened, string message);
     }
 
     /// <summary>

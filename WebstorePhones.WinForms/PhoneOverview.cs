@@ -68,13 +68,13 @@ namespace WebstorePhones.WinForms
             lblDescription.Text = string.Empty;
         }
 
-        private void TxtboxSearch_TextChanged(object sender, EventArgs e)
+        private async void TxtboxSearch_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(TxtboxSearch.Text))
                 GetPhones();
             if (TxtboxSearch.Text.Length > 3)
             {
-                phones = _phoneService.Search(TxtboxSearch.Text).ToList();
+                phones = (await _phoneService.SearchAsync(TxtboxSearch.Text)).ToList();
             }
 
             UpdateListBox();
@@ -106,7 +106,7 @@ namespace WebstorePhones.WinForms
             }
         }
 
-        private void ButtonDelete_Click(object sender, EventArgs e)
+        private async void ButtonDelete_Click(object sender, EventArgs e)
         {
             DialogResult confirmResult = MessageBox.Show(
                 "Confirmation dialog",
@@ -114,7 +114,7 @@ namespace WebstorePhones.WinForms
                 MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                _phoneService.Delete(phones[ListBoxPhoneOverview.SelectedIndex].Id);
+                await _phoneService.DeleteAsync(phones[ListBoxPhoneOverview.SelectedIndex].Id);
                 GetPhones();
                 UpdateListBox();
             }
