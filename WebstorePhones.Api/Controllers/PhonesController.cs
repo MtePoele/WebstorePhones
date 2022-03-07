@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PhonesController : Controller
@@ -21,7 +21,7 @@ namespace WebstorePhones.Api.Controllers
         }
 
         [HttpGet]
-        public async Task <IActionResult> GetPhones(string query)
+        public async Task<IActionResult> GetPhones(string query)
         {
             List<Phone> phones;
 

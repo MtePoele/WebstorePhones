@@ -1,20 +1,26 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.Business
 {
     [ExcludeFromCodeCoverage]
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<IdentityUser, IdentityRole, string>
     {
-        public DataContext()
-        {
+        //public DataContext()
+        //{
 
-        }
-        public DataContext(DbContextOptions options) : base(options)
-        {
+        //}
+        //public DataContext(DbContextOptions options) : base(options)
+        //{
 
-        }
+        //}
+
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        { }
+
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Log> Logs { get; set; }
