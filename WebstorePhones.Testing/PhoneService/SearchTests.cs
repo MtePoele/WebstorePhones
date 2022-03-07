@@ -1,6 +1,7 @@
 ﻿using Moq;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Xunit;
@@ -23,7 +24,7 @@ namespace WebstorePhones.Testing.PhoneService
         }
 
         [Fact]
-        public void Should_Return_OnePhoneWithMatchingBrand()
+        public async Task Should_Return_OnePhoneWithMatchingBrand()
         {
             _mockPhoneRepository.Setup(x => x.GetAll()).Returns(
                 new List<Phone>()
@@ -31,13 +32,13 @@ namespace WebstorePhones.Testing.PhoneService
                     new Phone(){Brand = new Brand(){ BrandName = "test"}, Type = "", Description = ""}
                 }.AsQueryable());
 
-            List<Phone> phones = _phoneService.Search("TEst").ToList();
+            List<Phone> phones = (await _phoneService.SearchAsync("TEst")).ToList();
 
             Assert.Single(phones);
         }
 
         [Fact]
-        public void Should_Return_OnePhoneWithMatchingType()
+        public async Task Should_Return_OnePhoneWithMatchingType()
         {
             _mockPhoneRepository.Setup(x => x.GetAll()).Returns(
                 new List<Phone>()
@@ -46,13 +47,13 @@ namespace WebstorePhones.Testing.PhoneService
                 }.AsQueryable());
             _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "" });
 
-            List<Phone> phones = _phoneService.Search("TEst").ToList();
+            List<Phone> phones = (await _phoneService.SearchAsync("TEst")).ToList();
 
             Assert.Single(phones);
         }
 
         [Fact]
-        public void Should_Return_OnePhoneWithMatchingDescription()
+        public async Task Should_Return_OnePhoneWithMatchingDescription()
         {
             _mockPhoneRepository.Setup(x => x.GetAll()).Returns(
                 new List<Phone>()
@@ -61,7 +62,7 @@ namespace WebstorePhones.Testing.PhoneService
                 }.AsQueryable());
             _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "" });
 
-            List<Phone> phones = _phoneService.Search("TEst").ToList();
+            List<Phone> phones = (await _phoneService.SearchAsync("TEst")).ToList();
 
             Assert.Single(phones);
         }

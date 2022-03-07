@@ -21,7 +21,7 @@ namespace WebstorePhones.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetPhones(string query)
+        public async Task <IActionResult> GetPhones(string query)
         {
             List<Phone> phones;
 
@@ -31,7 +31,7 @@ namespace WebstorePhones.Api.Controllers
             }
             else
             {
-                phones = _phoneService.Search(query).ToList();
+                phones = (await _phoneService.SearchAsync(query)).ToList();
             }
             if (!phones.Any())
                 return NotFound();
@@ -48,12 +48,12 @@ namespace WebstorePhones.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Phone phone)
+        public async Task<IActionResult> Create(Phone phone)
         {
             List<Phone> phones = new();
             phones.Add(phone);
 
-            _phoneService.AddMissingPhonesAsync(phones);
+            await _phoneService.AddMissingPhonesAsync(phones);
 
             return Ok(phone);
         }

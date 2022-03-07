@@ -1,4 +1,5 @@
 ﻿using Moq;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Xunit;
@@ -21,9 +22,9 @@ namespace WebstorePhones.Testing.PhoneService
         }
 
         [Fact]
-        public void Should_CallPhoneRepositoryDelete_Once()
+        public async Task Should_CallPhoneRepositoryDelete_Once()
         {
-            _phoneService.Delete(1);
+            await _phoneService.DeleteAsync(1);
 
             _mockPhoneRepository.Verify(x => x.Delete(1), Times.Once);
         }

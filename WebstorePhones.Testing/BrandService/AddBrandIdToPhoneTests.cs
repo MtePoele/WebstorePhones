@@ -1,6 +1,7 @@
 ﻿using Moq;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Xunit;
@@ -19,23 +20,23 @@ namespace WebstorePhones.Testing.BrandService
         }
 
         [Fact]
-        public void Should_ReturnBrandIdOfOne()
+        public async Task Should_ReturnBrandIdOfOne()
         {
             _mockBrandRepository.Setup(x => x.GetAll()).Returns(new List<Brand>() { new Brand() { Id = 1, BrandName = "test" } }.AsQueryable());
 
-            long sut = _brandService.AddBrandIdToPhoneAsync("TEst");
+            long sut = await _brandService.AddBrandIdToPhoneAsync("TEst");
 
             Assert.Equal(1, sut);
         }
 
         [Fact]
-        public void Should_CallBrandRepositoryCreateOnce()
+        public async Task Should_CallBrandRepositoryCreateOnce()
         {
             _mockBrandRepository.Setup(x => x.GetAll()).Returns(new List<Brand>() { new Brand() { Id = 1, BrandName = "" } }.AsQueryable());
 
-            _brandService.AddBrandIdToPhoneAsync("TEst");
+            await _brandService.AddBrandIdToPhoneAsync("TEst");
 
-            _mockBrandRepository.Verify(x => x.Create(It.IsAny<Brand>()), Times.Once);
+            _mockBrandRepository.Verify(x => x.CreateAsync(It.IsAny<Brand>()), Times.Once);
         }
     }
 }

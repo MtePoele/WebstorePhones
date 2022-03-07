@@ -65,7 +65,6 @@ namespace WebstorePhones.Business.Services
             await _logger.LogAsync(WhatHappened.PhoneDeleted, id.ToString());
         }
 
-        // TODO No use for exception logging (yet?)
         public async Task LoggingExceptionAsync(string exceptionMessage)
         {
             await _logger.LogAsync(WhatHappened.Exception, exceptionMessage);
