@@ -26,6 +26,10 @@ namespace WebstorePhones.Business.Repositories
         public void Delete(long id)
         {
             var entity = GetById(id);
+            if (entity == null)
+            {
+                return;
+            }
             _context.Remove(entity);
             _context.SaveChanges();
         }
@@ -37,7 +41,7 @@ namespace WebstorePhones.Business.Repositories
 
         public T GetById(long id)
         {
-            return _context.Set<T>().SingleOrDefault(x => x.Id == id);
+            return _context.Set<T>().Single(x => x.Id == id);
         }
     }
 }

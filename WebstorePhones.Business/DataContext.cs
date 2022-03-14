@@ -9,15 +9,6 @@ namespace WebstorePhones.Business
     [ExcludeFromCodeCoverage]
     public class DataContext : IdentityDbContext<IdentityUser, IdentityRole, string>
     {
-        //public DataContext()
-        //{
-
-        //}
-        //public DataContext(DbContextOptions options) : base(options)
-        //{
-
-        //}
-
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         { }
 
@@ -32,6 +23,8 @@ namespace WebstorePhones.Business
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Phone>().HasData(new Phone
             {
                 Id = 1,

@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Api.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PhonesController : Controller
@@ -23,18 +23,7 @@ namespace WebstorePhones.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPhones(string query)
         {
-            List<Phone> phones;
-
-            if (query == null)
-            {
-                phones = _phoneService.Get().ToList();
-            }
-            else
-            {
-                phones = (await _phoneService.SearchAsync(query)).ToList();
-            }
-            if (!phones.Any())
-                return NotFound();
+            List<Phone> phones = string.IsNullOrEmpty(query) ? _phoneService.Get().ToList() : (await _phoneService.SearchAsync(query)).ToList();
 
             return Ok(phones);
         }
@@ -48,8 +37,11 @@ namespace WebstorePhones.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(Phone phone)
         {
+            phone.Id = 0;
+
             List<Phone> phones = new();
             phones.Add(phone);
 

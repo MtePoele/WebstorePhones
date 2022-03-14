@@ -17,5 +17,11 @@ namespace WebstorePhones.Domain.Interfaces
         /// <param name="id"></param>
         /// <returns>Brand object</returns>
         Brand GetById(long id);
+        /// <summary>
+        /// Checks if the brandname exists, adds it if not.
+        /// </summary>
+        /// <param name="brand"></param>
+        /// <returns>A string containing what happened.</returns>
+        Task<string> CreateBrandAsync(Brand brand);
     }
 }

@@ -72,6 +72,7 @@ namespace WebstorePhones.Business.Services
 
         private async Task AddToDatabaseAsync(Phone phone)
         {
+            // Add checks to see if stock & price are valid? So far it only check this in winform's AddPhone window
             string brandName = phone.Brand.BrandName;
 
             phone.BrandId = await _brandService.AddBrandIdToPhoneAsync(phone.Brand.BrandName);

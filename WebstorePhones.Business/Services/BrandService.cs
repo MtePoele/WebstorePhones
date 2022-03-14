@@ -1,4 +1,7 @@
-﻿using System.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
@@ -9,16 +12,24 @@ namespace WebstorePhones.Business.Services
     public class BrandService : IBrandService
     {
         private readonly IRepository<Brand> _brandRepository;
+        private readonly ILogger _logger;
 
-        public BrandService(IRepository<Brand> brandRepository)
+        public BrandService(IRepository<Brand> brandRepository, ILogger logger)
         {
             _brandRepository = brandRepository;
+            _logger = logger;
         }
 
-        // TODO This method is no longer needed for functionality. Kenji said to keep it for now.
         public Brand GetById(long id)
         {
-            return _brandRepository.GetById(id);
+            Brand brand = _brandRepository.GetById(id);
+
+            if (brand == null)
+            {
+                brand = new();
+            }
+
+            return brand;
         }
 
         public async Task<long> AddBrandIdToPhoneAsync(string brandName)
@@ -32,6 +43,22 @@ namespace WebstorePhones.Business.Services
             }
 
             return foundId;
+        }
+
+        public async Task<string> CreateBrandAsync(Brand brand)
+        {
+            if (DoesBrandExist(brand.BrandName))
+                return "Brand already exists.";
+            else
+            {
+                await _brandRepository.CreateAsync(brand);
+                return "Brand was added.";
+            }
+        }
+
+        private bool DoesBrandExist(string query)
+        {
+            return _brandRepository.GetAll().Any(x => x.BrandName == query);
         }
 
         private long GetBrandId(string brandName)

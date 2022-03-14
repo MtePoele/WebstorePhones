@@ -32,7 +32,7 @@ namespace WebstorePhones.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseSqlServer(ConfigurationManager.AppSettings.Get("connectionString")), ServiceLifetime.Scoped);
+            services.AddDbContext<DataContext>(x => x.UseSqlServer("Data Source=LAPTOP-I9V7KFJQ;Initial Catalog=WebstorePhones;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
 
             services.AddControllers();
 
@@ -66,6 +66,7 @@ namespace WebstorePhones.Api
             services.AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>));
             services.AddScoped<IPhoneService, PhoneService>();
             services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ILogger, FileLogger>();
 
             services.AddSwaggerGen(c =>
