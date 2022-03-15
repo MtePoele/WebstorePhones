@@ -41,7 +41,7 @@ namespace WebstorePhones.Api.Controllers
             }
         }
 
-        [Route("GetById")]
+        [Route("getbyid")]
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> GetById(long id)
@@ -62,7 +62,7 @@ namespace WebstorePhones.Api.Controllers
             }
         }
 
-        [Route("Delete")]
+        [Route("delete")]
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
         {

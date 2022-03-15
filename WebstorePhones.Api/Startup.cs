@@ -9,7 +9,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Configuration;
 using System.Text;
 using WebstorePhones.Business;
 using WebstorePhones.Business.Loggers;
@@ -32,7 +31,9 @@ namespace WebstorePhones.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseSqlServer("Data Source=LAPTOP-I9V7KFJQ;Initial Catalog=WebstorePhones;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            //services.AddDbContext<DataContext>(x => x.UseSqlServer("Data Source=LAPTOP-I9V7KFJQ;Initial Catalog=WebstorePhones;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+
+            services.AddDbContext<DataContext>(x => x.UseSqlServer($"{Configuration.GetSection("connectionString")}"));
 
             services.AddControllers();
 
@@ -52,11 +53,11 @@ namespace WebstorePhones.Api
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidIssuer = "http://localhost/issuer",
+                    ValidIssuer = $"{Configuration.GetSection("Issuer")}",
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.ASCII.GetBytes("C86B616E-C748-47DF-9B04-B1566F955D3E")),
-                    ValidAudience = "http://localhost/audience",
+                        Encoding.ASCII.GetBytes($"{Configuration.GetSection("SignKey")}")),
+                    ValidAudience = $"{Configuration.GetSection("Audience")}",
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.FromMinutes(1)

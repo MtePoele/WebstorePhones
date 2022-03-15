@@ -1,5 +1,4 @@
 ﻿using Moq;
-using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Xunit;

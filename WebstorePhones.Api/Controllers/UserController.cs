@@ -2,11 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using WebstorePhones.Api.Models;
-using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Api.Controllers
@@ -26,7 +24,7 @@ namespace WebstorePhones.Api.Controllers
             _tokenService = tokenService;
         }
 
-        [Route("Create")]
+        [Route("create")]
         [HttpPost]
         public async Task<IActionResult> Create(User user)
         {
@@ -51,7 +49,7 @@ namespace WebstorePhones.Api.Controllers
             }
         }
 
-        [Route("Login")]
+        [Route("login")]
         [HttpPost]
         public async Task<IActionResult> Login(Login login)
         {

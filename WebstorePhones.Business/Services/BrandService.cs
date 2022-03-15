@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
@@ -12,12 +9,10 @@ namespace WebstorePhones.Business.Services
     public class BrandService : IBrandService
     {
         private readonly IRepository<Brand> _brandRepository;
-        private readonly ILogger _logger;
 
-        public BrandService(IRepository<Brand> brandRepository, ILogger logger)
+        public BrandService(IRepository<Brand> brandRepository)
         {
             _brandRepository = brandRepository;
-            _logger = logger;
         }
 
         public Brand GetById(long id)
