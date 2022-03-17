@@ -15,6 +15,7 @@ using WebstorePhones.Business.Loggers;
 using WebstorePhones.Business.Repositories;
 using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Interfaces;
+using WebstorePhones.Domain.Models.Configuration;
 using ILogger = WebstorePhones.Domain.Interfaces.ILogger;
 
 namespace WebstorePhones.Api
@@ -31,7 +32,10 @@ namespace WebstorePhones.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<DataContext>(x => x.UseSqlServer("Data Source=LAPTOP-I9V7KFJQ;Initial Catalog=WebstorePhones;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            // todo hier ergens schijnt wat fout te zijn
+            services.AddOptions()
+                .Configure<JwtSettings>(
+                    options => Configuration.GetSection("JwtAuth").Bind(options));
 
             services.AddDbContext<DataContext>(x => x.UseSqlServer($"{Configuration.GetSection("connectionString")}"));
 
@@ -53,11 +57,12 @@ namespace WebstorePhones.Api
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidIssuer = $"{Configuration.GetSection("Issuer")}",
+                    ValidIssuer = Configuration["JwtAuth:Issuer"],//$"{Configuration.GetSection("JwtAuth:Issuer")}",
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.ASCII.GetBytes($"{Configuration.GetSection("SignKey")}")),
-                    ValidAudience = $"{Configuration.GetSection("Audience")}",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JwtAuth:SignKey"])),
+                    //new SymmetricSecurityKey(
+                    //    Encoding.ASCII.GetBytes($"{Configuration.GetSection("JwtAuth:SignKey")}")),
+                    ValidAudience = Configuration["JwtAuth:Audience"], //$"{Configuration.GetSection("JwtAuth:Audience")}",
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.FromMinutes(1)

@@ -55,11 +55,11 @@ namespace WebstorePhones.Api.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signinManager.PasswordSignInAsync(login.Email, login.Password, login.RememberMe, false);
+                var result = await _signinManager.PasswordSignInAsync(login.Username, login.Password, login.RememberMe, false);
 
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByEmailAsync(login.Email);
+                    var user = await _userManager.FindByNameAsync(login.Username);
 
                     List<Claim> claims = new()
                     {

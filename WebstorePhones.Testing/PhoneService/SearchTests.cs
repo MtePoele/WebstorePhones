@@ -45,7 +45,7 @@ namespace WebstorePhones.Testing.PhoneService
                 {
                     new Phone(){Brand = new Brand(){ BrandName = ""}, Description = "", Type = "test"}
                 }.AsQueryable());
-            _mockBrandService.Setup(x => x.GetByIdAsync(It.IsAny<long>())).Returns(new Brand() { BrandName = "" });
+            _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "" });
 
             List<Phone> phones = (await _phoneService.SearchAsync("TEst")).ToList();
 
@@ -60,7 +60,7 @@ namespace WebstorePhones.Testing.PhoneService
                 {
                     new Phone(){Brand = new Brand(){ Id = 1, BrandName = ""}, Description = "test", Type = ""}
                 }.AsQueryable());
-            _mockBrandService.Setup(x => x.GetByIdAsync(It.IsAny<long>())).Returns(new Brand() { BrandName = "" });
+            _mockBrandService.Setup(x => x.GetById(It.IsAny<long>())).Returns(new Brand() { BrandName = "" });
 
             List<Phone> phones = (await _phoneService.SearchAsync("TEst")).ToList();
 
