@@ -32,7 +32,6 @@ namespace WebstorePhones.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // todo hier ergens schijnt wat fout te zijn
             services.AddOptions()
                 .Configure<JwtSettings>(
                     options => Configuration.GetSection("JwtAuth").Bind(options));
@@ -57,12 +56,10 @@ namespace WebstorePhones.Api
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidIssuer = Configuration["JwtAuth:Issuer"],//$"{Configuration.GetSection("JwtAuth:Issuer")}",
+                    ValidIssuer = Configuration["JwtAuth:Issuer"],
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JwtAuth:SignKey"])),
-                    //new SymmetricSecurityKey(
-                    //    Encoding.ASCII.GetBytes($"{Configuration.GetSection("JwtAuth:SignKey")}")),
-                    ValidAudience = Configuration["JwtAuth:Audience"], //$"{Configuration.GetSection("JwtAuth:Audience")}",
+                    ValidAudience = Configuration["JwtAuth:Audience"],
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.FromMinutes(1)
