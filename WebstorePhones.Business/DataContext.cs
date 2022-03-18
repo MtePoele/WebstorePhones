@@ -16,6 +16,7 @@ namespace WebstorePhones.Business
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<ProductsPerOrder> ProductsPerOrders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
