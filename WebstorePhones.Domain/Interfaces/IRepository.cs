@@ -17,7 +17,7 @@ namespace WebstorePhones.Domain.Interfaces
         /// <returns>T.</returns>
         T GetById(long id);
         /// <summary>
-        /// Adds a T to the database.
+        /// Adds a T to the database (async).
         /// </summary>
         /// <param name="entity"></param>
         Task CreateAsync(T entity);
@@ -26,5 +26,10 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         void Delete(long id);
+        /// <summary>
+        /// Saves changes (async).
+        /// </summary>
+        /// <returns></returns>
+        Task SaveChangesAsync();
     }
 }

@@ -70,6 +70,7 @@ namespace WebstorePhones.Api
             services.AddScoped<IPhoneService, PhoneService>();
             services.AddScoped<IBrandService, BrandService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<ILogger, FileLogger>();
 
             services.AddSwaggerGen(c =>

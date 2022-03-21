@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Domain.Entities
 {
-    public class Order
+    public class Order : IEntity
     {
         public long Id { get; set; }
         public string CustomerId { get; set; }

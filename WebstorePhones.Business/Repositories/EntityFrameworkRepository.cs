@@ -43,5 +43,10 @@ namespace WebstorePhones.Business.Repositories
         {
             return _context.Set<T>().Single(x => x.Id == id);
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

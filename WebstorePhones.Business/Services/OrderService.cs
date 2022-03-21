@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using System;
+﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business.Services
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         private readonly IRepository<Order> _orderRepository;
         private readonly UserManager<IdentityUser> _userManager;
@@ -21,28 +18,28 @@ namespace WebstorePhones.Business.Services
             _userManager = userManager;
         }
 
-        public async Task CreateOrder(Order order)
+        public async Task CreateAsync(Order order)
         {
             await _orderRepository.CreateAsync(order);
         }
 
-        public Order GetById(long id)
+        public Order GetById(IdentityUser user, long id)
         {
-            return _orderRepository.GetById(id);
+            //todo Return exception or null if false
+            Order order = _orderRepository.GetById(id);
+            return order.CustomerId == user.Id ? order : new Order();
         }
 
-        [Authorize]
-        public List<Order> Get(string userId)
+        public List<Order> Get(IdentityUser user)
         {
-            // TODO add identity.userId or something
-            return _orderRepository.GetAll().Where(x => x.CustomerId == "").ToList();
+            return _orderRepository.GetAll().Where(x => x.CustomerId == user.Id).ToList();
         }
 
-        public void DeleteOrder(long id)
+        public async Task DeleteAsync(IdentityUser user, long id)
         {
-            // TODO Needs savechanges
-            Order order = GetById(id);
+            Order order = GetById(user, id);
             order.Deleted = true;
+            await _orderRepository.SaveChangesAsync();
         }
     }
 }
