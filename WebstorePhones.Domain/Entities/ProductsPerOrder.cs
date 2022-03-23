@@ -1,15 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace WebstorePhones.Domain.Entities
+﻿namespace WebstorePhones.Domain.Entities
 {
     public class ProductsPerOrder
     {
         public long Id { get; set; }
-        [Required]
+        public long PhoneId { get; set; }
         public Phone Phone { get; set; }
-        [Required]
+        public long OrderId { get; set; }
         public Order Order { get; set; }
-        [Required]
         public int Amount { get; set; }
     }
 }

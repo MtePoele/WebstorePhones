@@ -25,7 +25,7 @@ namespace WebstorePhones.Business.Services
             if (claims is null || !claims.Any())
                 throw new ArgumentNullException(nameof(claims));
             var mySecurityKey = new SymmetricSecurityKey(
-            Encoding.ASCII.GetBytes(_jwtSettings.SignKey    ));
+            Encoding.ASCII.GetBytes(_jwtSettings.SignKey));
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
             {

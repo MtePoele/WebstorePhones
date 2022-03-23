@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebstorePhones.Business;
 
 namespace WebstorePhones.Business.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220323133939_ProductsPerOrderToOrder")]
+    partial class ProductsPerOrderToOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -370,10 +372,10 @@ namespace WebstorePhones.Business.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<long>("OrderId")
+                    b.Property<long?>("OrderId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PhoneId")
+                    b.Property<long?>("PhoneId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -451,15 +453,11 @@ namespace WebstorePhones.Business.Migrations
                 {
                     b.HasOne("WebstorePhones.Domain.Entities.Order", "Order")
                         .WithMany("ProductsPerOrderList")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("WebstorePhones.Domain.Entities.Phone", "Phone")
                         .WithMany()
-                        .HasForeignKey("PhoneId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PhoneId");
 
                     b.Navigation("Order");
 

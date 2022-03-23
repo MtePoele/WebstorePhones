@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
+using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business.Builders
 {
-    public class OrderBuilder
+    public class OrderBuilder : IOrderBuilder
     {
-        // TODO Working on this
-
-        // TODO Does this need an interface too? For DI?
         private Order _order = new Order();
 
         public Order Build()
@@ -19,43 +14,43 @@ namespace WebstorePhones.Business.Builders
             return _order;
         }
 
-        public OrderBuilder SetCustomerId(string customerId)
+        public IOrderBuilder SetCustomerId(string customerId)
         {
             _order.CustomerId = customerId;
             return this;
         }
 
-        public OrderBuilder SetTotalPrice(decimal totalPrice)
+        public IOrderBuilder SetTotalPrice(decimal totalPrice)
         {
             _order.TotalPrice = totalPrice;
             return this;
         }
 
-        public OrderBuilder SetVatPercentage(double vatPercentage)
+        public IOrderBuilder SetVatPercentage(double vatPercentage)
         {
             _order.VatPercentage = vatPercentage;
             return this;
         }
 
-        public OrderBuilder SetOrderDate(DateTime dateTime)
+        public IOrderBuilder SetOrderDate()
         {
-            _order.OrderDate = dateTime;
+            _order.OrderDate = DateTime.Now;
             return this;
         }
 
-        public OrderBuilder SetProductsPerOrderList(List<ProductsPerOrder> productsPerOrders)
+        public IOrderBuilder SetProductsPerOrderList(List<ProductsPerOrder> productsPerOrders)
         {
             _order.ProductsPerOrderList = productsPerOrders;
             return this;
         }
 
-        public OrderBuilder SetDeleted(bool deleted)
+        public IOrderBuilder SetDeleted(bool deleted)
         {
             _order.Deleted = deleted;
             return this;
         }
 
-        public OrderBuilder SetReason(int? reason)
+        public IOrderBuilder SetReason(int? reason)
         {
             _order.Reason = reason;
             return this;
