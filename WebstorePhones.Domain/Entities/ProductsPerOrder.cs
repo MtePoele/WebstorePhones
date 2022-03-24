@@ -1,5 +1,8 @@
-﻿namespace WebstorePhones.Domain.Entities
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace WebstorePhones.Domain.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class ProductsPerOrder
     {
         public long Id { get; set; }

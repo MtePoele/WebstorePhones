@@ -1,5 +1,8 @@
-﻿namespace WebstorePhones.Domain.Models.Configuration
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace WebstorePhones.Domain.Models.Configuration
 {
+    [ExcludeFromCodeCoverage]
     public class JwtSettings
     {
         public string Audience { get; set; }

@@ -26,8 +26,13 @@ namespace WebstorePhones.Api.Controllers
         [Route("Create")]
         [HttpPost]
         // TODO Needs to only take a brandname, problems ensue if ID is filled.
-        public async Task<IActionResult> Create(Brand brand)
+        public async Task<IActionResult> Create(string brandName)
         {
+            Brand brand = new()
+            {
+                BrandName = brandName
+            };
+
             try
             {
                 string message = await _brandService.CreateBrandAsync(brand);

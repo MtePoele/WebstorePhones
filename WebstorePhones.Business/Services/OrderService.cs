@@ -39,7 +39,6 @@ namespace WebstorePhones.Business.Services
 
         public Order GetById(string userId, long id)
         {
-            // TODO Needs testing
             Order order = _orderRepository.GetById(id);
             return order.CustomerId == userId ? order : new Order();
         }
@@ -51,7 +50,6 @@ namespace WebstorePhones.Business.Services
 
         public async Task DeleteAsync(string userId, long id)
         {
-            //TODO This needs work? Maybe? No idea if it works.
             Order order = GetById(userId, id);
             order.Deleted = true;
             await _orderRepository.SaveChangesAsync();
