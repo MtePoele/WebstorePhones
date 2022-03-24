@@ -26,6 +26,7 @@ namespace WebstorePhones.Api.Controllers
             _orderService = orderService;
         }
 
+        [Route("getall")]
         [Authorize]
         [HttpGet]
         public ActionResult GetOrders()
@@ -35,6 +36,7 @@ namespace WebstorePhones.Api.Controllers
             return Ok(orders);
         }
 
+        [Route("getbyid")]
         [Authorize]
         [HttpGet]
         public ActionResult GetById(long id)
@@ -46,6 +48,7 @@ namespace WebstorePhones.Api.Controllers
             return Ok(orders);
         }
 
+        [Route("create")]
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateAsync(List<CreateOrderInputModel> createOrderInputModel)
@@ -65,6 +68,17 @@ namespace WebstorePhones.Api.Controllers
             string userId = User.FindFirst("Id").Value;
 
             await _orderService.CreateAsync(productsPerOrders, userId);
+
+            return Ok();
+        }
+
+        [Route("delete")]
+        [HttpPut]
+        public ActionResult DeleteById(long id)
+        {
+            string userId = User.FindFirst("Id").Value;
+
+            _orderService.DeleteAsync(userId, id);
 
             return Ok();
         }

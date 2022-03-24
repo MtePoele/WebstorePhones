@@ -46,7 +46,7 @@ namespace WebstorePhones.Business.Services
 
         public List<Order> Get(string userId)
         {
-            return _orderRepository.GetAll().Where(x => x.CustomerId == userId).ToList();
+            return _orderRepository.GetAll().Where(x => x.CustomerId == userId && x.Deleted == false).ToList();
         }
 
         public async Task DeleteAsync(string userId, long id)
