@@ -49,7 +49,7 @@ namespace WebstorePhones.Testing.PhoneService
         [Fact]
         public async Task Should_Return_0()
         {
-            List<Phone> listPhones = new List<Phone>()
+            List<Phone> listPhones = new()
             {
                 new Phone()
                 {

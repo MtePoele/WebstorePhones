@@ -11,13 +11,11 @@ namespace WebstorePhones.Business.Services
     public class OrderService : IOrderService
     {
         private readonly IRepository<Order> _orderRepository;
-        private readonly UserManager<IdentityUser> _userManager;
         private const int vatPercentage = 19;
 
-        public OrderService(IRepository<Order> orderRepository, UserManager<IdentityUser> userManager)
+        public OrderService(IRepository<Order> orderRepository)
         {
             _orderRepository = orderRepository;
-            _userManager = userManager;
         }
 
         public async Task<Order> CreateAsync(List<ProductsPerOrder> products, string customerId)
