@@ -104,3 +104,5 @@
 /ImportTool.ConsoleApp/obj/Release/net5.0
 /ImportTool.ConsoleApp/obj
 /WebstorePhones.Api/obj
+/Scraper/bin/Debug/net5.0
+/Scraper/obj
