@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 
 namespace WebstorePhones.Domain.Interfaces
 {
@@ -16,14 +17,19 @@ namespace WebstorePhones.Domain.Interfaces
         /// <returns>T.</returns>
         T GetById(long id);
         /// <summary>
-        /// Adds a T to the database.
+        /// Adds a T to the database (async).
         /// </summary>
         /// <param name="entity"></param>
-        void Create(T entity);
+        Task CreateAsync(T entity);
         /// <summary>
         /// Delete by id.
         /// </summary>
         /// <param name="id"></param>
         void Delete(long id);
+        /// <summary>
+        /// Saves changes (async).
+        /// </summary>
+        /// <returns></returns>
+        Task SaveChangesAsync();
     }
 }

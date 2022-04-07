@@ -1,6 +1,7 @@
 ﻿using Moq;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Xunit;
@@ -23,7 +24,7 @@ namespace WebstorePhones.Testing.PhoneService
         }
 
         [Fact]
-        public void Should_Return_1()
+        public async Task Should_Return_1()
         {
             Phone phone = new()
             {
@@ -40,15 +41,15 @@ namespace WebstorePhones.Testing.PhoneService
 
             List<Phone> phoneList = new() { phone };
 
-            int result = _phoneService.AddMissingPhones(phoneList);
+            int result = await _phoneService.AddMissingPhonesAsync(phoneList);
 
             Assert.Equal(1, result);
         }
 
         [Fact]
-        public void Should_Return_0()
+        public async Task Should_Return_0()
         {
-            List<Phone> listPhones = new List<Phone>()
+            List<Phone> listPhones = new()
             {
                 new Phone()
                 {
@@ -63,7 +64,7 @@ namespace WebstorePhones.Testing.PhoneService
 
             _mockPhoneRepository.Setup(x => x.GetAll()).Returns(listPhones.AsQueryable());
 
-            int result = _phoneService.AddMissingPhones(listPhones);
+            int result = await _phoneService.AddMissingPhonesAsync(listPhones);
 
             Assert.Equal(0, result);
         }

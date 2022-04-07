@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Interfaces;
 
 namespace WebstorePhones.Business.Repositories
@@ -16,15 +17,19 @@ namespace WebstorePhones.Business.Repositories
 
         public int Id { get; set; }
 
-        public void Create(T entity)
+        public async Task CreateAsync(T entity)
         {
-            _context.Add(entity);
-            _context.SaveChanges();
+            await _context.AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
         public void Delete(long id)
         {
             var entity = GetById(id);
+            if (entity == null)
+            {
+                return;
+            }
             _context.Remove(entity);
             _context.SaveChanges();
         }
@@ -36,7 +41,12 @@ namespace WebstorePhones.Business.Repositories
 
         public T GetById(long id)
         {
-            return _context.Set<T>().SingleOrDefault(x => x.Id == id);
+            return _context.Set<T>().Single(x => x.Id == id);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

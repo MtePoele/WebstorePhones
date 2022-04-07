@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebstorePhones.Business.Services;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 
@@ -21,20 +20,9 @@ namespace WebstorePhones.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetPhones(string query)
+        public async Task<IActionResult> GetPhones(string query)
         {
-            List<Phone> phones;
-
-            if (query == null)
-            {
-                phones = _phoneService.Get().ToList();
-            }
-            else
-            {
-                phones = _phoneService.Search(query).ToList();
-            }
-            if (!phones.Any())
-                return NotFound();
+            List<Phone> phones = string.IsNullOrEmpty(query) ? _phoneService.Get().ToList() : (await _phoneService.SearchAsync(query)).ToList();
 
             return Ok(phones);
         }
@@ -48,12 +36,15 @@ namespace WebstorePhones.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Phone phone)
+        [Authorize]
+        public async Task<IActionResult> Create(Phone phone)
         {
+            phone.Id = 0;
+
             List<Phone> phones = new();
             phones.Add(phone);
 
-            _phoneService.AddMissingPhones(phones);
+            await _phoneService.AddMissingPhonesAsync(phones);
 
             return Ok(phone);
         }

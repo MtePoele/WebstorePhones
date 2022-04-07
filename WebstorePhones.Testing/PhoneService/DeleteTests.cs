@@ -20,10 +20,11 @@ namespace WebstorePhones.Testing.PhoneService
             _phoneService = new Business.Services.PhoneService(_mockPhoneRepository.Object, _mockBrandService.Object, _mockLogger.Object);
         }
 
+        // TODO alle tests kunnen "async void" worden
         [Fact]
-        public void Should_CallPhoneRepositoryDelete_Once()
+        public async void Should_CallPhoneRepositoryDelete_Once()
         {
-            _phoneService.Delete(1);
+            await _phoneService.DeleteAsync(1);
 
             _mockPhoneRepository.Verify(x => x.Delete(1), Times.Once);
         }

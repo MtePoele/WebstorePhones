@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Threading.Tasks;
 using WebstorePhones.Business;
 using WebstorePhones.Business.Extensions;
 using WebstorePhones.Business.Loggers;
@@ -19,7 +20,12 @@ namespace WebstorePhones
         static readonly Dictionary<int, Phone> phonesDictionary = new();
         private static IPhoneService _phoneService;
 
-        static void Main()
+        public static void Main()
+        {
+            MainAsync().GetAwaiter().GetResult();
+        }
+
+        private static async Task MainAsync()
         {
             var serviceProvider = new ServiceCollection()
                 .AddScoped<IPhoneService, PhoneService>()
@@ -35,17 +41,17 @@ namespace WebstorePhones
 
             while (true)
             {
-                MainMenu();
+                await MainMenuAsync();
             }
         }
 
-        private static void MainMenu()
+        private static async Task MainMenuAsync()
         {
             PrintMainMenu();
 
             int userChoice = AskUserChoice();
 
-            ExecuteUserChoice(userChoice);
+            await ExecuteUserChoiceAsync(userChoice);
         }
 
         private static int AskUserChoice()
@@ -77,7 +83,7 @@ namespace WebstorePhones
             Console.Write("\nUw keuze: ");
         }
 
-        private static void ExecuteUserChoice(int userChoice)
+        private static async Task ExecuteUserChoiceAsync(int userChoice)
         {
             if (userChoice > 0 && userChoice <= phonesDictionary.Count)
             {
@@ -90,7 +96,7 @@ namespace WebstorePhones
 
                 string searchInput = Console.ReadLine();
 
-                RunSearch(searchInput);
+                await RunSearchAsync(searchInput);
 
                 Console.WriteLine("Press any key to return to main menu.");
                 Console.ReadKey();
@@ -107,11 +113,11 @@ namespace WebstorePhones
             }
         }
 
-        private static void RunSearch(string searchInput)
+        private static async Task RunSearchAsync(string searchInput)
         {
             if (searchInput.Length > 0)
             {
-                List<Phone> searchResults = _phoneService.Search(searchInput).ToList();
+                List<Phone> searchResults = (await _phoneService.SearchAsync(searchInput)).ToList();
                 Console.WriteLine();
 
                 if (searchResults.Count == 0)

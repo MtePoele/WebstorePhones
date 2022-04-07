@@ -1,4 +1,5 @@
 ﻿using Moq;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Xunit;
@@ -21,11 +22,11 @@ namespace WebstorePhones.Testing.PhoneService
         }
 
         [Fact]
-        public void Should_CallLoggingExceptionOnce()
+        public async Task Should_CallLoggingExceptionOnce()
         {
-            _phoneService.LoggingException("test");
+            await _phoneService.LoggingExceptionAsync("test");
 
-            _mockLogger.Verify(x => x.Log(WhatHappened.Exception, "test"), Times.Once);
+            _mockLogger.Verify(x => x.LogAsync(WhatHappened.Exception, "test"), Times.Once);
         }
     }
 }

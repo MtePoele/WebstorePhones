@@ -1,4 +1,5 @@
 ﻿using Moq;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 using Xunit;
@@ -17,11 +18,11 @@ namespace WebstorePhones.Testing.DBLogger
         }
 
         [Fact]
-        public void Should_CallCreateOnce()
+        public async Task Should_CallCreateOnce()
         {
-            _dBLogger.Log(WhatHappened.Search, "test");
+            await _dBLogger.LogAsync(WhatHappened.Search, "test");
 
-            _mockLogRepository.Verify(x => x.Create(It.IsAny<Log>()), Times.Once);
+            _mockLogRepository.Verify(x => x.CreateAsync(It.IsAny<Log>()), Times.Once);
         }
 
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 
@@ -32,9 +33,9 @@ namespace WebstorePhones.Business.Services
             return phones.FirstOrDefault();
         }
 
-        public IEnumerable<Phone> Search(string query)
+        public async Task<IEnumerable<Phone>> SearchAsync(string query)
         {
-            _logger.Log(WhatHappened.Search, query);
+            await _logger.LogAsync(WhatHappened.Search, query);
 
             return _phoneRepository.GetAll().Include(x => x.Brand)
                 .Where(y =>
@@ -43,42 +44,42 @@ namespace WebstorePhones.Business.Services
             y.Description.ToLower().Contains(query.ToLower()));
         }
 
-        public int AddMissingPhones(List<Phone> phones)
+        public async Task<int> AddMissingPhonesAsync(List<Phone> phones)
         {
             int phonesAdded = 0;
             foreach (var phone in phones)
             {
                 if (!PhoneInDatabase(phone))
                 {
-                    AddToDatabase(phone);
+                    await AddToDatabaseAsync(phone);
                     phonesAdded++;
                 }
             }
             return phonesAdded;
         }
 
-        public void Delete(long id)
+        public async Task DeleteAsync(long id)
         {
             _phoneRepository.Delete(id);
 
-            _logger.Log(WhatHappened.PhoneDeleted, id.ToString());
+            await _logger.LogAsync(WhatHappened.PhoneDeleted, id.ToString());
         }
 
-        // TODO No use for exception logging (yet?)
-        public void LoggingException(string exceptionMessage)
+        public async Task LoggingExceptionAsync(string exceptionMessage)
         {
-            _logger.Log(WhatHappened.Exception, exceptionMessage);
+            await _logger.LogAsync(WhatHappened.Exception, exceptionMessage);
         }
 
-        private void AddToDatabase(Phone phone)
+        private async Task AddToDatabaseAsync(Phone phone)
         {
+            // Add checks to see if stock & price are valid? So far it only check this in winform's AddPhone window
             string brandName = phone.Brand.BrandName;
 
-            phone.BrandId = _brandService.AddBrandIdToPhone(phone.Brand.BrandName);
+            phone.BrandId = await _brandService.AddBrandIdToPhoneAsync(phone.Brand.BrandName);
             phone.Brand = null;
-            _phoneRepository.Create(phone);
+            await _phoneRepository.CreateAsync(phone);
 
-                _logger.Log(WhatHappened.PhoneAdded, $"{brandName}, {phone.Type}");
+            await _logger.LogAsync(WhatHappened.PhoneAdded, $"{brandName}, {phone.Type}");
         }
 
         private bool PhoneInDatabase(Phone phoneToLookFor)

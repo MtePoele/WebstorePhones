@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 using WebstorePhones.Domain.Interfaces;
 
@@ -13,7 +14,7 @@ namespace WebstorePhones.Business.Loggers
             _logRepository = logRepository;
         }
 
-        public void Log(WhatHappened whatHappened, string message)
+        public async Task LogAsync(WhatHappened whatHappened, string message)
         {
             Log log = new()
             {
@@ -22,7 +23,7 @@ namespace WebstorePhones.Business.Loggers
                 Details = message
             };
 
-            _logRepository.Create(log);
+            await _logRepository.CreateAsync(log);
         }
     }
 }

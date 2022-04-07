@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.Domain.Interfaces
@@ -21,7 +22,7 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="query"></param>
         /// <returns>IEnumerable<Phone></returns>
-        IEnumerable<Phone> Search(string query);
+        Task<IEnumerable<Phone>> SearchAsync(string query);
         /// <summary>
         /// Checks if phones are missing.
         /// Calls AddToDatabase foreach missing phone.
@@ -29,16 +30,16 @@ namespace WebstorePhones.Domain.Interfaces
         /// </summary>
         /// <param name="phones"></param>
         /// <returns>int</returns>
-        int AddMissingPhones(List<Phone> phones);
+        Task<int> AddMissingPhonesAsync(List<Phone> phones);
         /// <summary>
         /// Deletes a phone based on its "id"
         /// </summary>
         /// <param name="id"></param>
-        void Delete(long id);
+        Task DeleteAsync(long id);
         /// <summary>
         /// Logs the message of the exception.
         /// </summary>
         /// <param name="exceptionMessage"></param>
-        void LoggingException(string exceptionMessage);
+        Task LoggingExceptionAsync(string exceptionMessage);
     }
 }
