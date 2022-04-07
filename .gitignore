@@ -106,3 +106,5 @@
 /WebstorePhones.Api/obj
 /Scraper/bin/Debug/net5.0
 /Scraper/obj
+/WebstorePhones.BlazorApp/bin/Debug/net5.0
+/WebstorePhones.BlazorApp/obj
