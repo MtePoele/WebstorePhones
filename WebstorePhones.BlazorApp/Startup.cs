@@ -9,6 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blazorise;
+using Blazorise.Bootstrap5;
+using Blazorise.Icons.FontAwesome;
 
 namespace WebstorePhones.BlazorApp
 {
@@ -27,6 +30,11 @@ namespace WebstorePhones.BlazorApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
+            services
+                .AddBlazorise()
+                .AddBootstrap5Providers()
+                .AddFontAwesomeIcons();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
