@@ -1,7 +1,58 @@
 ﻿@page "/"
+@using Domain.Entities
 
-<h1>Hello, world!</h1>
+<p>
+    <ul>
+        <li>@phones[0].Brand.BrandName - @phones[0].Type</li>
+        <li>@phones[1].Brand.BrandName - @phones[1].Type</li>
+        <li>@phones[2].Brand.BrandName - @phones[2].Type</li>
+        <li>@phones[3].Brand.BrandName - @phones[3].Type</li>
+        <li>@phones[4].Brand.BrandName - @phones[4].Type</li>
+    </ul>
+</p>
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code{
+    List<Phone> phones = new()
+    {
+        new Phone()
+        {
+            Brand = new Brand() { BrandName = "Apple" },
+            Type = "Iphone",
+            Description = "It's an Iphone",
+            PriceWithTax = 100,
+            Stock = 1
+        },
+        new Phone()
+        {
+            Brand = new Brand() { BrandName = "Samsung" },
+            Type = "Galaxy",
+            Description = "It's a galaxy",
+            PriceWithTax = 200,
+            Stock = 2
+        },
+        new Phone()
+        {
+            Brand = new Brand() { BrandName = "Nokia" },
+            Type = "3315",
+            Description = "It's a 3315",
+            PriceWithTax = 300,
+            Stock = 3
+        },
+        new Phone()
+        {
+            Brand = new Brand() { BrandName = "Clay" },
+            Type = "Tablet",
+            Description = "It's a tablet made of clay",
+            PriceWithTax = 1,
+            Stock = 1
+        },
+        new Phone()
+        {
+            Brand = new Brand() { BrandName = "Sheet" },
+            Type = "of Paper",
+            Description = "It was a tree once",
+            PriceWithTax = 5,
+            Stock = 1000
+        }
+    };
+}
