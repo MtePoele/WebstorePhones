@@ -1,0 +1,23 @@
+﻿@using WebstorePhones.Domain.Entities
+
+<div>
+    <Row>
+        <Column ColumnSize="ColumnSize.Is2">
+                <Figure Size="FigureSize.Is128x128">
+                    <FigureImage Source="https://blazorise.com/img/empty-256x256.png" AlternateText="empty-256x256" />
+                </Figure>
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4">
+                <ListGroup Flush>
+                    <ListGroupItem>@phone.Brand.BrandName - @phone.Type</ListGroupItem>
+                    <ListGroupItem>@phone.PriceWithTax   @phone.Stock left in stock!</ListGroupItem>
+                    <ListGroupItem><Button Color="Color.Primary" Float="Float.End">Click me</Button></ListGroupItem>
+                </ListGroup>
+        </Column>
+    </Row>
+</div>
+
+@code {
+    [Parameter]
+    public Phone phone { get; set; }
+}

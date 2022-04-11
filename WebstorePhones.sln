@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebstorePhones.Api", "Webst
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scraper", "Scraper\Scraper.csproj", "{E1361CEA-A347-4B58-8C78-49C04EB6B350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebstorePhones.BlazorApp", "WebstorePhones.BlazorApp\WebstorePhones.BlazorApp.csproj", "{604BF43C-15B8-491C-A031-070FA34BB3C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebstorePhones.BlazorApp", "WebstorePhones.BlazorApp\WebstorePhones.BlazorApp.csproj", "{604BF43C-15B8-491C-A031-070FA34BB3C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

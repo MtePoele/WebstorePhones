@@ -1,15 +1,12 @@
 ﻿@page "/"
 @using Domain.Entities
 
-<p>
-    <ul>
-        <li>@phones[0].Brand.BrandName - @phones[0].Type</li>
-        <li>@phones[1].Brand.BrandName - @phones[1].Type</li>
-        <li>@phones[2].Brand.BrandName - @phones[2].Type</li>
-        <li>@phones[3].Brand.BrandName - @phones[3].Type</li>
-        <li>@phones[4].Brand.BrandName - @phones[4].Type</li>
-    </ul>
-</p>
+<UnorderedList>
+    <Repeater Items="@phones">
+        @* This needs to somehow show each different phone *@
+        <PhoneInfo Phone = "@phones[2]"></PhoneInfo>
+    </Repeater>
+</UnorderedList>
 
 @code{
     List<Phone> phones = new()
