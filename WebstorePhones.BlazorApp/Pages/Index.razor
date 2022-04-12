@@ -3,8 +3,7 @@
 
 <UnorderedList>
     <Repeater Items="@phones">
-        @* This needs to somehow show each different phone *@
-        <PhoneInfo Phone = "@phones[2]"></PhoneInfo>
+        <PhoneInfo phone="@context"></PhoneInfo>
     </Repeater>
 </UnorderedList>
 
