@@ -10,8 +10,8 @@
         <Column ColumnSize="ColumnSize.Is4">
                 <ListGroup Flush>
                     <ListGroupItem>@phone.Brand.BrandName - @phone.Type</ListGroupItem>
-                    <ListGroupItem>@phone.PriceWithTax   @phone.Stock left in stock!</ListGroupItem>
-                    <ListGroupItem><Button Color="Color.Primary" Float="Float.End">Click me</Button></ListGroupItem>
+                    <ListGroupItem>@Math.Round(phone.PriceWithTax, 2)   @phone.Stock left in stock!</ListGroupItem>
+                    <ListGroupItem><Button Color="Color.Primary" Type="ButtonType.Link" To="/PhoneDetails" @bind-value="phone" Float="Float.End">Click me</Button></ListGroupItem>
                 </ListGroup>
         </Column>
     </Row>
