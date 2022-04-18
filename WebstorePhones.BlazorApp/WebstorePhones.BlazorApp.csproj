@@ -5,7 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="app.config" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -14,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WebstorePhones.Business\WebstorePhones.Business.csproj" />
     <ProjectReference Include="..\WebstorePhones.Domain\WebstorePhones.Domain.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,8 @@
 ﻿@page "/"
 @using Domain.Entities
+@using WebstorePhones.Business.Services
+@using WebstorePhones.Domain.Interfaces
+@inject IPhoneService PhoneService
 
 <UnorderedList>
     <Repeater Items="@phones">
@@ -7,48 +10,12 @@
     </Repeater>
 </UnorderedList>
 
-@code{
-    List<Phone> phones = new()
+@code {
+    List<Phone> phones = new();
+
+    protected override async Task OnInitializedAsync()
     {
-        new Phone()
-        {
-            Brand = new Brand() { BrandName = "Apple" },
-            Type = "Iphone",
-            Description = "It's an Iphone",
-            PriceWithTax = 100,
-            Stock = 1
-        },
-        new Phone()
-        {
-            Brand = new Brand() { BrandName = "Samsung" },
-            Type = "Galaxy",
-            Description = "It's a galaxy",
-            PriceWithTax = 200,
-            Stock = 2
-        },
-        new Phone()
-        {
-            Brand = new Brand() { BrandName = "Nokia" },
-            Type = "3315",
-            Description = "It's a 3315",
-            PriceWithTax = 300,
-            Stock = 3
-        },
-        new Phone()
-        {
-            Brand = new Brand() { BrandName = "Clay" },
-            Type = "Tablet",
-            Description = "It's a tablet made of clay",
-            PriceWithTax = 1,
-            Stock = 1
-        },
-        new Phone()
-        {
-            Brand = new Brand() { BrandName = "Sheet" },
-            Type = "of Paper",
-            Description = "It was a tree once",
-            PriceWithTax = 5,
-            Stock = 1000
-        }
-    };
+        await base.OnInitializedAsync();
+        phones = PhoneService.Get().ToList();
+    }
 }

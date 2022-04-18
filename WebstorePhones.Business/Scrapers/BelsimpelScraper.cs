@@ -16,30 +16,32 @@ namespace WebstorePhones.Business.Scrapers
     {
         public bool CanExecute(string url)
         {
-            return url.Contains("belsimpel.nl/telefoon");
+            throw new NotImplementedException();
+            //return url.Contains("belsimpel.nl/telefoon");
         }
 
         public async Task<List<Phone>> Execute(string url)
         {
-            using var htmlReader = new StreamReader(client.OpenRead("https://belsimpel.nl/telefoon"));
-            var token = ExtractToken(await htmlReader.ReadToEndAsync());
+            throw new NotImplementedException();
+            //using var htmlReader = new StreamReader(client.OpenRead("https://belsimpel.nl/telefoon"));
+            //var token = ExtractToken(await htmlReader.ReadToEndAsync());
 
-            HttpClient client = new HttpClient();
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls13;
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-            var response = client.GetStringAsync(url);
-            return await response;
+            //HttpClient client = new HttpClient();
+            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls13;
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            //var response = client.GetStringAsync(url);
+            //return await response;
 
-            var response = await client.GetStringAsync(url);
+            //var response = await client.GetStringAsync(url);
 
-            Console.WriteLine(response);
+            //Console.WriteLine(response);
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
-            List<Phone> phones = new();
+            //List<Phone> phones = new();
 
-            return phones;
+            //return phones;
         }
     }
 }

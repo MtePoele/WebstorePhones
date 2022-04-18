@@ -12,6 +12,12 @@ using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap5;
 using Blazorise.Icons.FontAwesome;
+using WebstorePhones.Domain.Interfaces;
+using WebstorePhones.Business.Services;
+using WebstorePhones.Business.Loggers;
+using WebstorePhones.Business.Repositories;
+using WebstorePhones.Business;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebstorePhones.BlazorApp
 {
@@ -30,6 +36,15 @@ namespace WebstorePhones.BlazorApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
+            services.AddDbContext<DataContext>(x => x.UseSqlServer($"{Configuration.GetSection("connectionString")}"));
+
+            services.AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>));
+            services.AddScoped<IPhoneService, PhoneService>();
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<ILogger, FileLogger>();
 
             services
                 .AddBlazorise()
