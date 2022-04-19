@@ -11,7 +11,7 @@
                 <ListGroup Flush>
                     <ListGroupItem>@phone.Brand.BrandName - @phone.Type</ListGroupItem>
                     <ListGroupItem>@Math.Round(phone.PriceWithTax, 2)   @phone.Stock left in stock!</ListGroupItem>
-                    <ListGroupItem><Button Color="Color.Primary" Type="ButtonType.Link" To="/PhoneDetails" @bind-value="phone" Float="Float.End">Click me</Button></ListGroupItem>
+                    <ListGroupItem><Button Color="Color.Primary" Type="ButtonType.Link" To=@($"/PhoneDetails/{phone.Id}")  Float="Float.End">Show more</Button></ListGroupItem>
                 </ListGroup>
         </Column>
     </Row>
