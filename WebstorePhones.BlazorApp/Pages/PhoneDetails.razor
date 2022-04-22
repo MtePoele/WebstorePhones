@@ -1,8 +1,7 @@
 ﻿@page "/PhoneDetails/{Id:long}"
-@using WebstorePhones.Business.Services
 @using WebstorePhones.Domain.Entities
 @using WebstorePhones.Domain.Interfaces
-@inject IPhoneService PhoneService
+@*@inject IPhoneService PhoneService*@
 
 <div>
     @if (phone == null)
@@ -57,7 +56,7 @@
 
     protected override void OnInitialized()
     {
-        phone = PhoneService.GetById(Convert.ToInt64(Id));
+        //phone = PhoneService.GetById(Convert.ToInt64(Id));
     }
 
     private string GetStockText(int stock)

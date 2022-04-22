@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebstorePhones.Business\WebstorePhones.Business.csproj" />
     <ProjectReference Include="..\WebstorePhones.Domain\WebstorePhones.Domain.csproj" />
   </ItemGroup>
 

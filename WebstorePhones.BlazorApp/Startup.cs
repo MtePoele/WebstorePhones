@@ -1,23 +1,11 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap5;
 using Blazorise.Icons.FontAwesome;
-using WebstorePhones.Domain.Interfaces;
-using WebstorePhones.Business.Services;
-using WebstorePhones.Business.Loggers;
-using WebstorePhones.Business.Repositories;
-using WebstorePhones.Business;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace WebstorePhones.BlazorApp
 {
@@ -36,15 +24,6 @@ namespace WebstorePhones.BlazorApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-
-            services.AddDbContext<DataContext>(x => x.UseSqlServer($"{Configuration.GetSection("connectionString")}"));
-
-            services.AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>));
-            services.AddScoped<IPhoneService, PhoneService>();
-            services.AddScoped<IBrandService, BrandService>();
-            services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<ILogger, FileLogger>();
 
             services
                 .AddBlazorise()
