@@ -15,13 +15,13 @@ namespace WebstorePhones.BlazorApp
         }
 
 
-        private void Iets()
-        {
-            using (HttpClient client = new())
-            {
-                var a = client.GetFromJsonAsync<Brand>("https://localhost:44311/api/Brand/getbyid");
+        //private void Iets()
+        //{
+        //    using (HttpClient client = new())
+        //    {
+        //        var a = client.GetFromJsonAsync<Brand>("https://localhost:44311/api/Brand/getbyid");
                 
-            }
-        }
+        //    }
+        //}
     }
 }
