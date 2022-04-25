@@ -16,7 +16,7 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        phones = await apiClient.Get();
+        phones = await apiClient.GetAsync();
 
         // TODO Remove testcode
         //apiClient.Post(new Phone()

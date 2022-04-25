@@ -7,7 +7,7 @@ using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.BlazorApp
 {
-    public class ApiClient
+    public class ApiClient<T> : IApiClient<T> where T : class
     {
         private readonly HttpClient _client;
 
@@ -16,24 +16,25 @@ namespace WebstorePhones.BlazorApp
             _client = client;
         }
 
-        public async Task<List<Phone>> Get()
+        public async Task<List<T>> GetAsync()
         {
-            return await _client.GetFromJsonAsync<List<Phone>>("https://localhost:44311/api/Phones");
+            return await _client.GetFromJsonAsync<List<T>>("https://localhost:44311/api/Phones");
         }
 
-        public async Task<Phone> Get(long id)
+        public async Task<T> GetAsync(long id)
         {
-            return await _client.GetFromJsonAsync<Phone>($"https://localhost:44311/api/Phones/{id}");
+            return await _client.GetFromJsonAsync<T>($"https://localhost:44311/api/Phones/{id}");
         }
 
-        public void Post(Phone phone)
+        public void Post(T item)
         {
             //TODO Needs authorization
-            _client.PostAsJsonAsync<Phone>("https://localhost:44311/api/Phones", phone);
+            _client.PostAsJsonAsync<T>("https://localhost:44311/api/Phones", item);
         }
 
-        public async Task Delete(long id)
+        public async Task DeleteAsync(long id)
         {
+            //TODO Needs authorization
             await _client.DeleteAsync($"https://localhost:44311/api/Phones/delete?id={id}");
         }
     }
