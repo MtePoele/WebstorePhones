@@ -30,7 +30,8 @@ namespace WebstorePhones.Api.Controllers
             return Ok(phones);
         }
 
-        [HttpGet("{id}")]
+        [Route("getbyid")]
+        [HttpGet]
         public ActionResult Get(long id)
         {
             Phone phone = _phoneService.GetById(id);
