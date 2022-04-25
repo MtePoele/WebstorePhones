@@ -54,6 +54,7 @@ namespace WebstorePhones.Api.Controllers
 
         [Route("delete")]
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> Delete(long id)
         {
             try
