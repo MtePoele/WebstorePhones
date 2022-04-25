@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.BlazorApp
@@ -14,14 +16,24 @@ namespace WebstorePhones.BlazorApp
             _client = client;
         }
 
+        public async Task<List<Phone>> Get()
+        {
+            return await _client.GetFromJsonAsync<List<Phone>>("https://localhost:44311/api/Phones");
+        }
 
-        //private void Iets()
-        //{
-        //    using (HttpClient client = new())
-        //    {
-        //        var a = client.GetFromJsonAsync<Brand>("https://localhost:44311/api/Brand/getbyid");
-                
-        //    }
-        //}
+        public async Task<Phone> Get(long id)
+        {
+            return await _client.GetFromJsonAsync<Phone>("https://localhost:44311/api/Phones/1");
+        }
+
+        public void Post(Phone phone)
+        {
+            var p = _client.PostAsJsonAsync<Phone>("https://localhost:44311/api/Phones", phone);
+        }
+
+        public async Task Delete(long id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

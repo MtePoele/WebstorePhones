@@ -1,7 +1,9 @@
 ﻿@page "/"
 @using Domain.Entities
 @using WebstorePhones.Domain.Interfaces
-@*@inject IPhoneService PhoneService*@
+@inject ApiClient apiClient
+
+<PhoneInfo phone="@pho"></PhoneInfo>
 
 <UnorderedList>
     <Repeater Items="@phones">
@@ -11,10 +13,28 @@
 
 @code {
     List<Phone> phones = new();
+    Phone pho = new();
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        //phones = PhoneService.Get().ToList();
+        //Works
+        phones = await apiClient.Get();
+
+        //TODO Doesn't work yet
+        pho = await apiClient.Get(10007);
+
+        //Works but needs authorization now
+        apiClient.Post(new Phone()
+            {
+                Brand = new Brand()
+                {
+                    BrandName = "Apple"
+                },
+                Type = "Blazor",
+                Description = "Desc",
+                PriceWithTax = 20,
+                Stock = 5
+            });
     }
 }

@@ -25,7 +25,8 @@ namespace WebstorePhones.BlazorApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            services.AddHttpClient<ApiClient>();
+            services.AddHttpClient();
+            services.AddScoped<ApiClient>();
 
             services
                 .AddBlazorise()
