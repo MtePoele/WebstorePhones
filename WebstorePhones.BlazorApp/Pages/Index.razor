@@ -12,7 +12,6 @@
 
 @code {
     List<Phone> phones = new();
-    List<Phone> phones2 = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -20,16 +19,16 @@
         phones = await apiClient.Get();
 
         // TODO Remove testcode
-        apiClient.Post(new Phone()
-            {
-                Brand = new Brand()
-                {
-                    BrandName = "Apple"
-                },
-                Type = "Blazor",
-                Description = "Desc",
-                PriceWithTax = 20,
-                Stock = 5
-            });
+        //apiClient.Post(new Phone()
+        //    {
+        //        Brand = new Brand()
+        //        {
+        //            BrandName = "Apple"
+        //        },
+        //        Type = "Blazor",
+        //        Description = "Desc",
+        //        PriceWithTax = 20,
+        //        Stock = 5
+        //    });
     }
 }

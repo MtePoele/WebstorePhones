@@ -34,7 +34,7 @@ namespace WebstorePhones.BlazorApp
 
         public async Task Delete(long id)
         {
-            throw new NotImplementedException();
+            await _client.DeleteAsync($"https://localhost:44311/api/Phones/delete?id={id}");
         }
     }
 }

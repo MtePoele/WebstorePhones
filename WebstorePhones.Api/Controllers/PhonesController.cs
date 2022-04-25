@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,10 +14,12 @@ namespace WebstorePhones.Api.Controllers
     public class PhonesController : Controller
     {
         private readonly IPhoneService _phoneService;
+        private readonly ILogger _logger;
 
-        public PhonesController(IPhoneService phoneService)
+        public PhonesController(IPhoneService phoneService, ILogger logger)
         {
             _phoneService = phoneService;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -47,6 +50,24 @@ namespace WebstorePhones.Api.Controllers
             await _phoneService.AddMissingPhonesAsync(phones);
 
             return Ok(phone);
+        }
+
+        [Route("delete")]
+        [HttpDelete]
+        public async Task<IActionResult> Delete(long id)
+        {
+            try
+            {
+                await _phoneService.DeleteAsync(id);
+            }
+            catch (Exception ex)
+            {
+                await _logger.LogAsync(WhatHappened.Exception, ex.Message);
+
+                return BadRequest();
+            }
+
+            return Ok($"Phone with id {id} has been deleted.");
         }
     }
 }
