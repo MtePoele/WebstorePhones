@@ -23,11 +23,12 @@ namespace WebstorePhones.BlazorApp
 
         public async Task<Phone> Get(long id)
         {
-            return await _client.GetFromJsonAsync<Phone>("https://localhost:44311/api/Phones/1");
+            return await _client.GetFromJsonAsync<Phone>($"https://localhost:44311/api/Phones/{id}");
         }
 
         public void Post(Phone phone)
         {
+            //TODO Needs authorization
             _client.PostAsJsonAsync<Phone>("https://localhost:44311/api/Phones", phone);
         }
 

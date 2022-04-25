@@ -12,18 +12,14 @@
 
 @code {
     List<Phone> phones = new();
-    Phone pho = new();
+    List<Phone> phones2 = new();
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        //Works
         phones = await apiClient.Get();
 
-        //TODO Doesn't work yet
-        //pho = await apiClient.Get(10007);
-
-        //Works but needs authorization now
+        // TODO Remove testcode
         apiClient.Post(new Phone()
             {
                 Brand = new Brand()
