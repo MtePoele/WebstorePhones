@@ -3,7 +3,6 @@
 @using WebstorePhones.Domain.Interfaces
 @inject ApiClient apiClient
 
-<PhoneInfo phone="@pho"></PhoneInfo>
 
 <UnorderedList>
     <Repeater Items="@phones">
@@ -22,7 +21,7 @@
         phones = await apiClient.Get();
 
         //TODO Doesn't work yet
-        pho = await apiClient.Get(10007);
+        //pho = await apiClient.Get(10007);
 
         //Works but needs authorization now
         apiClient.Post(new Phone()

@@ -28,7 +28,7 @@ namespace WebstorePhones.BlazorApp
 
         public void Post(Phone phone)
         {
-            var p = _client.PostAsJsonAsync<Phone>("https://localhost:44311/api/Phones", phone);
+            _client.PostAsJsonAsync<Phone>("https://localhost:44311/api/Phones", phone);
         }
 
         public async Task Delete(long id)
