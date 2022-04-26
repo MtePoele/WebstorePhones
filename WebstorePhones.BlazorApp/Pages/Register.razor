@@ -1,11 +1,27 @@
 ﻿@page "/register"
 @using WebstorePhones.Domain.Entities
-@inject IApiClient<Phone> apiClient
+@inject IApiClient apiClient
 
 <h2>Register</h2>
 
-<UsernamePassword />
+<div>
+    <Label>Username:</Label>
+    <TextEdit Role="TextRole.Text" Size="Size.Small" Width="Width.Is25" @bind="@Username"/>
+        <Label>Email:</Label>
+    <TextEdit Role="TextRole.Text" Size="Size.Small" Width="Width.Is25" @bind="@Email"/>
+    <Label>Password:</Label>
+    <TextEdit Role="TextRole.Password" Size="Size.Small" Width="Width.Is25" @bind="@Password"/>
+    <Button @onclick="Submit">Submit</Button>
+</div>
 
 @code {
-    
+    public string Username{ get; set; }
+    public string Email{ get; set; }
+    public string Password{ get; set; }
+
+    public void Submit()
+    {
+        apiClient.PostAsync(new(){Username = this.Username, Email = this.Email, Password = this.Password
+        }, "https://localhost:44311/api/User/create");
+    }
 }

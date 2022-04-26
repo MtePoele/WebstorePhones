@@ -14,9 +14,9 @@ namespace WebstorePhones.BlazorApp
             _client = client;
         }
 
-        public async Task<List<T>> GetAsync()
+        public async Task<List<T>> GetAsync(string url)
         {
-            return await _client.GetFromJsonAsync<List<T>>("https://localhost:44311/api/Phones");
+            return await _client.GetFromJsonAsync<List<T>>(url);
         }
 
         public async Task<T> GetAsync(long id)
@@ -24,10 +24,10 @@ namespace WebstorePhones.BlazorApp
             return await _client.GetFromJsonAsync<T>($"https://localhost:44311/api/Phones/getbyid?id={id}");
         }
 
-        public void Post(T item)
+        public async Task PostAsync(T item, string url)
         {
             //TODO Needs authorization
-            _client.PostAsJsonAsync<T>("https://localhost:44311/api/Phones", item);
+            _client.PostAsJsonAsync<T>(url, item);
         }
 
         public async Task DeleteAsync(long id)
