@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.BlazorApp
 {
@@ -23,7 +21,7 @@ namespace WebstorePhones.BlazorApp
 
         public async Task<T> GetAsync(long id)
         {
-            return await _client.GetFromJsonAsync<T>($"https://localhost:44311/api/Phones/{id}");
+            return await _client.GetFromJsonAsync<T>($"https://localhost:44311/api/Phones/getbyid?id={id}");
         }
 
         public void Post(T item)

@@ -1,7 +1,7 @@
 ﻿@page "/PhoneDetails/{Id:long}"
 @using WebstorePhones.Domain.Entities
 @using WebstorePhones.Domain.Interfaces
-@inject ApiClient apiClient
+@inject IApiClient<Phone> apiClient
 
 <div>
     @if (@phone == null)
@@ -55,7 +55,7 @@
     public long Id { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        phone = await apiClient.Get(Id);
+        phone = await apiClient.GetAsync(Id);
     }
 
     private string GetStockText(int stock)
