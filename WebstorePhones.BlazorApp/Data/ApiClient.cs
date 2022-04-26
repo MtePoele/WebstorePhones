@@ -24,16 +24,17 @@ namespace WebstorePhones.BlazorApp
             return await _client.GetFromJsonAsync<T>($"https://localhost:44311/api/Phones/getbyid?id={id}");
         }
 
-        public async Task PostAsync(T item, string url)
+        public async Task<HttpResponseMessage> PostAsync(string url, T item)
         {
             //TODO Needs authorization
-            _client.PostAsJsonAsync<T>(url, item);
+            return await _client.PostAsJsonAsync<T>(url, item);
         }
 
-        public async Task DeleteAsync(long id)
+        public async Task DeleteAsync(string url, long id)
         {
+            url = url + id;
             //TODO Needs authorization
-            await _client.DeleteAsync($"https://localhost:44311/api/Phones/delete?id={id}");
+            await _client.DeleteAsync(url);
         }
     }
 }

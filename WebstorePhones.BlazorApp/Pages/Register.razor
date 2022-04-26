@@ -1,27 +1,35 @@
 ﻿@page "/register"
+@using WebstorePhones.Api.Models
 @using WebstorePhones.Domain.Entities
-@inject IApiClient apiClient
+@inject IApiClient<User> apiClient
 
 <h2>Register</h2>
 
 <div>
     <Label>Username:</Label>
-    <TextEdit Role="TextRole.Text" Size="Size.Small" Width="Width.Is25" @bind="@Username"/>
-        <Label>Email:</Label>
-    <TextEdit Role="TextRole.Text" Size="Size.Small" Width="Width.Is25" @bind="@Email"/>
+    <TextEdit Role="TextRole.Text" Size="Size.Small" Width="Width.Is25" @bind-Text="@Username" />
+    <Label>Email:</Label>
+    <TextEdit Role="TextRole.Text" Size="Size.Small" Width="Width.Is25" @bind-Text="@Email" />
     <Label>Password:</Label>
-    <TextEdit Role="TextRole.Password" Size="Size.Small" Width="Width.Is25" @bind="@Password"/>
+    <TextEdit Role="TextRole.Password" Size="Size.Small" Width="Width.Is25" @bind-Text="@Password" />
     <Button @onclick="Submit">Submit</Button>
+
+    <Label>Response: @response</Label>
 </div>
 
 @code {
-    public string Username{ get; set; }
-    public string Email{ get; set; }
-    public string Password{ get; set; }
+    public string Username { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
 
-    public void Submit()
+    public string response { get; set; }
+
+    public async Task Submit()
     {
-        apiClient.PostAsync(new(){Username = this.Username, Email = this.Email, Password = this.Password
-        }, "https://localhost:44311/api/User/create");
+        var a = await apiClient.PostAsync(
+            "https://localhost:44311/api/User/create",
+            new User() { Username = Username, Email = Email, Password = Password }
+            );
+        response = a.Content.ToString();
     }
 }

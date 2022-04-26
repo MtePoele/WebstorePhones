@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace WebstorePhones.BlazorApp
@@ -7,7 +8,7 @@ namespace WebstorePhones.BlazorApp
     {
         Task<List<T>> GetAsync(string url);
         Task<T> GetAsync(long id);
-        async Task PostAsync(T item, string url);
-        Task DeleteAsync(long id);
+        Task<HttpResponseMessage> PostAsync(string url, T item);
+        Task DeleteAsync(string url, long id);
     }
 }
