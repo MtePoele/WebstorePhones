@@ -14,8 +14,8 @@
     <TextEdit Role="TextRole.Password" Size="Size.Small" Width="Width.Is25" @bind-Text="@Password" />
     <Button @onclick="Submit">Submit</Button>
 
-    <Label>Response: @response</Label>
 </div>
+    <Label>@response</Label>
 
 @code {
     public string Username { get; set; }
@@ -26,10 +26,17 @@
 
     public async Task Submit()
     {
-        var a = await apiClient.PostAsync(
+        var postReply = await apiClient.PostAsync(
             "https://localhost:44311/api/User/create",
             new User() { Username = Username, Email = Email, Password = Password }
             );
-        response = a.Content.ToString();
+        if (postReply.IsSuccessStatusCode)
+        {
+            response = $"User {Username} registered";
+        }
+        else
+        {
+            response = $"Something went wrong";
+        }
     }
 }
