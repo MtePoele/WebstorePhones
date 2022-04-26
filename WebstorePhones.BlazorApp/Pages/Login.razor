@@ -1,8 +1,50 @@
 ﻿@page "/login"
 @using WebstorePhones.Domain.Entities
+@using Newtonsoft.Json.Linq
+@inject IApiClient<WebstorePhones.Api.Models.Login> apiClient
 
 <h2>Login</h2>
 
+<div>
+    <Label>Username:</Label>
+    <TextEdit Role="TextRole.Text" Size="Size.Small" Width="Width.Is25" @bind-Text="@Username" />
+    <Label>Password:</Label>
+    <TextEdit Role="TextRole.Password" Size="Size.Small" Width="Width.Is25" @bind-Text="@Password" />
+    <Check TValue="bool" @bind-Checked="@RememberMe">Remember Me</Check>
+    <Button @onclick="Submit">Submit</Button>
+</div>
+<div>
+    <Label>@response</Label>
+</div>
+
 @code {
-    
+    public string Username { get; set; }
+    public string Password { get; set; }
+    public bool RememberMe { get; set; }
+
+    public string response { get; set; }
+
+    public async Task Submit()
+    {
+        var postReply = await apiClient.PostAsync(
+                "https://localhost:44311/api/User/login",
+                new Api.Models.Login()
+                    {
+                        Username = Username,
+                        Password = Password,
+                        RememberMe = RememberMe
+                    }
+            );
+        if (postReply.IsSuccessStatusCode)
+        {
+            var jsonObject = JObject.Parse(await postReply.Content.ReadAsStringAsync());
+            response = jsonObject["tokenString"].ToString();
+            //response = $"{Username} is now logged in.";
+        }
+        else
+        {
+            response = $"Something went wrong";
+        }
+    }
+
 }
