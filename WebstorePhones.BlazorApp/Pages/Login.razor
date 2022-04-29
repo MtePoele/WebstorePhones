@@ -2,6 +2,7 @@
 @using WebstorePhones.Domain.Entities
 @using Newtonsoft.Json.Linq
 @inject IApiClient<WebstorePhones.Api.Models.Login> apiClient
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 
 <h2>Login</h2>
 
@@ -39,6 +40,7 @@
         {
             var jsonObject = JObject.Parse(await postReply.Content.ReadAsStringAsync());
             response = jsonObject["tokenString"].ToString();
+            await localStorage.SetItemAsync("tokenstring", response);
             //response = $"{Username} is now logged in.";
         }
         else

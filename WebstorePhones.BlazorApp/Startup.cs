@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Blazorise;
 using Blazorise.Bootstrap5;
 using Blazorise.Icons.FontAwesome;
@@ -6,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebstorePhones.Domain.Entities;
 
 namespace WebstorePhones.BlazorApp
 {
@@ -28,6 +28,7 @@ namespace WebstorePhones.BlazorApp
 
             services.AddHttpClient();
             services.AddScoped(typeof(IApiClient<>), typeof(ApiClient<>));
+            services.AddBlazoredLocalStorage();
 
             services
                 .AddBlazorise()

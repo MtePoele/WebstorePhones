@@ -10,6 +10,8 @@
     </Repeater>
 </UnorderedList>
 
+
+
 @code {
     List<Phone> phones = new();
 
@@ -18,17 +20,16 @@
         await base.OnInitializedAsync();
         phones = await apiClient.GetAsync("https://localhost:44311/api/Phones");
 
-        // TODO Remove testcode
-        //apiClient.Post(new Phone()
-        //    {
-        //        Brand = new Brand()
-        //        {
-        //            BrandName = "Apple"
-        //        },
-        //        Type = "Blazor",
-        //        Description = "Desc",
-        //        PriceWithTax = 20,
-        //        Stock = 5
-        //    });
+        await apiClient.PostAsync("https://localhost:44311/api/Phones/post", new Phone()
+            {
+                Brand = new Brand()
+                {
+                    BrandName = "brandname"
+                },
+                Type = "type",
+                Description = "description",
+                PriceWithTax = 10,
+                Stock = 5
+            });
     }
 }
