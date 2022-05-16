@@ -19,26 +19,31 @@ namespace WebstorePhones.BlazorApp
 
         public async Task<List<T>> GetAsync(string url)
         {
+            await AttachHeader();
             return await _client.GetFromJsonAsync<List<T>>(url);
         }
 
         public async Task<T> GetAsync(long id)
         {
+            await AttachHeader();
             return await _client.GetFromJsonAsync<T>($"https://localhost:44311/api/Phones/getbyid?id={id}");
         }
 
         public async Task<HttpResponseMessage> PostAsync(string url, T item)
         {
-            //TODO Needs authorization
-            _client.DefaultRequestHeaders.Add("Authorization", "bearer " + _localStorage.GetItemAsync<string>("tokenstring"));
+            await AttachHeader();
             return await _client.PostAsJsonAsync<T>(url, item);
         }
 
         public async Task DeleteAsync(string url, long id)
         {
-            url = url + id;
-            //TODO Needs authorization
+            await AttachHeader();
             await _client.DeleteAsync(url);
+        }
+
+        private async Task AttachHeader()
+        {
+            _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", await _localStorage.GetItemAsync<string>("tokenstring"));
         }
     }
 }

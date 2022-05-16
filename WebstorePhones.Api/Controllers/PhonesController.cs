@@ -44,8 +44,6 @@ namespace WebstorePhones.Api.Controllers
         [Authorize]
         public async Task<IActionResult> Create(Phone phone)
         {
-            // TODO Needs some way to accept JWT Token?
-
             phone.Id = 0;
 
             List<Phone> phones = new();
