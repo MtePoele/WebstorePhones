@@ -26,7 +26,7 @@ z
     public async Task Submit()
     {
         var postReply = await apiClient.PostAsync(
-                "https://localhost:44311/api/User/login",
+                "api/User/login",
                 new Api.Models.Login()
                     {
                         Username = Username,

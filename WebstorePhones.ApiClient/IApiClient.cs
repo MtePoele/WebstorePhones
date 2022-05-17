@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace WebstorePhones.BlazorApp
+namespace WebstorePhones.ApiClient
 {
     public interface IApiClient<T> where T : class
     {

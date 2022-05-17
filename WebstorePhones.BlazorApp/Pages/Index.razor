@@ -18,9 +18,9 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        phones = await apiClient.GetAsync("https://localhost:44311/api/Phones");
+        phones = await apiClient.GetAsync("api/Phones");
 
-        await apiClient.PostAsync("https://localhost:44311/api/Phones/post", new Phone()
+        await apiClient.PostAsync("api/Phones/post", new Phone()
             {
                 Brand = new Brand()
                 {

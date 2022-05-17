@@ -29,7 +29,7 @@
     public async Task Submit()
     {
         var postReply = await apiClient.PostAsync(
-            "https://localhost:44311/api/User/create",
+            "api/User/create",
             new User() { Username = Username, Email = Email, Password = Password }
             );
         if (postReply.IsSuccessStatusCode)

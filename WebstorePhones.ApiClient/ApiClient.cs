@@ -4,16 +4,18 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
 
-namespace WebstorePhones.BlazorApp
+namespace WebstorePhones.ApiClient
 {
     public class ApiClient<T> : IApiClient<T> where T : class
     {
         private readonly HttpClient _client;
         private readonly ILocalStorageService _localStorage;
+        private string baseUri = string.Empty;
 
         public ApiClient(HttpClient client, ILocalStorageService localStorage)
         {
             _client = client;
+            
             _localStorage = localStorage;
         }
 
