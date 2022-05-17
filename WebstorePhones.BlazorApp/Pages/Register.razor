@@ -1,5 +1,6 @@
 ﻿@page "/register"
 @using WebstorePhones.Api.Models
+@using WebstorePhones.ApiClient
 @using WebstorePhones.Domain.Entities
 @inject IApiClient<User> apiClient
 
@@ -29,7 +30,7 @@
     public async Task Submit()
     {
         var postReply = await apiClient.PostAsync(
-            "api/User/create",
+            "/api/User/create",
             new User() { Username = Username, Email = Email, Password = Password }
             );
         if (postReply.IsSuccessStatusCode)

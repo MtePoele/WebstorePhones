@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebstorePhones.ApiClient;
 
 namespace WebstorePhones.BlazorApp
 {
@@ -26,8 +27,7 @@ namespace WebstorePhones.BlazorApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            services.AddHttpClient();
-            services.AddScoped(typeof(IApiClient<>), typeof(ApiClient<>));
+            services.AddPhoneShopApiClient();
             services.AddBlazoredLocalStorage();
 
             services

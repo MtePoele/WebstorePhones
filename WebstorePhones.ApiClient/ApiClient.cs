@@ -10,12 +10,10 @@ namespace WebstorePhones.ApiClient
     {
         private readonly HttpClient _client;
         private readonly ILocalStorageService _localStorage;
-        private string baseUri = string.Empty;
 
-        public ApiClient(HttpClient client, ILocalStorageService localStorage)
+        public ApiClient(IHttpClientFactory clientFactory, ILocalStorageService localStorage)
         {
-            _client = client;
-            
+            _client = clientFactory.CreateClient(nameof(ApiClient));
             _localStorage = localStorage;
         }
 

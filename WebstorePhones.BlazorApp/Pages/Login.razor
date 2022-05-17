@@ -1,4 +1,5 @@
 ﻿@page "/login"
+@using WebstorePhones.ApiClient
 @using WebstorePhones.Domain.Entities
 @using Newtonsoft.Json.Linq
 @inject IApiClient<WebstorePhones.Api.Models.Login> apiClient
@@ -26,7 +27,7 @@ z
     public async Task Submit()
     {
         var postReply = await apiClient.PostAsync(
-                "api/User/login",
+                "/api/User/login",
                 new Api.Models.Login()
                     {
                         Username = Username,

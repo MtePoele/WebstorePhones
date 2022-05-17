@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Domain.Entities
+@using WebstorePhones.ApiClient
 @using WebstorePhones.Domain.Interfaces
 @inject IApiClient<Phone> apiClient
 
@@ -18,9 +19,9 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        phones = await apiClient.GetAsync("api/Phones");
+        phones = await apiClient.GetAsync("/api/Phones");
 
-        await apiClient.PostAsync("api/Phones/post", new Phone()
+        await apiClient.PostAsync("/api/Phones/post", new Phone()
             {
                 Brand = new Brand()
                 {
