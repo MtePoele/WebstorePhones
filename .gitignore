@@ -108,3 +108,5 @@
 /Scraper/obj
 /WebstorePhones.BlazorApp/bin/Debug/net5.0
 /WebstorePhones.BlazorApp/obj
+/WebstorePhones.ApiClient/obj/Debug/net5.0
+/WebstorePhones.ApiClient/obj
