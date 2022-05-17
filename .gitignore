@@ -110,3 +110,4 @@
 /WebstorePhones.BlazorApp/obj
 /WebstorePhones.ApiClient/obj/Debug/net5.0
 /WebstorePhones.ApiClient/obj
+/WebstorePhones.ApiClient/bin/Debug/net5.0
