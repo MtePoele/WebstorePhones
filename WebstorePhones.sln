@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scraper", "Scraper\Scraper.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebstorePhones.BlazorApp", "WebstorePhones.BlazorApp\WebstorePhones.BlazorApp.csproj", "{604BF43C-15B8-491C-A031-070FA34BB3C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebstorePhones.ApiClient", "WebstorePhones.ApiClient\WebstorePhones.ApiClient.csproj", "{9CF6F871-1BB3-4A3E-88C8-FA74842D8877}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebstorePhones.ApiClient", "WebstorePhones.ApiClient\WebstorePhones.ApiClient.csproj", "{9CF6F871-1BB3-4A3E-88C8-FA74842D8877}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{45F311E9-8FD7-48E5-B709-003F6C819053}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{9CF6F871-1BB3-4A3E-88C8-FA74842D8877}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CF6F871-1BB3-4A3E-88C8-FA74842D8877}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CF6F871-1BB3-4A3E-88C8-FA74842D8877}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45F311E9-8FD7-48E5-B709-003F6C819053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F311E9-8FD7-48E5-B709-003F6C819053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F311E9-8FD7-48E5-B709-003F6C819053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F311E9-8FD7-48E5-B709-003F6C819053}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

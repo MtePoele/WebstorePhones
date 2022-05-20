@@ -36,7 +36,7 @@ namespace WebstorePhones.Api
                 .Configure<JwtSettings>(
                     options => Configuration.GetSection("JwtAuth").Bind(options));
 
-            services.AddDbContext<DataContext>(x => x.UseSqlServer($"{Configuration.GetSection("connectionString")}"));
+            services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetSection("connectionString").Value));
 
             services.AddControllers();
 

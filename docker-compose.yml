@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  webstorephones.api:
+    image: ${DOCKER_REGISTRY-}webstorephonesapi
+    build:
+      context: .
+      dockerfile: WebstorePhones.Api/Dockerfile
+    ports:
+      - "7001:7001"
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=PHONESHOPp1!"
+    ports:
+      - "7000:7000"
