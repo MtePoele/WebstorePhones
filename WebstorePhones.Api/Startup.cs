@@ -39,7 +39,7 @@ namespace WebstorePhones.Api
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetSection("connectionString").Value));
 
             services.AddControllers();
-
+            
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<DataContext>()
                 .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>(TokenOptions.DefaultProvider);
@@ -80,7 +80,7 @@ namespace WebstorePhones.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext db)
         {
             if (env.IsDevelopment())
             {
@@ -89,6 +89,8 @@ namespace WebstorePhones.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebstorePhones.Api v1"));
             }
 
+            db.Database.Migrate();
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
